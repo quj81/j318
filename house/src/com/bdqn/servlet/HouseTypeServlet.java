@@ -6,7 +6,9 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +65,10 @@ public class HouseTypeServlet extends HttpServlet {
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		HouseTypeService hys=new HouseTypeServiceImpl();
+		List<HouseType> list=hys.getHouseTypeList();
+		request.setAttribute("HouseType", list);
+		request.getRequestDispatcher("#").forward(request, response);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String name=request.getParameter("typeName");//楼盘类型
@@ -72,15 +77,52 @@ public class HouseTypeServlet extends HttpServlet {
 		ht.setAddTime(new Date());
 		ht.setAddUser(username);
 		ht.setTypeName(name);
-		HouseTypeServiceImpl hys=new HouseTypeServiceImpl();
+		HouseTypeService hys=new HouseTypeServiceImpl();
+		int fh=-1;
+		fh=hys.addHouseType(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('添加失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('添加成功');window.location='#'</script>");
+		}
+		
 	}
 	
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		int id=Integer.parseInt(request.getParameter("id"));
+		HouseTypeService hys=new HouseTypeServiceImpl();
+		HouseType ht=new HouseType();
+		ht.setId(id);
+		int fh=-1;
+		fh=hys.delHouseType(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('删除失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('删除成功');window.location='#'</script>");
+		}
 	}
 	
 	public void modifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		String name=request.getParameter("typeName");//楼盘类型
+		String username=(String)request.getSession().getAttribute("username");//获得session中的用户
+		HouseType ht=new HouseType();
+		ht.setUpdateTime(new Date());
+		ht.setUpdateUser(username);
+		ht.setTypeName(name);
+		HouseTypeService hys=new HouseTypeServiceImpl();
+		int fh=-1;
+		fh=hys.addHouseType(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('修改失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('修改成功');window.location='#'</script>");
+		}
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
