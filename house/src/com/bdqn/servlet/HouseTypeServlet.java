@@ -54,11 +54,15 @@ public class HouseTypeServlet extends HttpServlet {
 			delete(request,response);
 		}if("modifi".equals(type)){
 			modifi(request,response);
+		}if("get".equals(type)){
+			get(request,response);
 		}
 	}
-	
+	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String name=
+		String name=request.getParameter("");
 	}
 	
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
