@@ -43,19 +43,32 @@ public class HouseAreaServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		String type = request.getParameter("type");
+		if("add".equals(type)){
+			add(request,response);
+		}if("delete".equals(type)){
+			delete(request,response);
+		}if("modifi".equals(type)){
+			modifi(request,response);
+		}
 	}
-
-	/**
-	 * The doPost method of the servlet. <br>
-	 *
-	 * This method is called when a form has its tag value method equals to post.
-	 * 
-	 * @param request the request send by the client to the server
-	 * @param response the response send by the server to the client
-	 * @throws ServletException if an error occurred
-	 * @throws IOException if an error occurred
-	 */
+	
+	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+	}
+	
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+	}
+	
+	public void modifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+	}
+	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
