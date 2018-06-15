@@ -6,12 +6,16 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bdqn.entity.HouseType;
+import com.bdqn.service.HouseTypeService;
+import com.bdqn.service.Impl.HouseTypeServiceImpl;
 
 public class HouseTypeServlet extends HttpServlet {
 
@@ -62,7 +66,13 @@ public class HouseTypeServlet extends HttpServlet {
 		
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String name=request.getParameter("");
+		String name=request.getParameter("typeName");//楼盘类型
+		String username=(String)request.getSession().getAttribute("username");//获得session中的用户
+		HouseType ht=new HouseType();
+		ht.setAddTime(new Date());
+		ht.setAddUser(username);
+		ht.setTypeName(name);
+		HouseTypeServiceImpl hys=new HouseTypeServiceImpl();
 	}
 	
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

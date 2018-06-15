@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HousePicturetypeDao;
 import com.bdqn.dao.Impl.HousePicturetypeDaoImpl;
 import com.bdqn.entity.HousePicturetype;
+import com.bdqn.service.HousePicturetypeService;
 
 
-public class HousePicturetypeServiceImpl extends BaseDao implements HousePicturetypeDao{
+public class HousePicturetypeServiceImpl extends BaseDao implements HousePicturetypeService{
 	
 	public int addHousePicturetype(HousePicturetype HousePicturetype) {
 		// TODO Auto-generated method stub

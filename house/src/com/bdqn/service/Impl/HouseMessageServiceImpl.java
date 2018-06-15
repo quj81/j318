@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseMessageDao;
 import com.bdqn.dao.Impl.HouseMessageDaoImpl;
 import com.bdqn.entity.HouseMessage;
+import com.bdqn.service.HouseMessageService;
 
 
-public class HouseMessageServiceImpl extends BaseDao implements HouseMessageDao{
+public class HouseMessageServiceImpl extends BaseDao implements HouseMessageService{
 	
 	public int addHouseMessage(HouseMessage HouseMessage) {
 		// TODO Auto-generated method stub

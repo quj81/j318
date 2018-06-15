@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseFinishstateDao;
 import com.bdqn.dao.Impl.HouseFinishstateDaoImpl;
 import com.bdqn.entity.HouseFinishstate;
+import com.bdqn.service.HouseFinishstateService;
 
 
-public class HouseFinishstateServiceImpl extends BaseDao implements HouseFinishstateDao{
+public class HouseFinishstateServiceImpl extends BaseDao implements HouseFinishstateService{
 	
 	public int addHouseFinishstate(HouseFinishstate HouseFinishstate) {
 		// TODO Auto-generated method stub

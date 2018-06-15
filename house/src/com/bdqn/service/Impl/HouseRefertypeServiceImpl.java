@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseRefertypeDao;
 import com.bdqn.dao.Impl.HouseRefertypeDaoImpl;
 import com.bdqn.entity.HouseRefertype;
+import com.bdqn.service.HouseRefertypeService;
 
 
-public class HouseRefertypeServiceImpl extends BaseDao implements HouseRefertypeDao{
+public class HouseRefertypeServiceImpl extends BaseDao implements HouseRefertypeService{
 	
 	public int addHouseRefertype(HouseRefertype HouseRefertype) {
 		// TODO Auto-generated method stub

@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseTownDao;
 import com.bdqn.dao.Impl.HouseTownDaoImpl;
 import com.bdqn.entity.HouseTown;
+import com.bdqn.service.HouseTownService;
 
 
-public class HouseTownServiceImpl extends BaseDao implements HouseTownDao{
+public class HouseTownServiceImpl extends BaseDao implements HouseTownService{
 	
 	public int addHouseTown(HouseTown HouseTown) {
 		// TODO Auto-generated method stub
