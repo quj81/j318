@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseAreaServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseAreaServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseFinishstateServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseFinishstateServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseMessageServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseMessageServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseNewsServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseNewsServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HousePictureServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HousePictureServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HousePicturetypeServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HousePicturetypeServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HousePropertyServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HousePropertyServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseProvinceServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseProvinceServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseRefertypeServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseRefertypeServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseStateServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseStateServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseTownServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseTownServlet</servlet-class>
+  </servlet>
+      <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseTypeServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseTypeServlet</servlet-class>
+  </servlet>
+        <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseUserServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseUserServlet</servlet-class>
+  </servlet>
+  
+  
+  
+  
+  
+  
+  <servlet-mapping>
+    <servlet-name>HouseAreaServlet</servlet-name>
+    <url-pattern>/HouseAreaServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseFinishstateServlet</servlet-name>
+    <url-pattern>/HouseFinishstateServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseMessageServlet</servlet-name>
+    <url-pattern>/HouseMessageServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseNewsServlet</servlet-name>
+    <url-pattern>/HouseNewsServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HousePictureServlet</servlet-name>
+    <url-pattern>/HousePictureServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HousePicturetypeServlet</servlet-name>
+    <url-pattern>/HousePicturetypeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HousePropertyServlet</servlet-name>
+    <url-pattern>/HousePropertyServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseProvinceServlet</servlet-name>
+    <url-pattern>/HouseProvinceServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseRefertypeServlet</servlet-name>
+    <url-pattern>/HouseRefertypeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseStateServlet</servlet-name>
+    <url-pattern>/HouseStateServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseTownServlet</servlet-name>
+    <url-pattern>/HouseTownServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseTypeServlet</servlet-name>
+    <url-pattern>/HouseTypeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>HouseUserServlet</servlet-name>
+    <url-pattern>/HouseUserServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
