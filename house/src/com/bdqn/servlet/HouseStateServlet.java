@@ -6,12 +6,16 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bdqn.entity.HouseState;
+import com.bdqn.service.HouseStateService;
+import com.bdqn.service.Impl.HouseStateServiceImpl;
 
 public class HouseStateServlet extends HttpServlet {
 
@@ -59,7 +63,10 @@ public class HouseStateServlet extends HttpServlet {
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		HouseStateService hss=new HouseStateServiceImpl();
+		List<HouseState> list=hss.getHouseStateList();
+		request.setAttribute("HouseState", list);
+		request.getRequestDispatcher("#").forward(request, response);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		

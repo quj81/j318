@@ -7,11 +7,22 @@ package com.bdqn.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bdqn.dao.HouseTownDao;
+import com.bdqn.dao.Impl.HouseTownDaoImpl;
+import com.bdqn.entity.HouseTown;
+import com.bdqn.entity.HouseType;
+import com.bdqn.service.HouseTownService;
+import com.bdqn.service.HouseTypeService;
+import com.bdqn.service.Impl.HouseTownServiceImpl;
+import com.bdqn.service.Impl.HouseTypeServiceImpl;
 
 public class HouseTownServlet extends HttpServlet {
 
@@ -59,20 +70,65 @@ public class HouseTownServlet extends HttpServlet {
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		HouseTownService hts=new HouseTownServiceImpl();
+		List<HouseTown> list=hts.getHouseTownList();
+		request.setAttribute("HouseTown", list);
+		request.getRequestDispatcher("#").forward(request, response);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String name=request.getParameter("townName");//市名
+		String username=(String)request.getSession().getAttribute("username");//获得session中的用户
+		HouseTown ht=new HouseTown();
+		ht.setAddTime(new Date());
+		ht.setAddUser(username);
+		ht.setTownName(name);
+		HouseTownService hts=new HouseTownServiceImpl();
+		int fh=-1;
+		fh=hts.addHouseTown(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('添加失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('添加成功');window.location='#'</script>");
+		}
 		
 	}
 	
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		int id=Integer.parseInt(request.getParameter("id"));
+		HouseTownService hts=new HouseTownServiceImpl();
+		HouseTown ht=new HouseTown();
+		ht.setId(id);
+		int fh=-1;
+		fh=hts.delHouseTown(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('删除失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('删除成功');window.location='#'</script>");
+		}
 	}
 	
 	public void modifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		String name=request.getParameter("HouseTown");//楼盘类型
+		String username=(String)request.getSession().getAttribute("username");//获得session中的用户
+		HouseTown ht=new HouseTown();
+		ht.setUpdateTime(new Date());
+		ht.setUpdateUser(username);
+		ht.setTownName(name);
+		HouseTownService hts=new HouseTownServiceImpl();
+		int fh=-1;
+		fh=hts.modifyHouseTown(ht);
+		if(fh<0){
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('修改失败,请从新添加');window.location='#'</script>");
+		}else{
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('修改成功');window.location='#'</script>");
+		}
 	}
-	
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
