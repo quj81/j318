@@ -34,7 +34,9 @@ public class BaseDao {
 		user=params.getProperty("username");
 		password=params.getProperty("password");
 		}
-	private static Connection conn = null;
+	private static Connection conn=getJDBCConnection();
+	private static PreparedStatement prep=null;
+	private static ResultSet res=null;
 	
 	public static Connection getJDBCConnection() {
 		if (null == conn) {
@@ -49,7 +51,21 @@ public class BaseDao {
 	}
 
 	public static void close() {
-	
+		
+		if (null != res) {
+			try {
+				res.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (null != prep) {
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		if (null != conn) {
 			try {
 				conn.close();

@@ -68,18 +68,7 @@ public class HouseRefertypeDaoImpl extends BaseDao implements HouseRefertypeDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			try {
-				res.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				prep.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			close();
 		}
 		return list;
@@ -108,18 +97,7 @@ public class HouseRefertypeDaoImpl extends BaseDao implements HouseRefertypeDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			try {
-				res.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				prep.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			close();
 		}
 		return a;

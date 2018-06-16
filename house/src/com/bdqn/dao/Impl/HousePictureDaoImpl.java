@@ -70,18 +70,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			try {
-				res.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				prep.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			close();
 		}
 		return list;
@@ -112,18 +101,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			try {
-				res.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			try {
-				prep.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 			close();
 		}
 		return a;

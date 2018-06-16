@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 request.setAttribute("path",path);
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -69,7 +69,7 @@ request.setAttribute("path",path);
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+           <!--  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
@@ -113,7 +113,8 @@ request.setAttribute("path",path);
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
+            <jsp:include page="menu.jsp"></jsp:include>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -312,7 +313,7 @@ request.setAttribute("path",path);
                               <select id="sheng">
                                 <option value="1" selected="selected">北京市</option>
                               </select>
-                              <select id="change">
+                              <select id="shi">
                                 <option value="1" selected="selected">西城区</option>
                                 <option value="2">大产权</option>
                                 <option value="3">小产权</option>
@@ -450,7 +451,7 @@ request.setAttribute("path",path);
 			});
 		/* -End 楼盘名称判断 -End*/
 		
-		/* 产权性质遍历 */
+		//产权性质遍历 
 		$.post(
 				"HousePropertyServlet",
 				{"type":"get"},
@@ -463,9 +464,9 @@ request.setAttribute("path",path);
 				},
 				"json"
 			); 
-			/* End产权性质遍历End */
+		//End产权性质遍历End
 			
-			/* 房屋类型 */
+		//房屋类型 
 			$.post(
 				"HouseTypeServlet",
 				{"type":"get"},
@@ -478,9 +479,9 @@ request.setAttribute("path",path);
 				},
 				"json"
 			); 
-			/* End房屋类型End */
+		//End房屋类型End
 			
-			/* 省 */
+		//省
 			$.post(
 				"HouseProvinceServlet",
 				{"type":"get"},
@@ -493,15 +494,25 @@ request.setAttribute("path",path);
 				},
 				"json"
 			);
-			/* End省End */
-			$("#leibie").blur(function(){
-				alert($(this).val());
+		//End省End
+		//市
+			$("#sheng").change(function(){
+				var idd=$(this).val();
+				alert(idd);
+				$.post(
+				"HouseTownServlet",
+				{"type":"zcget","provinceId":idd},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+					}
+					$("#shi").html(pin);
+				},
+				"json"
+				)
 			})
-			/* 市 */
-			function shi(data){
-				alert(data);
-			}
-			/* 市 */
+		//End市
 		});
 		
 	</script>
