@@ -9,6 +9,18 @@
     <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseIndexShowServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseIndexShowServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>HouseIndextypeServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.HouseIndextypeServlet</servlet-class>
+  </servlet>
+    <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>HouseFinishstateServlet</servlet-name>
     <servlet-class>com.bdqn.servlet.HouseFinishstateServlet</servlet-class>
   </servlet>
@@ -87,6 +99,16 @@
   <servlet-mapping>
     <servlet-name>HouseAreaServlet</servlet-name>
     <url-pattern>/HouseAreaServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>HouseIndexShowServlet</servlet-name>
+    <url-pattern>/HouseIndexShowServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet-mapping>
+    <servlet-name>HouseIndextypeServlet</servlet-name>
+    <url-pattern>/HouseIndextypeServlet</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
