@@ -63,8 +63,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <li><a><i class="fa fa-desktop"></i>首页编辑 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 
-                     <li><a href="house-tyle.jsp">首页类型</a></li>
-                     <li><a href="house-hot.jsp">首页热门</a></li>
+                     <li><a href="house-tyle.jsp">首页楼盘类型</a></li>
+                     <li><a href="house-hot.jsp">首页楼盘热门</a></li>
                      <li><a href="house-refer.jsp">首页资讯</a></li>
                     </ul>
                   </li>
@@ -204,15 +204,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>第一个类型</h2>
+                    <h2>类型</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <div id="" style="width:100%; height:150px;">
-                      <select name="" id="" >
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
+                      <form action="" method="post">
+                      	<input type="checkbox" name="#" value="#">
+                      
+                      	<input type="submit" value="保存">
+                      </form>
 
                     </div>
                   </div>
@@ -220,100 +221,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
               <!-- /bar charts -->
 
-              <!-- bar charts group -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>第二个类型</h2>
-                   
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content1">
-                    <div id="" style="width:100%; height:150px;"> <select name="" id="">
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
-</div>
-                  </div>
-                </div>
-              </div>
-              <div class="clearfix"></div>
-              <!-- /bar charts group -->
-
-              <!-- bar charts group -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>第三个类型</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content2">
-                    <div id="" style="width:100%; height:150px;"> <select name="" id="">
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
-</div>
-                  </div>
-                </div>
-              </div>
-              <!-- /bar charts group -->
-
-              <!-- pie chart -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>第四个类型</h2>
-                   
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content2">
-                    <div id="" style="width:100%; height:150px;"> <select name="" id="">
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
-</div>
-                  </div>
-                </div>
-              </div>
-              <!-- /Pie chart -->
-
-              <!-- graph area -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>第五个类型</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content2">
-                    <div id="" style="width:100%; height:150px;"> <select name="" id="">
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
-</div>
-                  </div>
-                </div>
-              </div>
-              <!-- /graph area -->
-
-              <!-- line graph -->
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>第六个类型</h2>
-                    
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content2">
-                    <div id="" style="width:100%; height:150px;"> <select name="" id="">
-                        <option value="">请选择</option>
-                        <option value="">1</option>
-                      </select>
-</div>
-                  </div>
-                </div>
-              </div>
+             
               <!-- /line graph -->
             </div>
           </div>
