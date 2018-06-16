@@ -15,5 +15,6 @@ public interface HouseAreaService {
 	int modifyHouseArea(HouseArea HouseArea);
 	int delHouseArea(HouseArea HouseArea);
 	List<HouseArea> getHouseAreaList();
+	List<HouseArea> getHouseAreaList(int id);
 	HouseArea getHouseAreaInfo(int id);   
 }

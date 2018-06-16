@@ -11,5 +11,6 @@ public interface HouseTownDao{
 	int modifyHouseTown(HouseTown HouseTown);
 	int delHouseTown(HouseTown HouseTown);
 	List<HouseTown> getHouseTownList();
+	List<HouseTown> getHouseTownListId(int id);
 	HouseTown getHouseTownInfo(int id);   
 }

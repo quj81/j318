@@ -56,7 +56,7 @@ public class HouseProvinceDaoImpl extends BaseDao implements HouseProvinceDao{
 			res=prep.executeQuery();
 			while(res.next()){
 				HouseProvince a=new HouseProvince();
-    			a.setId(res.getInt("Id"));    
+    			a.setId(res.getInt("Id"));
     			a.setProvinceName(res.getString("ProvinceName"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
@@ -68,6 +68,18 @@ public class HouseProvinceDaoImpl extends BaseDao implements HouseProvinceDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close();
 		}
 		return list;
@@ -96,6 +108,18 @@ public class HouseProvinceDaoImpl extends BaseDao implements HouseProvinceDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close();
 		}
 		return a;

@@ -88,6 +88,18 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close();
 		}
 		return list;
@@ -136,6 +148,18 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close();
 		}
 		return a;
@@ -148,17 +172,31 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		HouseMessage a=new HouseMessage();
-		String sql="SELECT count(5) FROM `house_message` where housename='"+name+"'";
+		String sql="SELECT count(*) as coun FROM `house_message` where housename='"+name+"'";
 		int count=0;
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
 			while(res.next()){
-				count=res.getInt("count");
+				count=res.getInt("coun");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			close();
 		}
 		return count;
 	}

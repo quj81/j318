@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.bdqn.dao.HouseTownDao;
 import com.bdqn.dao.Impl.HouseTownDaoImpl;
 import com.bdqn.entity.HouseTown;
@@ -67,13 +68,26 @@ public class HouseTownServlet extends HttpServlet {
 			modifi(request,response);
 		}if("get".equals(type)){
 			get(request,response);
+		}if("zcget".equals(type)){
+			zcget(request,response);
 		}
 	}
+	public void zcget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int id=Integer.parseInt(request.getParameter("provinceId"));
+		HouseTownService hts=new HouseTownServiceImpl();
+		List<HouseTown> list=hts.getHouseTownListId(id);
+		String listJson = JSON.toJSONString(list);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(listJson);
+	}
+	
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int id=Integer.parseInt(request.getParameter("provinceId"));
 		HouseTownService hts=new HouseTownServiceImpl();
 		List<HouseTown> list=hts.getHouseTownList();
-		request.setAttribute("HouseTown", list);
-		request.getRequestDispatcher("#").forward(request, response);
+		String listJson = JSON.toJSONString(list);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(listJson);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String name=request.getParameter("townName");//ÊÐÃû

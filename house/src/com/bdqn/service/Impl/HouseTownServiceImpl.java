@@ -49,4 +49,11 @@ public class HouseTownServiceImpl extends BaseDao implements HouseTownService{
 		HouseTownDao service=new HouseTownDaoImpl();
 		return service.getHouseTownInfo(id);
 	}
+
+	@Override
+	public List<HouseTown> getHouseTownListId(int id) {
+		// TODO Auto-generated method stub
+		HouseTownDao service=new HouseTownDaoImpl();
+		return service.getHouseTownListId(id);
+	}
 }

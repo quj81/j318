@@ -69,7 +69,6 @@ public class HouseMessageServlet extends HttpServlet {
 		int a=hms.checkName(name);
 		boolean isExist=false;
 		isExist=a>0?true:false;
-		System.out.println(isExist);
 		response.getWriter().write("{\"isExist\":"+isExist+"}");
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

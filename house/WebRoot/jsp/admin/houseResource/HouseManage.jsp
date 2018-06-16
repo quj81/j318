@@ -265,37 +265,41 @@ request.setAttribute("path",path);
 
                         <div id="step-11">
                         <h2 class="StepTitle">基本资料</h2>
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" action="HouseMessageServlet" method="get">
+                        <input type="hidden" >
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>楼盘名称
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="houseName" required="required" class="form-control col-md-7 col-xs-12"><span id="checkNamelp"></span>
+                              <input type="text" name="houseName" id="houseName" required="required" class="form-control col-md-7 col-xs-12"><span id="checkNamelp"></span>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>产权性质
                             </label>
-                            <div class="vertical">
-                              <select id="mySelect" onclick="chanquan(this)">
-                                <option value="1" selected="selected">个人产权</option>
-                                <option value="2">大产权</option>
-                                <option value="3">小产权</option>
+                            <div class="vertical" id="chanquanxingzhi">
+                              <select id="chanquanxz">
+                                <option value="1" selected="selected">请选择</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3"><span class="required">*</span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
                             <div class="col-md-6 col-sm-6">
-                              <select id="change">
-                                <option value="1" selected="selected">北京市</option>
-                                <option value="2" onclick="chanquan('大产权')">大产权</option>
-                                <option value="3" onclick="chanquan('小产权')">小产权</option>
+                              <select id="leibie">
+                                <option value="1" selected="selected">请选择</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
+                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>起&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
+                            </label>
+                            <div class="col-md-6 col-sm-6">
+                              <input type="text" id="last-name2" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>均&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
                             </label>
                             <div class="col-md-6 col-sm-6">
                               <input type="text" id="last-name2" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
@@ -305,10 +309,8 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3"><span class="required">*</span>地理位置
                             </label>
                             <div>
-                              <select id="change">
+                              <select id="sheng">
                                 <option value="1" selected="selected">北京市</option>
-                                <option value="2" onclick="chanquan('大产权')">大产权</option>
-                                <option value="3" onclick="chanquan('小产权')">小产权</option>
                               </select>
                               <select id="change">
                                 <option value="1" selected="selected">西城区</option>
@@ -340,14 +342,14 @@ request.setAttribute("path",path);
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3">&nbsp;开盘时间</label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                              <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="middle-name" onclick="laydate()">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;交房时间
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" onclick="laydatet()">
                             </div>
                           </div>
                           <div class="form-group">
@@ -360,7 +362,7 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;容&nbsp;积&nbsp;率
                             </label>%
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="birthday3" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
                             </div>
                           </div>
                         </form>
@@ -371,7 +373,7 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3">房源描述
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12 soBig" required="required" type="text">
+                              <input id="birthday4" class="date-picker form-control col-md-7 col-xs-12 soBig" required="required" type="text">
                             </div>
                           </div>
                         </div>
@@ -427,31 +429,96 @@ request.setAttribute("path",path);
 			$("#houseName").blur(function(){
 				//读取输入的值
 				var houseName=$(this).val();
-				alert(houseName);
 				//服务端校验该楼盘名称是否存在
 				$.post(
 					"HouseMessageServlet",/* ${pageContext.request.contextPath}/ */
 					{"type":"Checkname","name":houseName},
 					function(data){
-						var isExist =data.idExist;
-						var info="";
-						if(idExist){
-							info="该楼盘已存在";
+						var isExist =data.isExist;
+						var noinfo="";
+						if(isExist){
+							noinfo="该楼盘已存在";
+							$("#checkNamelp").css("color","red");
 						}else{
-							info="该楼盘可以创建";
+							noinfo="该楼盘可以创建";
+							$("#checkNamelp").css("color","green");
 						}
-						$("#checkNamelp").html(info);
+						$("#checkNamelp").html(noinfo);
 					},
 					"json"
 				);
 			});
+		/* -End 楼盘名称判断 -End*/
+		
+		/* 产权性质遍历 */
+		$.post(
+				"HousePropertyServlet",
+				{"type":"get"},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].propertyType+"</option>"
+					}
+					$("#chanquanxz").html(pin);
+				},
+				"json"
+			); 
+			/* End产权性质遍历End */
 			
+			/* 房屋类型 */
+			$.post(
+				"HouseTypeServlet",
+				{"type":"get"},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
+					}
+					$("#leibie").html(pin);
+				},
+				"json"
+			); 
+			/* End房屋类型End */
+			
+			/* 省 */
+			$.post(
+				"HouseProvinceServlet",
+				{"type":"get"},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+					}
+					$("#sheng").html(pin);
+				},
+				"json"
+			);
+			/* End省End */
+			$("#leibie").blur(function(){
+				alert($(this).val());
+			})
+			/* 市 */
+			function shi(data){
+				alert(data);
+			}
+			/* 市 */
 		});
-	</script>       
+		
+	</script>
 
-        
-        
-    <!-- 自己编写的jQuery End -->
+	<!-- 时间插件 -->
+	<script src="${path }/jsp/admin/unit/laydate/laydate.js"></script>
+	<script>
+		;!function () {
+			laydate({
+				elem : '#birthday2'
+			});
+		}();
+	</script>
+	<!-- end时间插件end -->
+	
+	
+	<!-- 自己编写的jQuery End -->
 
 
 

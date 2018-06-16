@@ -49,4 +49,11 @@ public class HouseAreaServiceImpl extends BaseDao implements HouseAreaService{
 		HouseAreaDao service=new HouseAreaDaoImpl();
 		return service.getHouseAreaInfo(id);
 	}
+
+	@Override
+	public List<HouseArea> getHouseAreaList(int id) {
+		// TODO Auto-generated method stub
+		HouseAreaDao service=new HouseAreaDaoImpl();
+		return service.getHouseAreaList(id);
+	}
 }

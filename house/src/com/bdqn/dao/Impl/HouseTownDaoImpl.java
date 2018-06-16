@@ -98,9 +98,64 @@ public class HouseTownDaoImpl extends BaseDao implements HouseTownDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			close();
 		}
 		return a;
+	}
+
+	@Override
+	public List<HouseTown> getHouseTownListId(int id) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseTown> list=new ArrayList<HouseTown>();
+		String sql="SELECT * FROM `house_town` where provinceId="+id;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseTown a=new HouseTown();
+    			a.setId(res.getInt("Id"));    
+    			a.setTownName(res.getString("TownName"));    
+    			a.setProvinceId(res.getInt("ProvinceId"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				res.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				prep.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			close();
+		}
+		return list;
 	}
 	
 }
