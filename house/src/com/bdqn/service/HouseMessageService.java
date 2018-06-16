@@ -16,4 +16,5 @@ public interface HouseMessageService {
 	int delHouseMessage(HouseMessage HouseMessage);
 	List<HouseMessage> getHouseMessageList();
 	HouseMessage getHouseMessageInfo(int id);   
+	int checkName(String name);
 }

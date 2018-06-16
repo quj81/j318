@@ -30,7 +30,7 @@ public class BaseDao {
 		}
 		driver=params.getProperty("driver");
 		url=params.getProperty("url");
-		user=params.getProperty("user");
+		user=params.getProperty("username");
 		password=params.getProperty("password");
 		}
 	private static Connection conn = null;

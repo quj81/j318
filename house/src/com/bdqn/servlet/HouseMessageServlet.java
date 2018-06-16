@@ -6,12 +6,14 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bdqn.service.HouseMessageService;
+import com.bdqn.service.Impl.HouseMessageServiceImpl;
 
 public class HouseMessageServlet extends HttpServlet {
 
@@ -57,7 +59,18 @@ public class HouseMessageServlet extends HttpServlet {
 			modifi(request,response);
 		}if("get".equals(type)){
 			get(request,response);
+		}if("Checkname".equals(type)){
+			check(request,response);
 		}
+	}
+	public void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String name=request.getParameter("name");
+		HouseMessageService hms=new HouseMessageServiceImpl();
+		int a=hms.checkName(name);
+		boolean isExist=false;
+		isExist=a>0?true:false;
+		System.out.println(isExist);
+		response.getWriter().write("{\"isExist\":"+isExist+"}");
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		

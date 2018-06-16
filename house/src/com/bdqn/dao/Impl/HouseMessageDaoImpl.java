@@ -140,5 +140,27 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		}
 		return a;
 	}
+
+	@Override
+	public int checkName(String name) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HouseMessage a=new HouseMessage();
+		String sql="SELECT count(5) FROM `house_message` where housename='"+name+"'";
+		int count=0;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				count=res.getInt("count");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
+	}
 	
 }

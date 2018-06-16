@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+request.setAttribute("path",path);
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -28,18 +29,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Gentellela Alela! | </title>
 
     <!-- Bootstrap -->
-    <link href="../../html/admin/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../../html/admin/css/font-awesome.min.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../../html/admin/css/nprogress.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/nprogress.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../../html/admin/css/custom.min.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/custom.min.css" rel="stylesheet">
 
-    <link href="../../html/admin/css/select.css" rel="stylesheet" />
-    <link href="../../html/admin/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
-		<link href="../../html/admin/css/fileUpload.css" rel="stylesheet" type="text/css">
+    <link href="${path }/jsp/admin/css/select.css" rel="stylesheet" />
+    <link href="${path }/jsp/admin/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+	<link href="${path }/jsp/admin/css/fileUpload.css" rel="stylesheet" type="text/css">
   </head>
 
   <body class="nav-md">
@@ -56,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="${path }/jsp/admin/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -145,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="${path }/jsp/admin/images/img.jpg" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -169,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path }/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -181,7 +182,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path }/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -193,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path }/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -205,7 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path }/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -269,14 +270,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>楼盘名称
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="first-name2" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="houseName" required="required" class="form-control col-md-7 col-xs-12"><span id="checkNamelp"></span>
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>产权性质
                             </label>
                             <div class="vertical">
-                              <select id="mySelect">
+                              <select id="mySelect" onclick="chanquan(this)">
                                 <option value="1" selected="selected">个人产权</option>
                                 <option value="2">大产权</option>
                                 <option value="3">小产权</option>
@@ -286,7 +287,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3"><span class="required">*</span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="middle-name">
+                              <select id="change">
+                                <option value="1" selected="selected">北京市</option>
+                                <option value="2" onclick="chanquan('大产权')">大产权</option>
+                                <option value="3" onclick="chanquan('小产权')">小产权</option>
+                              </select>
                             </div>
                           </div>
                           <div class="form-group">
@@ -302,8 +307,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div>
                               <select id="change">
                                 <option value="1" selected="selected">北京市</option>
-                                <option value="2">大产权</option>
-                                <option value="3">小产权</option>
+                                <option value="2" onclick="chanquan('大产权')">大产权</option>
+                                <option value="3" onclick="chanquan('小产权')">小产权</option>
                               </select>
                               <select id="change">
                                 <option value="1" selected="selected">西城区</option>
@@ -398,21 +403,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </div>
     </div>
 
+	
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
+    <script src="${path }/jsp/admin/js/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="${path }/jsp/admin/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="js/fastclick.js"></script>
+    <script src="${path }/jsp/admin/js/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="js/nprogress.js"></script>
+    <script src="${path }/jsp/admin/js/nprogress.js"></script>
     <!-- jQuery Smart Wizard -->
-    <script src="js/jquery.smartWizard.js"></script>
+    <script src="${path }/jsp/admin/js/jquery.smartWizard.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="js/custom.min.js"></script>
+    <script src="${path }/jsp/admin/js/custom.min.js"></script>
     <!--<script src="js/jquery-1.11.3.min.js"></script>-->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/jquery.select.js"></script>
+    <script src="${path }/jsp/admin/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="${path }/jsp/admin/js/jquery.select.js"></script>
+
+	<!-- 自己编写的jQuery -->
+	<script type="text/javascript">
+		/* 楼盘名称判断 */
+		$(function(){
+			$("#houseName").blur(function(){
+				//读取输入的值
+				var houseName=$(this).val();
+				alert(houseName);
+				//服务端校验该楼盘名称是否存在
+				$.post(
+					"HouseMessageServlet",/* ${pageContext.request.contextPath}/ */
+					{"type":"Checkname","name":houseName},
+					function(data){
+						var isExist =data.idExist;
+						var info="";
+						if(idExist){
+							info="该楼盘已存在";
+						}else{
+							info="该楼盘可以创建";
+						}
+						$("#checkNamelp").html(info);
+					},
+					"json"
+				);
+			});
+			
+		});
+	</script>       
+
+        
+        
+    <!-- 自己编写的jQuery End -->
+
+
 
     <script type="text/javascript">
       $(function () {
@@ -438,8 +479,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- /jQuery Smart Wizard -->
   </body>
 </html>
-<script type="text/javascript" src="../../html/admin/js/fileUpload.js"></script>
+<script type="text/javascript" src="${path }/jsp/admin/js/fileUpload.js"></script>
 <script type="text/javascript">
+
+
     $("#fileUploadContent").initUpload({
         "uploadUrl":"#",//上传文件信息地址
         "progressUrl":"#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
