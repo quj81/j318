@@ -69,7 +69,7 @@ public class HouseFinishstateDaoImpl extends BaseDao implements HouseFinishstate
 			e.printStackTrace();
 		}finally{
 		
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -98,7 +98,7 @@ public class HouseFinishstateDaoImpl extends BaseDao implements HouseFinishstate
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return a;
 	}

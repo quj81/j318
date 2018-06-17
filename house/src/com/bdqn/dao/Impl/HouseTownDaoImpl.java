@@ -69,7 +69,7 @@ public class HouseTownDaoImpl extends BaseDao implements HouseTownDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -99,7 +99,7 @@ public class HouseTownDaoImpl extends BaseDao implements HouseTownDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return a;
 	}
@@ -131,7 +131,7 @@ public class HouseTownDaoImpl extends BaseDao implements HouseTownDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return list;
 	}

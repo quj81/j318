@@ -89,7 +89,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -138,7 +138,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			e.printStackTrace();
 		}finally{
 		
-			close();
+			close(prep,res);
 		}
 		return a;
 	}
@@ -163,7 +163,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return count;
 	}

@@ -70,7 +70,7 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -99,7 +99,7 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close();
+			close(prep,res);
 		}
 		return a;
 	}

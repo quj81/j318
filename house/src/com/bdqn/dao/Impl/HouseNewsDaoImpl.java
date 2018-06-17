@@ -74,7 +74,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 			e.printStackTrace();
 		}finally{
 		
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -119,7 +119,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			close();
+			close(prep,res);
 		}
 		return a;
 	}

@@ -71,7 +71,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return list;
 	}
@@ -102,7 +102,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			e.printStackTrace();
 		}finally{
 			
-			close();
+			close(prep,res);
 		}
 		return a;
 	}
