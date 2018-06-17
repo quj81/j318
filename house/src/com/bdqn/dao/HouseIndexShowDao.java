@@ -6,6 +6,7 @@
 package com.bdqn.dao;
 import java.util.List;
 import com.bdqn.entity.HouseIndexShow;
+import com.bdqn.entity.HouseMessage;
 public interface HouseIndexShowDao{  
 	int addHouseIndexShow(HouseIndexShow HouseIndexShow);
 	int modifyHouseIndexShow(HouseIndexShow HouseIndexShow);

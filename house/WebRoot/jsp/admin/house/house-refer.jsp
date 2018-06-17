@@ -3,7 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%request.setAttribute("path", path); %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
    <head>
@@ -16,16 +17,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <title>Moris JS Chart Examples | Gentellela Alela! by Colorlib</title>
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="${path}/jsp/admin/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="${path}/jsp/admin/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../css/nprogress.css" rel="stylesheet">
+    <link href="${path}/jsp/admin/css/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="../css/flat/green.css" rel="stylesheet">
+    <link href="${path}/jsp/admin/css/flat/green.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../css/custom.min.css" rel="stylesheet">
+    <link href="${path}/jsp/admin/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -42,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- menu profile quick info -->
             <div class="profile">
               <div class="profile_pic">
-                <img src="../images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="${path}/jsp/admin/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -90,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="../images/img.jpg" alt="">John Doe
+                    <img src="${path}/jsp/admin/images/img.jpg" alt="">John Doe
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -114,7 +115,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="../images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path}/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -126,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="../images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path}/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -138,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="../images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path}/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -150,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="../images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="${path}/jsp/admin/images/img.jpg" alt="Profile Image" /></span>
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -238,19 +239,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
     <!-- jQuery -->
-    <script src="../js/jquery.min.js"></script>
+    <script src="${path}/jsp/admin/js/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../js/bootstrap.min.js"></script>
+    <script src="${path}/jsp/admin/js/bootstrap.min.js"></script>
     <!-- FastClick -->
-    <script src="../js/fastclick.js"></script>
+    <script src="${path}/jsp/admin/js/fastclick.js"></script>
     <!-- NProgress -->
-    <script src="../js/nprogress.js"></script>
+    <script src="${path}/jsp/admin/js/nprogress.js"></script>
     <!-- morris.js -->
-    <script src="../js/raphael.min.js"></script>
-    <script src="../js/morris.min.js"></script>
+    <script src="${path}/jsp/admin/js/raphael.min.js"></script>
+    <script src="${path}/jsp/admin/js/morris.min.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../js/custom.min.js"></script>
+    <script src="${path}/jsp/admin/js/custom.min.js"></script>
 
     <!-- morris.js -->
     <script>

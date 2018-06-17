@@ -15,6 +15,7 @@ import java.util.List;
 import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseIndexShowDao;
 import com.bdqn.entity.HouseIndexShow;
+import com.bdqn.entity.HouseMessage;
 
 
 
@@ -23,16 +24,16 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 	@Override
 	public int addHouseIndexShow(HouseIndexShow HouseIndexShow) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_index_show(,id,indextype,indexid,adduser,addtime,updateuser,updatetime) VALUE(,?,?,?,?,?,?,?)";
-		Object[] param={HouseIndexShow.getId(),HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime()};
+		String sql="INSERT INTO house_index_show(indextype,indexid,adduser,addtime,updateuser,updatetime) VALUE(?,?,?,?,?,?)";
+		Object[] param={HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime()};
 		return update(sql, param);
 	}
 
 	@Override
 	public int modifyHouseIndexShow(HouseIndexShow HouseIndexShow) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_index_show ,id=?,indextype=?,indexid=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
-		Object[] param={HouseIndexShow.getId(),HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime()};
+		String sql="UPDATE house_index_show indextype=?,indexid=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
+		Object[] param={HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime(),HouseIndexShow.getId()};
 		return update(sql, param);
 	}
 
@@ -103,5 +104,7 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 		}
 		return a;
 	}
+
+
 	
 }

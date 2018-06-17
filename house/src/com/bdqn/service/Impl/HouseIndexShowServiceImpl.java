@@ -11,9 +11,10 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseIndexShowDao;
 import com.bdqn.dao.Impl.HouseIndexShowDaoImpl;
 import com.bdqn.entity.HouseIndexShow;
+import com.bdqn.service.HouseIndexShowService;
 
 
-public class HouseIndexShowServiceImpl extends BaseDao implements HouseIndexShowDao{
+public class HouseIndexShowServiceImpl extends BaseDao implements HouseIndexShowService{
 	
 	public int addHouseIndexShow(HouseIndexShow HouseIndexShow) {
 		// TODO Auto-generated method stub
