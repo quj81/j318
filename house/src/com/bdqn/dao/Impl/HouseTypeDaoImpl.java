@@ -53,7 +53,7 @@ public class HouseTypeDaoImpl extends BaseDao implements HouseTypeDao{
 		String sql="SELECT * FROM `house_type`";
 		try {
 			prep=conn.prepareStatement(sql);
-			res=prep.executeQuery();
+			res=prep.executeQuery(); 
 			while(res.next()){
 				HouseType a=new HouseType();
     			a.setId(res.getInt("Id"));    

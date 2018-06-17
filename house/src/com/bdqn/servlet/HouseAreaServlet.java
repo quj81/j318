@@ -69,7 +69,6 @@ public class HouseAreaServlet extends HttpServlet {
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		int id=Integer.parseInt(request.getParameter("townId"));
 		HouseAreaService hts=new HouseAreaServiceImpl();
 		List<HouseArea> list=hts.getHouseAreaList();
 		String listJson = JSON.toJSONString(list);

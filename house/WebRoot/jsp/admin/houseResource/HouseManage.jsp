@@ -69,51 +69,6 @@ request.setAttribute("path",path);
             <br />
 
             <!-- sidebar menu -->
-           <!--  <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> 用户 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index.html">Dashboard</a></li>
-                      <li><a href="index2.html">Dashboard2</a></li>
-                      <li><a href="index3.html">Dashboard3</a></li>
-                    </ul>
-                  </li>
-
-                  <li><a><i class="fa fa-desktop"></i> 首页管理 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="general_elements.html">General Elements</a></li>
-                      <li><a href="media_gallery.html">Media Gallery</a></li>
-                      <li><a href="typography.html">Typography</a></li>
-                      <li><a href="icons.html">Icons</a></li>
-                      <li><a href="glyphicons.html">Glyphicons</a></li>
-                      <li><a href="widgets.html">Widgets</a></li>
-                      <li><a href="invoice.html">Invoice</a></li>
-                      <li><a href="inbox.html">Inbox</a></li>
-                      <li><a href="calendar.html">Calendar</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> 房屋管理 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form_wizards.html">房源管理</a>
-                      	<ul class="nav child_menu">
-                          <li><a href="form_upload.html">房源查看</a></li>
-                          <li><a href="form_wizards.html">房源发布</a></li>
-                        </ul>
-                        <li><a href="tables_dynamic.html">楼盘类型管理</a></li>
-                        <li><a href="tables_dynamic1.html">装修状态管理</a></li>
-                        <li><a href="tables_dynamic2.html">楼盘状态管理</a></li>
-                        <li><a href="tables_dynamic3.html">产权类型管理</a></li>
-                        <li><a href="tables_dynamic4.html">省级列表管理</a></li>
-                        <li><a href="tables_dynamic5.html">市级列表管理</a></li>
-                        <li><a href="tables_dynamic6.html">区域列表管理</a></li>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div> -->
             <jsp:include page="menu.jsp"></jsp:include>
             <!-- /sidebar menu -->
 
@@ -311,17 +266,13 @@ request.setAttribute("path",path);
                             </label>
                             <div>
                               <select id="sheng">
-                                <option value="1" selected="selected">北京市</option>
+                                <option value="0" selected="selected">请选择</option>
                               </select>
                               <select id="shi">
-                                <option value="1" selected="selected">西城区</option>
-                                <option value="2">大产权</option>
-                                <option value="3">小产权</option>
+                                <option value="0" selected="selected">请选择</option>
                               </select>
-                              <select id="change">
-                                <option value="1" selected="selected">北礼士路</option>
-                                <option value="2">大产权</option>
-                                <option value="3">小产权</option>
+                              <select id="qu">
+                                <option value="0" selected="selected">请选择</option>
                               </select>
                             </div>
                             <div class="form-group" style="margin-top: 10px">
@@ -467,52 +418,71 @@ request.setAttribute("path",path);
 		//End产权性质遍历End
 			
 		//房屋类型 
-			$.post(
-				"HouseTypeServlet",
-				{"type":"get"},
-				function(data){
-					var pin="";
-					for(var i=0;i<data.length;i++){
-						pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
-					}
-					$("#leibie").html(pin);
-				},
-				"json"
-			); 
+		$.post(
+			"HouseTypeServlet",
+			{"type":"get"},
+			function(data){
+				var pin="";
+				for(var i=0;i<data.length;i++){
+					pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
+				}
+				$("#leibie").html(pin);
+			},
+			"json"
+		); 
 		//End房屋类型End
 			
 		//省
-			$.post(
-				"HouseProvinceServlet",
-				{"type":"get"},
-				function(data){
-					var pin="";
-					for(var i=0;i<data.length;i++){
-						pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
-					}
-					$("#sheng").html(pin);
-				},
-				"json"
-			);
+		$.post(
+			"HouseProvinceServlet",
+			{"type":"get"},
+			function(data){
+				var pin="";
+				for(var i=0;i<data.length;i++){
+					pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+				}
+				$("#sheng").html(pin);
+			},
+			"json"
+		);
 		//End省End
 		//市
-			$("#sheng").change(function(){
+		$("#sheng").change(function(){
+			var idd=$(this).val();
+			alert(idd);
+			$.post(
+			"HouseTownServlet",
+			{"type":"zcget","provinceId":idd},
+			function(data){
+				var pin="";
+				for(var i=0;i<data.length;i++){
+					pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+				}
+				$("#shi").html(pin);
+			},
+			"json"
+			)
+		})
+		//End市
+		
+		//区
+		$("#shi").change(function(){
 				var idd=$(this).val();
 				alert(idd);
 				$.post(
 				"HouseTownServlet",
-				{"type":"zcget","provinceId":idd},
+				{"type":"zcget","townId":idd},
 				function(data){
 					var pin="";
 					for(var i=0;i<data.length;i++){
-						pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+						pin+="<option value="+data[i].id+">"+data[i].areaName+"</option>"
 					}
-					$("#shi").html(pin);
+					$("#qu").html(pin);
 				},
 				"json"
 				)
 			})
-		//End市
+		//END区END
 		});
 		
 	</script>
