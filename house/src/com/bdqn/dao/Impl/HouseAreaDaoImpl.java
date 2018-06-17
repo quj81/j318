@@ -68,7 +68,7 @@ public class HouseAreaDaoImpl extends BaseDao implements HouseAreaDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return list;
 	}
@@ -97,7 +97,7 @@ public class HouseAreaDaoImpl extends BaseDao implements HouseAreaDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return a;
 	}
@@ -128,7 +128,7 @@ public class HouseAreaDaoImpl extends BaseDao implements HouseAreaDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return list;
 	}

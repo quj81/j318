@@ -69,7 +69,7 @@ public class HousePicturetypeDaoImpl extends BaseDao implements HousePicturetype
 			e.printStackTrace();
 		}finally{
 			
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return list;
 	}
@@ -98,7 +98,7 @@ public class HousePicturetypeDaoImpl extends BaseDao implements HousePicturetype
 			e.printStackTrace();
 		}finally{
 			
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return a;
 	}

@@ -34,21 +34,22 @@ public class BaseDao {
 		user=params.getProperty("username");
 		password=params.getProperty("password");
 		}
-	private static Connection conn=getJDBCConnection();
+	
 	
 	public static Connection getJDBCConnection() {
-		if (null == conn) {
+		Connection conn=null;
+		
 			try {
 				Class.forName(driver); //
 				conn = DriverManager.getConnection(url, user, password);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+	
 		return conn;
 	}
 
-	public static void close(PreparedStatement prep ,ResultSet res) {
+	public static void close(Connection conn,PreparedStatement prep ,ResultSet res) {
 		
 		if (null != res) {
 			try {
@@ -90,7 +91,7 @@ public class BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			close(prep,null);
+			close(conn,prep,null);
 		}
 		return result;
 	}

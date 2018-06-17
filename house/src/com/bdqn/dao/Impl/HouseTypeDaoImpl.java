@@ -69,7 +69,7 @@ public class HouseTypeDaoImpl extends BaseDao implements HouseTypeDao{
 			e.printStackTrace();
 		}finally{
 			
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return list;
 	}
@@ -98,7 +98,7 @@ public class HouseTypeDaoImpl extends BaseDao implements HouseTypeDao{
 			e.printStackTrace();
 		}finally{
 			
-			close(prep,res);
+			close(conn,prep,res);
 		}
 		return a;
 	}
