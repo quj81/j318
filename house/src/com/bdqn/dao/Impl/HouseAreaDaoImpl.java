@@ -109,7 +109,7 @@ public class HouseAreaDaoImpl extends BaseDao implements HouseAreaDao{
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		List<HouseArea> list=new ArrayList<HouseArea>();
-		String sql="SELECT * FROM `house_area` townId="+id;
+		String sql="SELECT * FROM `house_area` where townId="+id;
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();

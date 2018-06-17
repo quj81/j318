@@ -188,7 +188,7 @@ request.setAttribute("path",path);
           <div class="souSuo">
             <div class="souSuo1">
               <select id="change_1">
-                <option value="1" selected="selected">个人产权</option>
+                <option value="1" selected="selected">产权性质</option>
                 <option value="2">大产权</option>
                 <option value="3">小产权</option>
               </select>
