@@ -73,7 +73,7 @@ public class HouseFinishstateDaoImpl extends BaseDao implements HouseFinishstate
 		}
 		return list;
 	}
-
+	
 	@Override
 	public HouseFinishstate getHouseFinishstateInfo(int id) {
 		// TODO Auto-generated method stub

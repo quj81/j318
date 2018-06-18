@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 request.setAttribute("path",path);
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -187,26 +187,32 @@ request.setAttribute("path",path);
         <div class="right_col" role="main">
           <div class="souSuo">
             <div class="souSuo1">
-              <select id="change_1">
-                <option value="1" selected="selected">产权性质</option>
-                <option value="2">大产权</option>
-                <option value="3">小产权</option>
+             <form action="HouseMessageServlet">
+             <input type="hidden" name="type" value="getcha">
+             	<select id="sheng" name="sheng">
+                <option value="-1" selected="selected">请选择省</option>
               </select>
-              <select id="change_1">
-                <option value="1" selected="selected">个人产权</option>
-                <option value="2">大产权</option>
-                <option value="3">小产权</option>
+              <select id="shi" name="shi">
+                <option value="-1" selected="selected">请选择市</option>
               </select>
-              <select id="change_1">
-                <option value="1" selected="selected">个人产权</option>
-                <option value="2">大产权</option>
-                <option value="3">小产权</option>
+              <select id="qu" name="qu">
+                <option value="-1" selected="selected">请选择区</option>
               </select>
-              <select id="change_1">
-                <option value="1" selected="selected">个人产权</option>
-                <option value="2">大产权</option>
-                <option value="3">小产权</option>
+              <select id="leibie" name="leibie">
+                <option value="-1" selected="selected">请选择类型</option>
               </select>
+              <select id="qujian" name="qujian">
+                <option value="-1" selected="selected">请选择价格</option>
+                <option value="0">0-10000</option>
+                <option value="10000">10000-20000</option>
+                <option value="30000">30000-40000</option>
+                <option value="50000">50000-60000</option>
+                <option value="70000">70000-80000</option>
+                <option value="90000">90000-100000</option>
+                <option value="100000">100000以上</option>
+              </select>
+              <input type="submit" value="确认">
+             </form>
             </div>
             <div class="souSuo2">
               <input type="text"/><button>搜索</button>
@@ -219,27 +225,46 @@ request.setAttribute("path",path);
                 <td class="last_info">房源状态</td>
                 <td class="last_info">房源管理</td>
               </tr>
-              <tr>
-                <td class="fr_show">
-                  <ul>
-                    <li><img src="" alt="" width="" height=""/></li>
-                    <li>
-                      <p><a href="form_buttons.html"> 阜成门高端小区（小区）</a></p>
-                      <p>
-                        145.8m2 地址+特色
-                      </p>
-                    </li>
-                  </ul>
-                </td>
-                <td class="last_show">
-                  <p>正在出售</p>
-                </td>
-                <td class="last_show">
-                  <a href="#">删除</a></p>
-                </td>
-              </tr>
+              <c:forEach items="${requestScope.list }" var="list">
+              
+	              <tr>
+	                <td class="fr_show">
+	                  <ul>
+	                    <li><img src="" alt="图片飞丢了" width="" height=""/></br>图片修改</li>
+	                    <li>
+	                      <p><a href="form_buttons.html"> ${list.houseName }</a></p>
+	                      <p>
+	                        	面积:${list.coveredArea }
+	                        	均价:${list.averagePrice }
+	                      </p>
+	                    </li>
+	                  </ul>
+	                </td>
+	                <td class="last_show">
+	                  <p>
+	                  <c:if test="${list.state==1}">
+	                  	发布
+	                  </c:if>
+	                  <c:if test="${list.state==2}">
+	                  	审核
+	                  </c:if>
+	                  <c:if test="${list.state==3}">
+	                  	删除
+	                  </c:if>
+	                  </p>
+	                </td>
+	                <td class="last_show">
+	                  <a href="#" onclikc="">删除</a></p>
+	                </td>
+	              </tr>
+	              
+              </c:forEach>
+
             </table>
           </div>
+         <div>
+			上一页  下一页
+		</div>
         </div>
 
         <!-- /page content -->
@@ -265,6 +290,87 @@ request.setAttribute("path",path);
     <script src="${path }/jsp/admin/js/nprogress.js"></script>
     <!-- Dropzone.js -->
     <script src="${path }/jsp/admin/js/dropzone.min.js"></script>
+	
+	
+	<!-- 自己写的script代码 -->
+	<script type="text/javascript">
+		$(function(){
+		//房屋类型 
+		$.post(
+			"HouseTypeServlet",
+			{"type":"get"},
+			function(data){
+				var pin="<option value='-1' selected='selected'>请选择类型</option>";
+				for(var i=0;i<data.length;i++){
+					pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
+				}
+				$("#leibie").html(pin);
+			},
+			"json"
+		); 
+		//End房屋类型End
+			
+		//省
+		$.post(
+			"HouseProvinceServlet",
+			{"type":"get"},
+			function(data){
+				var pin="<option value='-1' selected='selected'>请选择省</option>";
+				for(var i=0;i<data.length;i++){
+					pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+				}
+				$("#sheng").html(pin);
+			},
+			"json"
+		);
+		//End省End
+		//市
+		$("#sheng").change(function(){
+				var idd=$(this).val();
+				$.post(
+				"HouseTownServlet",
+				{"type":"zcget","provinceId":idd},
+				function(data){
+					var pin=" <option value='-1' selected='selected'>请选择市</option>";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+					}
+					$("#shi").html(pin);
+					var qu="<option value='-1' selected='selected'>请选择区</option>";
+					$("#qu").html(qu);
+				},
+				"json"
+			)
+		})
+		//End市
+		
+		//区
+		$("#shi").change(function(){
+					var idd=$(this).val();
+					$.post(
+					"HouseAreaServlet",
+					{"type":"zcget","townId":idd},
+					function(data){
+						var pin=" <option value='-1' selected='selected'>请选择区</option>";
+						for(var i=0;i<data.length;i++){
+							pin+="<option value="+data[i].id+">"+data[i].areaName+"</option>"
+						}
+						$("#qu").html(pin);
+					},
+					"json"
+					)
+					})
+		//END区END
+		
+		
+		
+		
+		
+		
+		});
+	</script>
+	<!-- end自己写的script代码end -->
+
 
     <!-- Custom Theme Scripts -->
     <script src="${path }/jsp/admin/js/custom.min.js"></script>

@@ -6,9 +6,11 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -68,8 +70,14 @@ public class HouseMessageServlet extends HttpServlet {
 			modifi(request,response);
 		}if("get".equals(type)){
 			get(request,response);
+		}if("allget".equals(type)){
+			allget(request,response);
 		}if("Checkname".equals(type)){
 			check(request,response);
+		}if("getcha".equals(type)){
+			getcha(request,response);
+		}if("getmodifi".equals(type)){
+			getmodifi(request,response);
 		}
 	}
 	public void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -80,7 +88,48 @@ public class HouseMessageServlet extends HttpServlet {
 		isExist=a>0?true:false;
 		response.getWriter().write("{\"isExist\":"+isExist+"}");
 	}
+	public void allget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HouseMessageService hms=new HouseMessageServiceImpl();
+		List<HouseMessage> list=hms.getHouseMessageList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("jsp/admin/houseResource/HouseShow.jsp").forward(request, response);
+	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+	}
+	public void getmodifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+			
+	}
+	public void getcha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String sql="SELECT * FROM `house_message` WHERE 1=1";
+		StringBuffer sb=new StringBuffer(sql);
+		String sheng=request.getParameter("sheng");
+		if(sheng!=null&&sheng.equals("-1")){
+			sb.append(" and provinceId="+sheng);
+		}
+		String shi=request.getParameter("shi");
+		if(shi!=null&&sheng.equals("-1")){
+			sb.append(" and townId="+shi);
+		}
+		String qu=request.getParameter("qu");
+		if(qu!=null&&sheng.equals("-1")){
+			sb.append(" and areaid="+qu);
+		}
+		String leibie=request.getParameter("leibie");
+		if(leibie!=null&&sheng.equals("-1")){
+			sb.append(" and houseType="+leibie);
+		}
+		String qujian=request.getParameter("qujian");
+		if(qujian!=null&&sheng.equals("-1")){
+			int qujianint=Integer.parseInt(qujian);
+			sb.append(" and "+qujianint+"<=averagePrice<="+(qujianint+10000));
+		}
+		HouseMessageService hms=new HouseMessageServiceImpl();
+		sql=sb.toString();
+		List<HouseMessage> list=hms.getHouseMessageList(sql);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("jsp/admin/houseResource/HouseShow.jsp").forward(request, response);
+
 		
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException{
@@ -124,19 +173,19 @@ public class HouseMessageServlet extends HttpServlet {
 		//a.setSalesAddress();    售楼地址
 		//a.setFeature();     项目特色
 		a.setAddress(xiangxidizhi);    
-		//a.setState();  状态  
+		a.setState(1);
 		//a.setAddUser(res.getString("AddUser"));    
 		//a.setAddTime(res.getDate("AddTime"));    
 		//a.setUpdateUser(res.getString("UpdateUser"));    
 		//a.setUpdateTime(res.getDate("UpdateTime")); 
-		
-		
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		int flag=hms.addHouseMessage(a);
 		if(flag>0){
-			System.out.println("成功");
+			PrintWriter out=response.getWriter();
+			out.print("<script>var r=confirm('补全资料首页展示信息更全面,成交量大大提高哦！是否补全资料');if(r){window.location='HouseMessageServlet?type=getmodifi&id="+11+"}else{window.location='HouseMessageServlet?type=allget'} '</script>");
 		}else{
-			System.out.println("失败");
+			PrintWriter out=response.getWriter();
+			out.print("<script>alert('添加失败,请从新添加'); window.location='HouseManage.jsp'</script>");
 		}
 		
 	}

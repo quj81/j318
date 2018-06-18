@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </li>
                   <li><a><i class="fa fa-edit"></i> 房屋管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                       	<li><a href="${path }/jsp/admin/houseResource/HouseShow.jsp">房源查看</a></li>
+                       	<li><a href="HouseMessageServlet?type=allget">房源查看</a></li>
                         <li><a href="${path }/jsp/admin/houseResource/HouseManage.jsp">房源发布</a></li>
                         <li><a href="tables_dynamic.html">楼盘类型管理</a></li>
                         <li><a href="tables_dynamic1.html">装修状态管理</a></li>

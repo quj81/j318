@@ -14,6 +14,7 @@ import java.util.List;
 
 import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseMessageDao;
+import com.bdqn.entity.HouseFinishstate;
 import com.bdqn.entity.HouseMessage;
 
 
@@ -166,6 +167,56 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 			close(conn,prep,res);
 		}
 		return count;
+	}
+
+	@Override
+	public List<HouseMessage> getHouseMessageList(String sql) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseMessage> list=new ArrayList<HouseMessage>();
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseMessage a=new HouseMessage();
+				a.setId(res.getInt("Id"));    
+    			a.setProvinceId(res.getInt("ProvinceId"));    
+    			a.setTownId(res.getInt("TownId"));    
+    			a.setAreaId(res.getInt("AreaId"));    
+    			a.setHouseName(res.getString("HouseName"));    
+    			a.setStartPrice(res.getDouble("StartPrice"));    
+    			a.setAveragePrice(res.getDouble("AveragePrice"));    
+    			a.setHouseType(res.getInt("HouseType"));    
+    			a.setCoveredArea(res.getDouble("CoveredArea"));    
+    			a.setFinishState(res.getInt("FinishState"));    
+    			a.setGreenRate(res.getDouble("GreenRate"));    
+    			a.setPlotRatio(res.getDouble("PlotRatio"));    
+    			a.setCheckTime(res.getDate("CheckTime"));    
+    			a.setOpenTime(res.getDate("OpenTime"));    
+    			a.setRealCompany(res.getString("RealCompany"));    
+    			a.setPropertyFee(res.getDouble("PropertyFee"));    
+    			a.setLicence(res.getString("Licence"));    
+    			a.setDevelopers(res.getString("Developers"));    
+    			a.setSalesAddress(res.getString("SalesAddress"));    
+    			a.setFeature(res.getString("Feature"));    
+    			a.setAddress(res.getString("Address"));    
+    			a.setState(res.getInt("State"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime")); 
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return list;
 	}
 	
 }

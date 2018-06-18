@@ -17,4 +17,5 @@ public interface HouseMessageService {
 	List<HouseMessage> getHouseMessageList();
 	HouseMessage getHouseMessageInfo(int id);   
 	int checkName(String name);
+	List<HouseMessage> getHouseMessageList(String sql);
 }
