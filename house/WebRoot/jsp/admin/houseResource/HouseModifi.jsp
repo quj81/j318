@@ -222,7 +222,7 @@ request.setAttribute("path",path);
                         <div id="step-11">
                         <h2 class="StepTitle">基本资料</h2>
                         <form class="form-horizontal form-label-left" action="HouseMessageServlet" method="get">
-                        <input type="hidden" type="hidden" name="type" value="add">
+                        <input type="hidden" type="hidden" name="type" value="modifi">
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>楼盘名称
                             </label><span id="checkNamelp"></span>
@@ -235,7 +235,7 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>产权性质
                             </label>
                             <div class="vertical" id="chanquanxingzhi">
-                              <select id="zhuangxiu" name="zhuangxiu">
+                              <select id="chanquanxz" name="chanquanxz">
                                 <option value="-1" selected="selected">请选择</option>
                               </select>
                             </div>
@@ -297,20 +297,20 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>建筑面积
                             </label><span id="msg1"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="mia" name="mianji" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="mia" name="mianji" required="required" value="${listtttt.coveredArea }" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3">&nbsp;开盘时间</label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="kaipan" onclick="laydate()">
+                              <input id="middle-name2" class="form-control col-md-7 col-xs-12" value="${listtttt.openTime1 }" type="text" name="kaipan" onclick="laydate()">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;交房时间
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" name="jiaofang" required="required" type="text" onclick="laydatet()">
+                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12"  value="${listtttt.checkTime1 }" name="jiaofang" required="required" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
@@ -351,14 +351,14 @@ request.setAttribute("path",path);
                           <div class="form-group">
                             <label for="middle-name" class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;绿&nbsp;化&nbsp;率</label>%<span id="msg2"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input id="luhua" class="form-control col-md-7 col-xs-12" type="text" name="lvhualv">
+                              <input id="luhua" class="form-control col-md-7 col-xs-12" type="text" value="${listtttt.greenRate }" name="lvhualv">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;容&nbsp;积&nbsp;率
                             </label>%<span id="rongmsg"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="rongjilv">
+                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.plotRatio }" required="required" type="text" name="rongjilv">
                             </div>
                           </div>
                           <div id="step-22">
@@ -462,6 +462,7 @@ request.setAttribute("path",path);
 				function(data){
 					var pin="";
 					for(var i=0;i<data.length;i++){
+					if(data[i].id==)
 						pin+="<option value="+data[i].id+">"+data[i].propertyType+"</option>"
 					}
 					$("#chanquanxz").html(pin);
@@ -470,6 +471,21 @@ request.setAttribute("path",path);
 			); 
 		//End产权性质遍历End
 			
+		//装修
+		$.post(
+				"HouseFinishstateServlet",
+				{"type":"get"},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						pin+="<option value="+data[i].id+">"+data[i].finishState+"</option>"
+					}
+					$("#zhuangxiu").html(pin);
+				},
+				"json"
+			); 
+		//End装修End	
+		
 		//房屋类型 
 		$.post(
 			"HouseTypeServlet",
@@ -477,6 +493,7 @@ request.setAttribute("path",path);
 			function(data){
 				var pin="";
 				for(var i=0;i<data.length;i++){
+					if(data[i].id==)
 					pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
 				}
 				$("#leibie").html(pin);
@@ -528,6 +545,8 @@ request.setAttribute("path",path);
 					function(data){
 						var pin=" <option value='0' selected='selected'>请选择</option>";
 						for(var i=0;i<data.length;i++){
+							
+						
 							pin+="<option value="+data[i].id+">"+data[i].areaName+"</option>"
 						}
 						$("#qu").html(pin);

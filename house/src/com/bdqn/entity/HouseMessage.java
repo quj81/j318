@@ -34,7 +34,14 @@ public class HouseMessage implements java.io.Serializable{
   private Date updateTime;/*???????updateTime*/  
   private String checkTime1;
   private String openTime1;
-    public String getCheckTime1() {
+  private int property;
+    public int getProperty() {
+	return property;
+}
+public void setProperty(int property) {
+	this.property = property;
+}
+	public String getCheckTime1() {
 	return checkTime1;
 }
 public void setCheckTime1(String checkTime1) {

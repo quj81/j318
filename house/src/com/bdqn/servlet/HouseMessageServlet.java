@@ -232,16 +232,15 @@ public class HouseMessageServlet extends HttpServlet {
 		int id=Integer.parseInt(request.getParameter("id"));
 		HouseMessage a=new HouseMessage();
 		a.setId(id);
-		a.setState(3);
 		HouseMessageService hms=new HouseMessageServiceImpl();
-		int flag=hms.modifyHouseMessage(a);
+		int flag=hms.delHouseMessage(a);
 		if(flag>0){
 			PrintWriter out=response.getWriter();
 			out.print("<script>alert('É¾³ý³É¹¦');window.location='HouseMessageServlet?type=allget'</script>");
 			 
 		}else{
 			PrintWriter out=response.getWriter();
-			out.print("<script>alert('É¾³ýÊ§°Ü'); </script>");
+			out.print("<script>alert('É¾³ýÊ§°Ü');window.location='HouseMessageServlet?type=allget' </script>");
 		}
 	}
 	
@@ -292,6 +291,7 @@ public class HouseMessageServlet extends HttpServlet {
 		a.setAddress(xiangxidizhi);    
 		a.setState(1);
 		a.setAddUser(request.getParameter("loupandizhi"));    //Â¥ÅÌµØÖ·
+		a.setProperty(chanquanxz);
 		//a.setAddTime();    
 		//a.setUpdateUser();    
 		//a.setUpdateTime(); 
