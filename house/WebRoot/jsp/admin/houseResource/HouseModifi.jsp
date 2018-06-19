@@ -462,8 +462,11 @@ request.setAttribute("path",path);
 				function(data){
 					var pin="";
 					for(var i=0;i<data.length;i++){
-					if(data[i].id==)
-						pin+="<option value="+data[i].id+">"+data[i].propertyType+"</option>"
+						if(data[i].id==${listtttt.property }){
+							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].propertyType+"</option>"
+						}else{
+							pin+="<option value="+data[i].id+">"+data[i].propertyType+"</option>"
+						}
 					}
 					$("#chanquanxz").html(pin);
 				},
@@ -478,7 +481,11 @@ request.setAttribute("path",path);
 				function(data){
 					var pin="";
 					for(var i=0;i<data.length;i++){
-						pin+="<option value="+data[i].id+">"+data[i].finishState+"</option>"
+						if(data[i].id==${listtttt.finishState }){
+							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].finishState+"</option>"
+						}else{
+							pin+="<option value="+data[i].id+">"+data[i].finishState+"</option>"
+						}
 					}
 					$("#zhuangxiu").html(pin);
 				},
@@ -493,8 +500,11 @@ request.setAttribute("path",path);
 			function(data){
 				var pin="";
 				for(var i=0;i<data.length;i++){
-					if(data[i].id==)
-					pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
+					if(data[i].id==${listtttt.houseType }){
+						pin+="<option value="+data[i].id+" selected='selected'>"+data[i].typeName+"</option>"
+					}else{
+						pin+="<option value="+data[i].id+">"+data[i].typeName+"</option>"
+					}
 				}
 				$("#leibie").html(pin);
 			},
@@ -509,13 +519,58 @@ request.setAttribute("path",path);
 			function(data){
 				var pin="<option value='0' selected='selected'>请选择</option>";
 				for(var i=0;i<data.length;i++){
+				if(data[i].id==${listtttt.provinceId }){
+					pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
+				}else{
 					pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+				}
 				}
 				$("#sheng").html(pin);
 			},
 			"json"
 		);
 		//End省End
+		//市
+		var provinceId=$("#sheng").val();
+		alert(provinceId);
+		$.post(
+				"HouseTownServlet",
+				{"type":"zcget","provinceId":provinceId},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						if(data[i].id==${listtttt.townId }){
+							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].townName+"</option>"
+						}else{
+							pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+						}
+					}
+					$("#shi").html(pin);
+				},
+				"json"
+			)
+		//End市End
+		//区
+		var townId=$("#shi").val();
+		$.post(
+			"HouseProvinceServlet",
+			{"type":"zcget","townId":townId},
+			function(data){
+				var pin="";
+				for(var i=0;i<data.length;i++){
+					if(data[i].id==${listtttt.areaId }){
+						pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
+					}else{
+						pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+					}
+				}
+				$("#sheng").html(pin);
+			},
+			"json"
+		);
+		//End区End
+		
+		
 		//市
 		$("#sheng").change(function(){
 				var idd=$(this).val();
@@ -545,8 +600,6 @@ request.setAttribute("path",path);
 					function(data){
 						var pin=" <option value='0' selected='selected'>请选择</option>";
 						for(var i=0;i<data.length;i++){
-							
-						
 							pin+="<option value="+data[i].id+">"+data[i].areaName+"</option>"
 						}
 						$("#qu").html(pin);

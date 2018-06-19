@@ -71,9 +71,9 @@ public class HouseProvinceServlet extends HttpServlet {
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HouseProvinceService hts=new HouseProvinceServiceImpl();
 		List<HouseProvince> list=hts.getHouseProvinceList();
-		 String listJson = JSON.toJSONString(list);
-		 response.setContentType("text/html; charset=UTF-8");
-		 response.getWriter().write(listJson);
+		String listJson = JSON.toJSONString(list);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(listJson);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String name=request.getParameter("HouseProvince");//ÊÐÃû

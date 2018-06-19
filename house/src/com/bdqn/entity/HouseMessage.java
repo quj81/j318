@@ -35,7 +35,7 @@ public class HouseMessage implements java.io.Serializable{
   private String checkTime1;
   private String openTime1;
   private int property;
-    public int getProperty() {
+  public int getProperty() {
 	return property;
 }
 public void setProperty(int property) {
