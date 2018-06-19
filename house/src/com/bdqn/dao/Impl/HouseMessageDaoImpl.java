@@ -22,16 +22,16 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 	@Override
 	public int addHouseMessage(HouseMessage HouseMessage) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_message(provinceId,townId,areaId,houseName,startPrice,averagePrice,houseType,coveredArea,finishState,greenRate,plotRatio,checkTime,openTime,realCompany,propertyFee,licence,developers,salesAddress,feature,address,state,addUser,addTime,updateUser,updateTime) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		Object[] param={HouseMessage.getProvinceId(),HouseMessage.getTownId(),HouseMessage.getAreaId(),HouseMessage.getHouseName(),HouseMessage.getStartPrice(),HouseMessage.getAveragePrice(),HouseMessage.getHouseType(),HouseMessage.getCoveredArea(),HouseMessage.getFinishState(),HouseMessage.getGreenRate(),HouseMessage.getPlotRatio(),HouseMessage.getCheckTime(),HouseMessage.getOpenTime(),HouseMessage.getRealCompany(),HouseMessage.getPropertyFee(),HouseMessage.getLicence(),HouseMessage.getDevelopers(),HouseMessage.getSalesAddress(),HouseMessage.getFeature(),HouseMessage.getAddress(),HouseMessage.getState(),HouseMessage.getAddUser(),HouseMessage.getAddTime(),HouseMessage.getUpdateUser(),HouseMessage.getUpdateTime()};
+		String sql="INSERT INTO house_message(provinceId,townId,areaId,houseName,startPrice,averagePrice,houseType,coveredArea,finishState,greenRate,plotRatio,checkTime,openTime,realCompany,propertyFee,licence,developers,salesAddress,feature,address,state,addUser,addTime,updateUser,updateTime,property) VALUE(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		Object[] param={HouseMessage.getProvinceId(),HouseMessage.getTownId(),HouseMessage.getAreaId(),HouseMessage.getHouseName(),HouseMessage.getStartPrice(),HouseMessage.getAveragePrice(),HouseMessage.getHouseType(),HouseMessage.getCoveredArea(),HouseMessage.getFinishState(),HouseMessage.getGreenRate(),HouseMessage.getPlotRatio(),HouseMessage.getCheckTime(),HouseMessage.getOpenTime(),HouseMessage.getRealCompany(),HouseMessage.getPropertyFee(),HouseMessage.getLicence(),HouseMessage.getDevelopers(),HouseMessage.getSalesAddress(),HouseMessage.getFeature(),HouseMessage.getAddress(),HouseMessage.getState(),HouseMessage.getAddUser(),HouseMessage.getAddTime(),HouseMessage.getUpdateUser(),HouseMessage.getUpdateTime(),HouseMessage.getProperty()};
 		return update(sql, param);
 	}
 
 	@Override
 	public int modifyHouseMessage(HouseMessage HouseMessage) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_message provinceId=?,townId=?,areaId=?,houseName=?,startPrice=?,averagePrice=?,houseType=?,coveredArea=?,finishState=?,greenRate=?,plotRatio=?,checkTime=?,openTime=?,realCompany=?,propertyFee=?,licence=?,developers=?,salesAddress=?,feature=?,address=?,state=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
-		Object[] param={HouseMessage.getProvinceId(),HouseMessage.getTownId(),HouseMessage.getAreaId(),HouseMessage.getHouseName(),HouseMessage.getStartPrice(),HouseMessage.getAveragePrice(),HouseMessage.getHouseType(),HouseMessage.getCoveredArea(),HouseMessage.getFinishState(),HouseMessage.getGreenRate(),HouseMessage.getPlotRatio(),HouseMessage.getCheckTime(),HouseMessage.getOpenTime(),HouseMessage.getRealCompany(),HouseMessage.getPropertyFee(),HouseMessage.getLicence(),HouseMessage.getDevelopers(),HouseMessage.getSalesAddress(),HouseMessage.getFeature(),HouseMessage.getAddress(),HouseMessage.getState(),HouseMessage.getAddUser(),HouseMessage.getAddTime(),HouseMessage.getUpdateUser(),HouseMessage.getUpdateTime(),HouseMessage.getId()};
+		String sql="UPDATE house_message provinceId=?,townId=?,areaId=?,houseName=?,startPrice=?,averagePrice=?,houseType=?,coveredArea=?,finishState=?,greenRate=?,plotRatio=?,checkTime=?,openTime=?,realCompany=?,propertyFee=?,licence=?,developers=?,salesAddress=?,feature=?,address=?,state=?,addUser=?,addTime=?,updateUser=?,updateTime=?,property=? where id=?";
+		Object[] param={HouseMessage.getProvinceId(),HouseMessage.getTownId(),HouseMessage.getAreaId(),HouseMessage.getHouseName(),HouseMessage.getStartPrice(),HouseMessage.getAveragePrice(),HouseMessage.getHouseType(),HouseMessage.getCoveredArea(),HouseMessage.getFinishState(),HouseMessage.getGreenRate(),HouseMessage.getPlotRatio(),HouseMessage.getCheckTime(),HouseMessage.getOpenTime(),HouseMessage.getRealCompany(),HouseMessage.getPropertyFee(),HouseMessage.getLicence(),HouseMessage.getDevelopers(),HouseMessage.getSalesAddress(),HouseMessage.getFeature(),HouseMessage.getAddress(),HouseMessage.getState(),HouseMessage.getAddUser(),HouseMessage.getAddTime(),HouseMessage.getUpdateUser(),HouseMessage.getUpdateTime(),HouseMessage.getProperty(),HouseMessage.getId()};
 		return update(sql, param);
 	}
 
@@ -82,6 +82,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			a.setProperty(res.getInt("property"));
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -131,7 +132,8 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
-    			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			a.setProperty(res.getInt("property"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
