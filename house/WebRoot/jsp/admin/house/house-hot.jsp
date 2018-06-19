@@ -63,10 +63,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   
                   <li><a><i class="fa fa-desktop"></i>首页楼盘 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-
-                     <li><a href="house-tyle.jsp">首页楼盘类型</a></li>
-                     <li><a href="house-hot.jsp">首页楼盘热门</a></li>
-                     <li><a href="house-refer.jsp">首页资讯</a></li>
+ 					 <li><a href="HouseIndextypeServlet?type=get">首页楼盘类型</a></li>
+                     <li><a href="HouseIndextypeServlet?type=get1">首页楼盘热门</a></li>
+                     <li><a href="HouseIndextypeServlet?type=get2">首页资讯</a></li>
                      
                     </ul>
                   </li>
@@ -199,10 +198,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
             </div>
 
-            <div class="clearfix"></div>
-
-            <div class="row">
-              <!-- bar chart -->
+            <div class="clearfix"></div>  
+ 
+            <div class="row">  
+              <!-- bar chart -->   
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -211,10 +210,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </div>
                   <div class="x_content">
                     <div id="" style="width:100%; height:80px;">
-                      <form action="" method="post">
-                      	<input type="checkbox" name="#" value="#">
-                      
-                      	<input type="submit" value="保存">
+                      <form action="HouseIndextypeServlet?indextype=2" method="post">
+                     	 <input type="hidden" name="type" value="add">
+                      <c:forEach items="${list}" var="list">       	
+                     	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     </c:forEach>
+                      	<input type="submit" value="显示" >
                       </form>
 
                     </div>

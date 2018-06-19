@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%request.setAttribute("path", path); %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html> 
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!-- Custom Theme Style -->
     <link href="${path}/jsp/admin/css/custom.min.css" rel="stylesheet">
+   
   </head>
 
   <body class="nav-md">
@@ -63,10 +64,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  
                   <li><a><i class="fa fa-desktop"></i>首页编辑 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-
-                     <li><a href="house-tyle.jsp">首页楼盘类型</a></li>
-                     <li><a href="house-hot.jsp">首页楼盘热门</a></li>
-                     <li><a href="house-refer.jsp">首页资讯</a></li>
+                     <li><a href="HouseIndextypeServlet?type=get">首页楼盘类型</a></li>
+                     <li><a href="HouseIndextypeServlet?type=get1">首页楼盘热门</a></li>
+                     <li><a href="HouseIndextypeServlet?type=get2">首页资讯</a></li>
                     </ul>
                   </li>
                   
@@ -200,23 +200,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
             <div class="clearfix"></div>
 
-            <div class="row">
+            <div class="row"> 
               <!-- bar chart -->
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
-                  <div class="x_title">
-                    <h2>类型</h2>
+                  <div class="x_title">   
+                    <h2>类型</h2> 
                     <div class="clearfix"></div>
-                  </div>
+                  </div>  
                   <div class="x_content">
                     <div id="" style="width:100%; height:150px;">
-                      <form action="HouseIndextypeServlet" method="post">
+                      <form action="HouseIndextypeServlet?indextype=1" method="post">
                      	 <input type="hidden" name="type" value="add">
-                      <c:forEach items="${list}" var="list">                 	
-                     	<input type="checkbox" value="${list.houseName}" name="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <c:forEach items="${list}" var="list">       	
+                     	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      </c:forEach>
-                      	<input type="submit" value="保存">
+                      	<input type="submit" value="显示" >
                       </form>
+             
                     </div>
                   </div>
                 </div>
@@ -226,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </div>
         </div>
         <!-- /page content -->
-
+			
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -252,8 +253,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!-- Custom Theme Scripts -->
     <script src="${path}/jsp/admin/js/custom.min.js"></script>
-
     <!-- morris.js -->
+    <script type="text/javascript"></script>
+    
+    <script>
+    	$("#all").click(function(){
+  			 if($("#all").attr("checked") == "checked"){
+      				 $("input[name='housetype']").attr("checked","checked");
+   			 }else{
+        			$("input[name='housetype']").removeAttr("checked","checked");
+   			 }
+			});
+    </script>
     <script>
       $(document).ready(function() {
         Morris.Bar({
