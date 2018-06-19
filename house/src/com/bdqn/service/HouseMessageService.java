@@ -18,4 +18,5 @@ public interface HouseMessageService {
 	HouseMessage getHouseMessageInfo(int id);   
 	int checkName(String name);
 	List<HouseMessage> getHouseMessageList(String sql);
+	List<HouseMessage> getLikeHouseMessageList(String name);
 }

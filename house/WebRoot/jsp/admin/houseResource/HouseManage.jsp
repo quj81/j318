@@ -400,7 +400,7 @@ request.setAttribute("path",path);
 							noinfo="该楼盘已存在";
 							$("#checkNamelp").css("color","red");
 						}else{
-							noinfo="该楼盘可以创建";
+							noinfo="√";
 							$("#checkNamelp").css("color","green");
 						}
 						$("#checkNamelp").html(noinfo);
@@ -496,7 +496,7 @@ request.setAttribute("path",path);
 		$("#money").blur(function(){
 			var money = document.getElementById('money');
 	        var moneyErr = document.getElementById('moneyErr');
-	        var pattern = /^[0-9]{3,15}$/;
+	        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
 	        if(money.value.length == 0){
 	           moneyErr.innerHTML="起价不能为空".fontcolor("red");
 	            return false;
@@ -505,7 +505,7 @@ request.setAttribute("path",path);
 	            moneyErr.innerHTML="起价格式不正确".fontcolor("red");
 	            return false;
 	        } else{
-	            moneyErr.innerHTML="格式正确".fontcolor("green");
+	            moneyErr.innerHTML="√".fontcolor("green");
 	            return true;
 	        }
 		})
@@ -514,7 +514,7 @@ request.setAttribute("path",path);
 	$("#moneytwo").blur(function(){
 		var moneytwo = document.getElementById('moneytwo');
         var moneyErrTwo = document.getElementById('moneyErrTwo');
-        var pattern = /^[0-9]{3,15}$/;
+        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(moneytwo.value.length == 0){
             moneyErrTwo.innerHTML="均价不能为空".fontcolor("red");
             return false;
@@ -523,7 +523,7 @@ request.setAttribute("path",path);
             moneyErrTwo.innerHTML="均价格式不正确".fontcolor("red");
             return false;
         } else{
-            moneyErrTwo.innerHTML="格式正确".fontcolor("green");
+            moneyErrTwo.innerHTML="√".fontcolor("green");
             return true;
         }
 	})
@@ -538,7 +538,7 @@ request.setAttribute("path",path);
             addressErr.innerHTML = "地址不能为空".fontcolor("red");
             return false;
         }else{
-            addressErr.innerHTML = "格式正确".fontcolor("green");
+            addressErr.innerHTML = "√".fontcolor("green");
         }
 	})
 
@@ -546,7 +546,7 @@ request.setAttribute("path",path);
 	$("#mia").blur(function(){
 		var mia = document.getElementById('mia');
         var msg1 = document.getElementById('msg1');
-        var pattern = /^[0-9]{1,2}$/;
+        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(mia.value.length == 0){
             msg1.innerHTML="面积不能为空".fontcolor("red");
             return false;
@@ -555,7 +555,7 @@ request.setAttribute("path",path);
             msg1.innerHTML="面积格式不正确".fontcolor("red");
             return false;
         } else{
-            msg1.innerHTML="格式正确".fontcolor("green");
+            msg1.innerHTML="√".fontcolor("green");
             return true;
         }
 	})
@@ -563,7 +563,7 @@ request.setAttribute("path",path);
 	$("#luhua").blur(function(){
 	  	var luhua = document.getElementById('luhua');
         var msg2 = document.getElementById('msg2');
-        var pattern = /^[0-9]{1,2}$/;
+        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(luhua.value.length == 0){
             msg2.innerHTML="绿化率不能为空".fontcolor("red");
             return false;
@@ -572,7 +572,7 @@ request.setAttribute("path",path);
             msg2.innerHTML="绿化率格式不正确".fontcolor("red");
             return false;
         } else{
-            msg2.innerHTML="格式正确".fontcolor("green");
+            msg2.innerHTML="√".fontcolor("green");
             return true;
         }
 	})
@@ -582,7 +582,7 @@ request.setAttribute("path",path);
 	$("#rong").blur(function(){
 		var rong = document.getElementById('rong');
         var rongmsg = document.getElementById('rongmsg');
-        var pattern = /^[0-9]{3,15}$/;
+        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(rong.value.length == 0){
             rongmsg.innerHTML="容积率不能为空".fontcolor("red");
             return false;
@@ -591,7 +591,7 @@ request.setAttribute("path",path);
             rongmsg.innerHTML="容积率格式不正确".fontcolor("red");
             return false;
         } else{
-            rongmsg.innerHTML="格式正确".fontcolor("green");
+            rongmsg.innerHTML="√".fontcolor("green");
             return true;
         }
 	})

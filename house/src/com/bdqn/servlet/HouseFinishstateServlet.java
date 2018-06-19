@@ -6,12 +6,17 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSON;
+import com.bdqn.entity.HouseFinishstate;
+import com.bdqn.service.HouseFinishstateService;
+import com.bdqn.service.Impl.HouseFinishstateServiceImpl;
 
 public class HouseFinishstateServlet extends HttpServlet {
 
@@ -59,7 +64,11 @@ public class HouseFinishstateServlet extends HttpServlet {
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		HouseFinishstateService hts=new HouseFinishstateServiceImpl();
+		List<HouseFinishstate> list=hts.getHouseFinishstateList();
+		String listJson = JSON.toJSONString(list);
+		response.setContentType("text/html; charset=UTF-8");
+		response.getWriter().write(listJson);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		

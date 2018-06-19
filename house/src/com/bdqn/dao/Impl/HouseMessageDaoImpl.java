@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseMessageDao;
-import com.bdqn.entity.HouseFinishstate;
 import com.bdqn.entity.HouseMessage;
 
 
@@ -51,6 +51,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String sql="SELECT * FROM `house_message`";
 		try {
 			prep=conn.prepareStatement(sql);
@@ -83,6 +84,12 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -95,87 +102,14 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		return list;
 	}
 
-	@Override
-	public HouseMessage getHouseMessageInfo(int id) {
-		// TODO Auto-generated method stub
-		Connection conn=getJDBCConnection();
-		PreparedStatement prep=null;
-		ResultSet res=null;
-		HouseMessage a=new HouseMessage();
-		String sql="SELECT * FROM `house_message` where id="+id;
-		try {
-			prep=conn.prepareStatement(sql);
-			res=prep.executeQuery();
-			while(res.next()){
-    			a.setId(res.getInt("Id"));    
-    			a.setProvinceId(res.getInt("ProvinceId"));    
-    			a.setTownId(res.getInt("TownId"));    
-    			a.setAreaId(res.getInt("AreaId"));    
-    			a.setHouseName(res.getString("HouseName"));    
-    			a.setStartPrice(res.getDouble("StartPrice"));    
-    			a.setAveragePrice(res.getDouble("AveragePrice"));    
-    			a.setHouseType(res.getInt("HouseType"));    
-    			a.setCoveredArea(res.getDouble("CoveredArea"));    
-    			a.setFinishState(res.getInt("FinishState"));    
-    			a.setGreenRate(res.getDouble("GreenRate"));    
-    			a.setPlotRatio(res.getDouble("PlotRatio"));    
-    			a.setCheckTime(res.getDate("CheckTime"));    
-    			a.setOpenTime(res.getDate("OpenTime"));    
-    			a.setRealCompany(res.getString("RealCompany"));    
-    			a.setPropertyFee(res.getDouble("PropertyFee"));    
-    			a.setLicence(res.getString("Licence"));    
-    			a.setDevelopers(res.getString("Developers"));    
-    			a.setSalesAddress(res.getString("SalesAddress"));    
-    			a.setFeature(res.getString("Feature"));    
-    			a.setAddress(res.getString("Address"));    
-    			a.setState(res.getInt("State"));    
-    			a.setAddUser(res.getString("AddUser"));    
-    			a.setAddTime(res.getDate("AddTime"));    
-    			a.setUpdateUser(res.getString("UpdateUser"));    
-    			a.setUpdateTime(res.getDate("UpdateTime"));    
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-		
-			close(conn,prep,res);
-		}
-		return a;
-	}
-
-	@Override
-	public int checkName(String name) {
-		// TODO Auto-generated method stub
-		Connection conn=getJDBCConnection();
-		PreparedStatement prep=null;
-		ResultSet res=null;
-		HouseMessage a=new HouseMessage();
-		String sql="SELECT count(*) as coun FROM `house_message` where housename='"+name+"'";
-		int count=0;
-		try {
-			prep=conn.prepareStatement(sql);
-			res=prep.executeQuery();
-			while(res.next()){
-				count=res.getInt("coun");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			
-			close(conn,prep,res);
-		}
-		return count;
-	}
-
-	@Override
-	public List<HouseMessage> getHouseMessageList(String sql) {
+	public List<HouseMessage> getLikeHouseMessageList(String name) {
 		// TODO Auto-generated method stub
 		Connection conn=getJDBCConnection();
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sql="SELECT * FROM `house_message` WHERE houseName LIKE '%"+name+"%'";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
@@ -207,6 +141,150 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(conn,prep,res);
+		}
+		return list;
+	}
+	
+	@Override
+	public HouseMessage getHouseMessageInfo(int id) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HouseMessage a=new HouseMessage();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sql="SELECT * FROM `house_message` where id="+id;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+    			a.setId(res.getInt("Id"));    
+    			a.setProvinceId(res.getInt("ProvinceId"));    
+    			a.setTownId(res.getInt("TownId"));    
+    			a.setAreaId(res.getInt("AreaId"));    
+    			a.setHouseName(res.getString("HouseName"));    
+    			a.setStartPrice(res.getDouble("StartPrice"));    
+    			a.setAveragePrice(res.getDouble("AveragePrice"));    
+    			a.setHouseType(res.getInt("HouseType"));    
+    			a.setCoveredArea(res.getDouble("CoveredArea"));    
+    			a.setFinishState(res.getInt("FinishState"));    
+    			a.setGreenRate(res.getDouble("GreenRate"));    
+    			a.setPlotRatio(res.getDouble("PlotRatio"));    
+    			a.setCheckTime(res.getDate("CheckTime"));    
+    			a.setOpenTime(res.getDate("OpenTime"));    
+    			a.setRealCompany(res.getString("RealCompany"));    
+    			a.setPropertyFee(res.getDouble("PropertyFee"));    
+    			a.setLicence(res.getString("Licence"));    
+    			a.setDevelopers(res.getString("Developers"));    
+    			a.setSalesAddress(res.getString("SalesAddress"));    
+    			a.setFeature(res.getString("Feature"));    
+    			a.setAddress(res.getString("Address"));    
+    			a.setState(res.getInt("State"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		
+			close(conn,prep,res);
+		}
+		return a;
+	}
+
+	@Override
+	public int checkName(String name) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HouseMessage a=new HouseMessage();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sql="SELECT count(*) as coun FROM `house_message` where housename='"+name+"'";
+		int count=0;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				count=res.getInt("coun");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return count;
+	}
+
+	@Override
+	public List<HouseMessage> getHouseMessageList(String sql) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseMessage> list=new ArrayList<HouseMessage>();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseMessage a=new HouseMessage();
+				a.setId(res.getInt("Id"));    
+    			a.setProvinceId(res.getInt("ProvinceId"));    
+    			a.setTownId(res.getInt("TownId"));    
+    			a.setAreaId(res.getInt("AreaId"));    
+    			a.setHouseName(res.getString("HouseName"));    
+    			a.setStartPrice(res.getDouble("StartPrice"));    
+    			a.setAveragePrice(res.getDouble("AveragePrice"));    
+    			a.setHouseType(res.getInt("HouseType"));    
+    			a.setCoveredArea(res.getDouble("CoveredArea"));    
+    			a.setFinishState(res.getInt("FinishState"));    
+    			a.setGreenRate(res.getDouble("GreenRate"));    
+    			a.setPlotRatio(res.getDouble("PlotRatio"));
+    			a.setCheckTime(res.getDate("CheckTime"));
+    			a.setOpenTime(res.getDate("OpenTime"));    
+    			a.setRealCompany(res.getString("RealCompany"));    
+    			a.setPropertyFee(res.getDouble("PropertyFee"));    
+    			a.setLicence(res.getString("Licence"));    
+    			a.setDevelopers(res.getString("Developers"));    
+    			a.setSalesAddress(res.getString("SalesAddress"));    
+    			a.setFeature(res.getString("Feature"));    
+    			a.setAddress(res.getString("Address"));    
+    			a.setState(res.getInt("State"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
 				list.add(a);
 			}
 		} catch (SQLException e) {

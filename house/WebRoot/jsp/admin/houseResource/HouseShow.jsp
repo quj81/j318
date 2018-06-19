@@ -211,15 +211,15 @@ request.setAttribute("path",path);
                 <option value="90000">90000-100000</option>
                 <option value="100000">100000以上</option>
               </select>
-              <input type="submit" value="确认">
+              <input type="button" value="确认" id="queren">
              </form>
             </div>
             <div class="souSuo2">
-              <input type="text"/><button>搜索</button>
+              <input type="text" id="sousuo" value=""/><button id="ssqueren">搜索</button>
             </div>
           </div>
           <div class="info">
-            <table>
+            <table id="fangzi">
               <tr>
                 <td class="fr_info">房源基本信息</td>
                 <td class="last_info">房源状态</td>
@@ -227,36 +227,45 @@ request.setAttribute("path",path);
               </tr>
               <c:forEach items="${requestScope.list }" var="list">
               
+	              
 	              <tr>
-	                <td class="fr_show">
+	                <td class='fr_show'>
 	                  <ul>
-	                    <li><img src="" alt="图片飞丢了" width="" height=""/></br>图片修改</li>
+	                    <li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li>
 	                    <li>
-	                      <p><a href="form_buttons.html"> ${list.houseName }</a></p>
+	                      <p><a href='form_buttons.html'> 楼盘名称:${list.houseName }</a></p>
 	                      <p>
-	                        	面积:${list.coveredArea }
-	                        	均价:${list.averagePrice }
+	                        	面积:${list.coveredArea }</br>
+	                        	均价:${list.averagePrice }</br>
+	                        	开盘时间:${list.openTime }</br>
+	                        	交房时间：${list.checkTime }</br>
+	                        	绿化率：${list.greenRate }</br>
+	                        	容积率：${list.plotRatio }</br>
+	                        	
 	                      </p>
 	                    </li>
 	                  </ul>
 	                </td>
-	                <td class="last_show">
+	                <td class='last_show'>
 	                  <p>
-	                  <c:if test="${list.state==1}">
+	                  <c:if test='${list.state==1}'>
 	                  	发布
 	                  </c:if>
-	                  <c:if test="${list.state==2}">
+	                  <c:if test='${list.state==2}'>
 	                  	审核
 	                  </c:if>
-	                  <c:if test="${list.state==3}">
+	                  <c:if test='${list.state==3}'>
 	                  	删除
 	                  </c:if>
 	                  </p>
 	                </td>
-	                <td class="last_show">
-	                  <a href="#" onclikc="">删除</a></p>
+	                <td class='last_show'>
+	                 <p> <a href='HouseMessageServlet?type=tonameget&name=${list.houseName}' onclikc=''>修改</a></p>
+	                 <p> <a href='HouseMessageServlet?type=delete&id=${list.id}' onclikc=''>删除</a></p>
+	                  
 	                </td>
 	              </tr>
+	              
 	              
               </c:forEach>
 
@@ -362,7 +371,57 @@ request.setAttribute("path",path);
 					})
 		//END区END
 		
+		$("#queren").click(function(){
+			var sheng=$("#sheng").val();
+			var shi=$("#shi").val();
+			var qu=$("#qu").val();
+			var leibie=$("#leibie").val();
+			var qujian=$("#qujian").val();
+			$.post(
+			"HouseMessageServlet",
+			{"type":"getcha","sheng":sheng,"shi":shi,"qu":qu,"leibie":leibie,"qujian":qujian},
+			function(data){
+				var alr="<tr><td class='fr_info'>房源基本信息</td><td class='last_info'>房源状态</td><td class='last_info'>房源管理</td></tr>"
+				for(var i=0;i<data.length;i++){
+				var a="";
+				if(data[i].state==1){
+					a="发布";
+				}else if(data[i].state==2){
+					a="审核";
+				}else if(data[i].state==3){
+					a="删除";
+				}
+				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a href='HouseMessageServlet?type=delete&id="+data[i].id+"' onclikc=''>删除</a></p></td></tr>"
+				}
+				$("#fangzi").html(alr);
+			},
+			"json"
+		);
+		})
 		
+		$("#ssqueren").click(function(){
+			var str=$("#sousuo").val();
+			$.post(
+			"HouseMessageServlet",
+			{"type":"search","name":str},
+			function(data){
+				var alr="<tr><td class='fr_info'>房源基本信息</td><td class='last_info'>房源状态</td><td class='last_info'>房源管理</td></tr>"
+				for(var i=0;i<data.length;i++){
+				var a="";
+				if(data[i].state==1){
+					a="发布";
+				}else if(data[i].state==2){
+					a="审核";
+				}else if(data[i].state==3){
+					a="删除";
+				}
+				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a href='HouseMessageServlet?type=delete&id="+data[i].id+"' onclikc=''>删除</a></p></td></tr>"
+				}
+				$("#fangzi").html(alr);
+			},
+			"json"
+			);
+		})
 		
 		
 		
