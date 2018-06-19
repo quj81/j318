@@ -32,7 +32,15 @@ public class HouseMessage implements java.io.Serializable{
   private Date addTime;/*???????addTime*/  
   private String updateUser;/*???????updateUser*/  
   private Date updateTime;/*???????updateTime*/  
-    public int getId(){    
+  private int property;
+  	
+    public int getProperty() {
+	return property;
+    }
+    public void setProperty(int property) {
+	this.property = property;
+    }
+	public int getId(){    
       return id;    
     }    
     public void setId(int id){    
