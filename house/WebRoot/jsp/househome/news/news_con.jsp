@@ -58,17 +58,17 @@
     </div>
   </div>
   <div class="category" >
-    <div class="wrapper" style="width:600px;margin-left:30%;">
+    <div class="wrapper" style="width:600px;margin-left:320px;">
       <h1 style="font-size:20px;;">购房独家优惠进行到底</h1>
       <span>发布时间:2013/11/01 | 编辑:老狗</span></div>
   </div>
   <article style="float:left;">
   	<!-- 内容 -->
   	<!-- 图片 -->
-   <div class="wrapper" id="detailed"> <img src="images/house_con_html1.jpg" style="width:700px; height: 400px; margin-left:110px" /><br />
+   <div class="wrapper" id="detailed"> <img src="images/house_con_html1.jpg" style="width:620px; height: 350px; margin-left:230px" /><br />
    	<!-- 图片 -->
    	<!-- 文字 -->
-	<div style="width:720px;margin-left:100px">
+	<div style="width:700px;margin-left:230px;margin-top:60px;">
 	浓情端午，“父亲节”“端午节”接踵而至，时值六月中旬，西安夏天的威力渐显，然而今天老天格外眷顾我们西安看房团中心，凉爽的小风，一扫前几日的酷热，为我们今天的看房团打造了“天时”基础。6月17日，西安看房团中心免费看房团如期而至，将购房独家优惠进行到底！婚房、改善、投资各取所需，一个都不能少！
 	<br>
 	西安看房团作为西安专业的房地产网络平台，做购房者的搬运工，由西安免费看房团主办“双节”看房团正式起航。早上8:00，参与看房的网友陆续赶到地点集合，8:30空调大巴车准时出发，踏上看房路。
@@ -85,8 +85,8 @@
       <div class="wrapper showother" style="margin-left:85%;"> <a href="news_list.htm">返回新闻列表</a> </div>
     </div>
   </article>
-  <div style="width:280px;position:fixed;left:75%;top:27%;background-color: white;z-index:99;opacity:0.8;">
-	<ul id="right_list_123" style="color:black;">
+  <div style="width:280px;position:fixed;left:950px;top:300px;background-color: white;z-index:99;opacity:0.8;">
+	<ul id="right_list_123" style="color:black;list-style-position:inside;padding-left:4px;">
 	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">最新资讯</div>
 		<!-- 最新资讯str-->
 		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>

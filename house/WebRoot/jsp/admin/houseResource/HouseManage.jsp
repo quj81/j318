@@ -198,10 +198,10 @@ request.setAttribute("path",path);
 
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                <h2>房源查看</h2>
+                <h2>房源发布</h2>
                     <!-- Tabs -->
                     <div id="wizard_verticle" class="form_wizard wizard_verticle">
-                        <ul class="list-unstyled wizard_steps">
+                       <!--  <ul class="list-unstyled wizard_steps">
                           <li>
                             <a href="#step-11">
                               <span class="step_no">1</span>
@@ -217,7 +217,7 @@ request.setAttribute("path",path);
                               <span class="step_no">3</span>
                             </a>
                           </li>
-                        </ul>
+                        </ul> -->
 
                         <div id="step-11">
                         <h2 class="StepTitle">基本资料</h2>
@@ -321,7 +321,7 @@ request.setAttribute("path",path);
                           <input type="submit" value="提交">
                         </form>
                    </div>
-                        <div id="step-22">
+                        <!-- <div id="step-22">
                           <h2 class="StepTitle">图文信息</h2>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">房源描述
@@ -338,7 +338,7 @@ request.setAttribute("path",path);
                           <button onclick="testUpload()" style="color:white;font-size: 18px;float: right;background-color: #0099FF">开始上传</button><br/><br/><br/>
                           </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- End SmartWizard Content -->
                   </div>
                 </div>
