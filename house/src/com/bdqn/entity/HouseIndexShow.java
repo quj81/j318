@@ -13,6 +13,14 @@ public class HouseIndexShow implements java.io.Serializable{
   private String addtime;/*???????addtime*/  
   private Date updateuser;/*???????updateuser*/  
   private String updatetime;/*???????updatetime*/  
+  private int showtype;
+  
+  public int getShowtype() {
+	return showtype;
+}
+public void setShowtype(int showtype) {
+	this.showtype = showtype;
+}
     public int getId(){    
       return id;    
     }    

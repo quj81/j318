@@ -24,8 +24,8 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 	@Override
 	public int addHouseIndexShow(HouseIndexShow HouseIndexShow) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_index_show(indextype,indexid,adduser,addtime,updateuser,updatetime) VALUE(?,?,?,?,?,?)";
-		Object[] param={HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime()};
+		String sql="INSERT INTO house_index_show(indextype,indexid,showtype) VALUE(?,?,?)";
+		Object[] param={HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getShowtype()};
 		return update(sql, param);
 	}
 
@@ -60,7 +60,8 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 				HouseIndexShow a=new HouseIndexShow();
     			a.setId(res.getInt("Id"));    
     			a.setIndextype(res.getInt("Indextype"));    
-    			a.setIndexid(res.getInt("Indexid"));    
+    			a.setIndexid(res.getInt("Indexid"));
+    			a.setShowtype(res.getInt("showtype"));
     			a.setAdduser(res.getDate("Adduser"));    
     			a.setAddtime(res.getString("Addtime"));    
     			a.setUpdateuser(res.getDate("Updateuser"));    
@@ -90,7 +91,8 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 			while(res.next()){
     			a.setId(res.getInt("Id"));    
     			a.setIndextype(res.getInt("Indextype"));    
-    			a.setIndexid(res.getInt("Indexid"));    
+    			a.setIndexid(res.getInt("Indexid")); 
+    			a.setShowtype(res.getInt("showtype"));
     			a.setAdduser(res.getDate("Adduser"));    
     			a.setAddtime(res.getString("Addtime"));    
     			a.setUpdateuser(res.getDate("Updateuser"));    
