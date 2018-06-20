@@ -31,7 +31,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 	@Override
 	public int modifyHouseMessage(HouseMessage HouseMessage) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_message property=?,provinceId=?,townId=?,areaId=?,houseName=?,startPrice=?,averagePrice=?,houseType=?,coveredArea=?,finishState=?,greenRate=?,plotRatio=?,checkTime=?,openTime=?,realCompany=?,propertyFee=?,licence=?,developers=?,salesAddress=?,feature=?,address=?,state=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_message set property=?,provinceId=?,townId=?,areaId=?,houseName=?,startPrice=?,averagePrice=?,houseType=?,coveredArea=?,finishState=?,greenRate=?,plotRatio=?,checkTime=?,openTime=?,realCompany=?,propertyFee=?,licence=?,developers=?,salesAddress=?,feature=?,address=?,state=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseMessage.getProperty(),HouseMessage.getProvinceId(),HouseMessage.getTownId(),HouseMessage.getAreaId(),HouseMessage.getHouseName(),HouseMessage.getStartPrice(),HouseMessage.getAveragePrice(),HouseMessage.getHouseType(),HouseMessage.getCoveredArea(),HouseMessage.getFinishState(),HouseMessage.getGreenRate(),HouseMessage.getPlotRatio(),HouseMessage.getCheckTime(),HouseMessage.getOpenTime(),HouseMessage.getRealCompany(),HouseMessage.getPropertyFee(),HouseMessage.getLicence(),HouseMessage.getDevelopers(),HouseMessage.getSalesAddress(),HouseMessage.getFeature(),HouseMessage.getAddress(),HouseMessage.getState(),HouseMessage.getAddUser(),HouseMessage.getAddTime(),HouseMessage.getUpdateUser(),HouseMessage.getUpdateTime(),HouseMessage.getId()};
 		return update(sql, param);
 	}

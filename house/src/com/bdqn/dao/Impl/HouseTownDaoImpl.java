@@ -30,7 +30,7 @@ public class HouseTownDaoImpl extends BaseDao implements HouseTownDao{
 	@Override
 	public int modifyHouseTown(HouseTown HouseTown) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_town townName=?,provinceId=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_town set  townName=?,provinceId=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseTown.getTownName(),HouseTown.getProvinceId(),HouseTown.getAddUser(),HouseTown.getAddTime(),HouseTown.getUpdateUser(),HouseTown.getUpdateTime(),HouseTown.getId()};
 		return update(sql, param);
 	}

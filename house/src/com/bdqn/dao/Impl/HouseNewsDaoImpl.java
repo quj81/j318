@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 	@Override
 	public int modifyHouseNews(HouseNews HouseNews) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_news title=?,referType=?,content=?,author=?,dateTime=?,pictureURL=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_news set  title=?,referType=?,content=?,author=?,dateTime=?,pictureURL=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseNews.getTitle(),HouseNews.getReferType(),HouseNews.getContent(),HouseNews.getAuthor(),HouseNews.getDateTime(),HouseNews.getPictureURL(),HouseNews.getAddUser(),HouseNews.getAddTime(),HouseNews.getUpdateUser(),HouseNews.getUpdateTime(),HouseNews.getId()};
 		return update(sql, param);
 	}
@@ -46,6 +48,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 	@Override
 	public List<HouseNews> getHouseNewsList() {
 		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Connection conn=getJDBCConnection();
 		PreparedStatement prep=null;
 		ResultSet res=null;
@@ -66,7 +69,8 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
-    			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));
+    			a.setTime(formatter.format(res.getDate("DateTime")));
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -83,6 +87,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 	public HouseNews getHouseNewsInfo(int id) {
 		// TODO Auto-generated method stub
 		Connection conn=getJDBCConnection();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		HouseNews a=new HouseNews();
@@ -102,6 +107,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			a.setTime(formatter.format(res.getDate("DateTime")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -122,6 +128,42 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 			close(conn,prep,res);
 		}
 		return a;
+	}
+	public List<HouseNews> getHouseNewsListByRefertype(int refertype) {
+		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseNews> list=new ArrayList<HouseNews>();
+		String sql="SELECT * FROM `house_news` h WHERE h.`referType`="+refertype;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseNews a=new HouseNews();
+    			a.setId(res.getInt("Id"));    
+    			a.setTitle(res.getString("Title"));    
+    			a.setReferType(res.getInt("ReferType"));    
+    			a.setContent(res.getString("Content"));    
+    			a.setAuthor(res.getString("Author"));    
+    			a.setDateTime(res.getDate("DateTime"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));
+    			a.setTime(formatter.format(res.getDate("DateTime")));
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		
+			close(conn,prep,res);
+		}
+		return list;
 	}
 	
 }

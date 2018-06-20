@@ -134,7 +134,7 @@ public class HouseMessageServlet extends HttpServlet {
 		
 	}
 	public void getmodifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-			
+
 	}
 	public void getcha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String sql="SELECT * FROM `house_message` WHERE 1=1";
@@ -158,7 +158,10 @@ public class HouseMessageServlet extends HttpServlet {
 		String qujian=request.getParameter("qujian");
 		if(!qujian.equals("-1")){
 			int qujianint=Integer.parseInt(qujian);
-			sb.append(" and "+qujianint+"<=`averagePrice`<="+(qujianint+10000));
+			if(Integer.parseInt(qujian)==100000){
+			sb.append(" and averagePrice>=100000");
+			}
+			sb.append(" and averagePrice between "+qujianint+" and "+(qujianint+10000));
 		}
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		String assql=sb.toString();
@@ -281,7 +284,7 @@ public class HouseMessageServlet extends HttpServlet {
 		a.setCheckTime(jiaofangdate);    
 		a.setOpenTime(kaipandate);
 		a.setRealCompany(request.getParameter("wuye"));
-		if(request.getParameter("wuyefei")!=null){
+		if(request.getParameter("wuyefei")!=null||request.getParameter("wuyefei")!=""){
 			a.setPropertyFee(Double.parseDouble(request.getParameter("wuyefei")));
 		}
 		a.setLicence(request.getParameter("kaifashang"));    //预售许可
@@ -302,7 +305,7 @@ public class HouseMessageServlet extends HttpServlet {
 			out.print("<script>alert('修改成功'); window.location='HouseMessageServlet?type=allget'</script>");
 		}else{
 			PrintWriter out=response.getWriter();
-			out.print("<script>alert('修改失败'); </script>");
+			out.print("<script>alert('修改失败'); window.location='HouseMessageServlet?type=allget'</script>");
 		}
 	}
 	

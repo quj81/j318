@@ -30,7 +30,7 @@ public class HouseFinishstateDaoImpl extends BaseDao implements HouseFinishstate
 	@Override
 	public int modifyHouseFinishstate(HouseFinishstate HouseFinishstate) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_finishstate finishState=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_finishstate set finishState=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseFinishstate.getFinishState(),HouseFinishstate.getAddUser(),HouseFinishstate.getAddTime(),HouseFinishstate.getUpdateUser(),HouseFinishstate.getUpdateTime(),HouseFinishstate.getId()};
 		return update(sql, param);
 	}

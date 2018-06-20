@@ -41,13 +41,20 @@ public class New_list_Servlet extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HouseNewsService hns=new HouseNewsServiceImpl();
-		List<HouseNews> list=hns.getHouseNewsList();
-		String json=JSON.toJSONString(list);
-		System.out.println("aaa");
-		System.out.println(json);
-		response.getWriter().write(json);
-
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		HouseNewsServiceImpl hns=new HouseNewsServiceImpl();
+		int newstype=Integer.parseInt(request.getParameter("reftype"));
+		if(newstype==1){
+			List<HouseNews> list=hns.getHouseNewsListByNewsType(1);
+			String json=JSON.toJSONString(list);
+			response.getWriter().write(json);
+		}else{
+			List<HouseNews> list=hns.getHouseNewsList();
+			String json=JSON.toJSONString(list);
+			response.getWriter().write(json);
+		}
 	}
 
 	/**

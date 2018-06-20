@@ -29,7 +29,7 @@ public class HouseAreaDaoImpl extends BaseDao implements HouseAreaDao{
 	@Override
 	public int modifyHouseArea(HouseArea HouseArea) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_area areaName=?,townId=?,addUser=?,addTime=?,updateUser=?,updateTime=? where id=?";
+		String sql="UPDATE house_area set  areaName=?,townId=?,addUser=?,addTime=?,updateUser=?,updateTime=? where id=?";
 		Object[] param={HouseArea.getAreaName(),HouseArea.getTownId(),HouseArea.getAddUser(),HouseArea.getAddTime(),HouseArea.getUpdateUser(),HouseArea.getUpdateTime(),HouseArea.getId()};
 		return update(sql, param);
 	}
