@@ -58,6 +58,9 @@
   position: relative;
 }
 
+.souSuo{
+	font-size: 15px;
+}
 .nprogress-custom-parent #nprogress .spinner,
 .nprogress-custom-parent #nprogress .bar {
   position: absolute;

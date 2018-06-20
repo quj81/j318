@@ -182,13 +182,16 @@ request.setAttribute("path",path);
           </div>
         </div>
         <!-- /top navigation -->
-
+		
         <!-- page content -->
         <div class="right_col" role="main">
+        <div class="x_panel">
+                <h2>房源检索</h2>
+        </div>
           <div class="souSuo">
             <div class="souSuo1">
              <form action="HouseMessageServlet">
-             <input type="hidden" name="type" value="getcha">
+             <input class="form-control input-sm" type="hidden" name="type" value="getcha">
              	<select id="sheng" name="sheng">
                 <option value="-1" selected="selected">请选择省</option>
               </select>
@@ -219,7 +222,7 @@ request.setAttribute("path",path);
             </div>
           </div>
           <div class="info">
-            <table id="fangzi">
+            <table class="table table-striped table-bordered dataTable no-footer" id="fangzi">
               <tr>
                 <td class="fr_info">房源基本信息</td>
                 <td class="last_info">房源状态</td>
