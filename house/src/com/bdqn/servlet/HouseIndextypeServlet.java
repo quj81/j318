@@ -78,7 +78,7 @@ public class HouseIndextypeServlet extends HttpServlet {
 
 
 	public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		PrintWriter out=response.getWriter();
 		String[] a=request.getParameterValues("housetype");
 		int indextype=Integer.parseInt(request.getParameter("indextype"));

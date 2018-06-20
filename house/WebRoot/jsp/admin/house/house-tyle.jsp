@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   <div class="x_title">   
                     <h2>类型</h2> 
                     <div class="clearfix"></div>
-                  </div>  
+                  </div>   
                   <div class="x_content">
                     <div id="" style="width:100%; height:150px;">
                      <form action="HouseIndextypeServlet?indextype=1&showtype=1" method="post">

@@ -14,7 +14,8 @@ public class HouseIndextype implements java.io.Serializable{
   private String addtime;/*???????addtime*/  
   private Date updateuser;/*???????updateuser*/  
   private String updatetime;/*???????updatetime*/  
-    public int getId(){    
+
+	public int getId(){    
       return id;    
     }    
     public void setId(int id){    

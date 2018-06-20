@@ -16,7 +16,7 @@ import com.bdqn.dao.BaseDao;
 import com.bdqn.dao.HouseIndexShowDao;
 import com.bdqn.entity.HouseIndexShow;
 import com.bdqn.entity.HouseMessage;
-
+ 
 
 
 public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
