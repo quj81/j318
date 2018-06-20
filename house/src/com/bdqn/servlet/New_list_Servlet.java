@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.bdqn.entity.HouseNews;
-import com.bdqn.service.HouseNewsService;
 import com.bdqn.service.Impl.HouseNewsServiceImpl;
 
 public class New_list_Servlet extends HttpServlet {

@@ -99,7 +99,7 @@
 		 <div class="dede_pages">
 			<ul class="pagelist">
 			<!-- 分页 -->
-             <li><span class="pageinfo">共 <strong>1</strong>页<strong>1</strong>条记录</span></li>
+             
 
 			</ul>
 		</div><!-- /pages --> 
@@ -157,6 +157,65 @@
 		<!-- 热点资讯end-->
 	</ul>
 </div>
+<script type="text/javascript">
+		$(".demon_ani").mouseover(function(){
+				$($(this).next()).show();
+			});
+	$(".demon_ani").mouseout(function(){
+				$($(this).next()).hide();
+			});
+	$(".demon_anim").mouseover(function(){
+		$(this).toggle();
+	});
+	$(".demon_anim").mouseout(function(){
+		$(this).toggle();
+	});
+		function newlist(){
+			$("#list_li").html("");
+				$.get(
+					"${pageContext.request.contextPath}/New_list_Servlet",
+					function(data){
+						var str="";
+						for(var i=0;i<data.length;i++){
+							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+						}
+					$("#list_li").html(str);
+					},
+					"json"
+				);
+				
+		}
+		
+		function refertyp(){
+			$("#list_type").html("");
+			var str="<li><a href='#' class='cur'>全部</a></li>";
+			$.get("${pageContext.request.contextPath}/HouseRefertypeServlet",{"type":"get"},function(data){
+					for(var i=0;i<data.length;i++){
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
+						}
+						$("#list_type").html(str);
+			},"json");
+		}
+		
+		function chaxun(id){
+		$("#list_type").html("");
+		$.post(
+			"${pageContext.request.contextPath}/HouseRefertypeServlet",
+			{"type":"idget","id":id},
+			function(data){
+				for(var i=0;i<data.length;i++){
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
+						}
+				$("#list_type").html(str);
+				return false;
+			},
+			"json"
+		)
+	}
+	
+		refertyp();
+		newlist();
+</script>
 </body>
 <footer>
 	<div id="footerlink">
@@ -206,50 +265,7 @@
 <!--[if IE 6]>
 <script type="text/javascript" src=" ../js/killie6.js" ></script>
 <![endif]-->
-<script type="text/javascript">
-		function newlist(){
-			$("#list_li").html("");
-				$.get(
-					"${pageContext.request.contextPath}/New_list_Servlet",
-					function(data){
-						var str="";
-						for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
-						}
-					$("#list_li").html(str);
-					},
-					"json"
-				);
-				
-		}
-		function refertyp(){
-			$("#list_type").html("");
-			var str="<li><a href='#' class='cur'>全部</a></li>";
-			$.get("HouseRefertypeServlet?type=get",function(data){
-					for(var i=0;i<data.length;i++){
-							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
-						}
-						$("#list_type").html(str);
-			},"json");
-		}
-		function chaxun(id){
-		$("#list_type").html("");
-		$.post(
-			"HouseRefertypeServlet?type=idget",
-			{"id":id},
-			function(data){
-				for(var i=0;i<data.length;i++){
-							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
-						}
-				$("#list_type").html(str);
-				return false;
-			},
-			"json"
-		)
-	}
-		refertyp();
-		newlist();
-</script>
+
 <script type="text/javascript">
 //<![CDATA[
 	//Nav Start
@@ -263,22 +279,11 @@
 		//Nav End
 $("#gotop").click(function(){$('body,html').animate({scrollTop:0},500);})
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3fe5b2b119b5fc4931e9c73e7071b0c6' type='text/javascript'%3E%3C/script%3E"));
+	
 	var bds_config = {"bdTop":203};
 	$("#bdshell_js").attr("src","http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours());
 //]]>
-	$(".demon_ani").mouseover(function(){
-				$($(this).next()).show();
-			});
-	$(".demon_ani").mouseout(function(){
-				$($(this).next()).hide();
-			});
-	$(".demon_anim").mouseover(function(){
-		$(this).toggle();
-	});
-	$(".demon_anim").mouseout(function(){
-		$(this).toggle();
-	});
+	
 	
 
 </script></body>
