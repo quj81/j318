@@ -8,7 +8,10 @@
 <meta name="description" content="" />     
 <link rel="stylesheet" href=" ../css/style.css" type="text/css" media="all" />
 <!--[if lt IE 9]><script type="text/javascript" src=" ../js/html5.js" ></script><![endif]-->
+<script type="text/javascript" src=" ../js/jquery.1.8.2.min.js" ></script>
+<script type="text/javascript" src=" ../js/jquery.plugin.min.js" ></script>
 <style>
+	*{list-style:none;}
 	.demon_ani{
 		line-height: 35px;
 		height:35px;
@@ -83,15 +86,15 @@
 				<li><a href="#" class='cur'>分类2</a></li>
 				<li><a href="#" class='cur'>分类3</a></li>
 				<li><a href="#" class='cur'>分类4</a></li>
-				<li><a href="#" class='cur'>分类5</a></li>
 				
         
 
 			</ul>
 		</div>
 	</div>
-				<ul class="news wrapper" id="list_li">
+				<ul class="news wrapper" id="list_li" style="margin-left:400px;">
 			<!-- 新闻列表 -->
+			
                 <li style="border-bottom:1px solid white">
 					<a href="news_con.html">
 						<img src="images/house_con_html1.jpg" data-original="" />
@@ -109,61 +112,9 @@
 						</p>
 					</div>
 				</li>
-				<!-- 新闻列表 -->
-				<li style="border-bottom:1px solid white">
-					<a href="news_con.html">
-						<img src="images/house_con_html1.jpg" data-original=""/>
-					</a>
-					<div class="newslist">
-						<a href="news_con.html">
-							标题标题标题标题标题标题标题
-						</a>
-
-						<span>编辑:老狗</span>
-						<span>发布时间:2013/11/01</span>
-
-						<p>
-							简略内容...............
-						</p>
-					</div>
-				</li>
-				<!-- 新闻列表 -->
-				<li style="border-bottom:1px solid white">
-					<a href="news_con.html">
-						<img src="images/house_con_html1.jpg" data-original=""/>
-					</a>
-					<div class="newslist">
-						<a href="news_con.html">
-							标题标题标题标题标题标题标题
-						</a>
-
-						<span>编辑:老狗</span>
-						<span>发布时间:2013/11/01</span>
-
-						<p>
-							简略内容...............
-						</p>
-					</div>
-				</li>
-				<!-- 新闻列表 -->
-				<li style="border-bottom:1px solid white">
-					<a href="news_con.html">
-						<img src="images/house_con_html1.jpg" data-original=""/>
-					</a>
-					<div class="newslist">
-						<a href="news_con.html">
-							标题标题标题标题标题标题标题
-						</a>
-
-						<span>编辑:老狗</span>
-						<span>发布时间:2013/11/01</span>
-
-						<p>
-							简略内容...............
-						</p>
-					</div>
-				</li>
-
+				
+				
+				<!-- 新闻列表 -->		
 				</ul>
 		 <div class="dede_pages">
 			<ul class="pagelist">
@@ -176,7 +127,7 @@
             
 	
 </section>
-<div style="width:280px;position:fixed;left:70%;top:30%;z-index:99;opacity:0.8;">
+<div style="width:280px;position:fixed;left:1000px;top:200px;z-index:99;opacity:0.8;">
 	<ul id="right_list_123" style="color:black;">
 	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">推荐资讯</div>
 		<!-- 热点资讯str-->
@@ -271,12 +222,27 @@
 		</div>
 	</div>
 </footer>
-<script type="text/javascript" src=" ../js/jquery.1.8.2.min.js" ></script>
-<script type="text/javascript" src=" ../js/jquery.plugin.min.js" ></script>
+
 <!--[if IE 6]>
 <script type="text/javascript" src=" ../js/killie6.js" ></script>
 <![endif]-->
-
+<script type="text/javascript">
+		function haha(){
+		alert("aaa");
+				$.post(
+					"New_list_Servlet",
+					function(date){
+					var str="";
+						for(var i=0;i<data.length;i++){
+							str+="<a href='news_con.html'><img src='images/house_con_html1.jpg' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].dateTime+"</span><p>"+data[i].content+"</p></div>";
+						}
+					$("#list_li").html(str);
+					},
+					"json"
+				);
+		}
+		haha();
+</script>
 <script type="text/javascript">
 //<![CDATA[
 	//Nav Start
