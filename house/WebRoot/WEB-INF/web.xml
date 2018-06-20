@@ -91,14 +91,11 @@
     <servlet-class>com.bdqn.servlet.HouseUserServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>New_list_Servlet</servlet-name>
-    <servlet-class>com.bdqn.servlet.New_list_Servlet</servlet-class>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>indexServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.indexServlet</servlet-class>
   </servlet>
-
-  
-  
-  
-  
   
   
   <servlet-mapping>
@@ -176,7 +173,21 @@
     <url-pattern>/HouseUserServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>New_list_Servlet</servlet-name>
-    <url-pattern>/New_list_Servlet</url-pattern>
+    <servlet-name>indexServlet</servlet-name>
+    <url-pattern>/indexServlet</url-pattern>
   </servlet-mapping>
+  <error-page>  
+    <error-code>404</error-code>  
+    <location>/page_404.html</location>  
+</error-page>  
+  
+<error-page>  
+    <error-code>500</error-code>  
+    <location>/page_500.html</location>  
+</error-page>  
+  
+<error-page>  
+    <exception-type>java.lang.RuntimeException</exception-type>  
+    <location>/error.jsp</location>  
+</error-page> 
 </web-app>
