@@ -79,13 +79,9 @@
 	</div>
 	<div class="category">
 		<div class="wrapper">
-			<ul>
+			<ul id="list_type">
 			<!-- 分类标题 -->
-				<li><a href="#" class='cur'>全部</a></li>
-				<li><a href="#" class='cur'>分类1</a></li>
-				<li><a href="#" class='cur'>分类2</a></li>
-				<li><a href="#" class='cur'>分类3</a></li>
-				<li><a href="#" class='cur'>分类4</a></li>
+				
 				
         
 
@@ -111,13 +107,13 @@
             
 	
 </section>
-<div style="width:280px;position:fixed;left:1000px;top:200px;z-index:99;opacity:0.8;">
+<div style="width:280px;position:fixed;left:1050px;top:200px;z-index:99;opacity:0.8;">
 	<ul id="right_list_123" style="color:black;">
 	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">推荐资讯</div>
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic1.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -126,7 +122,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic2.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -135,7 +131,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic3.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -144,7 +140,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic4.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -153,7 +149,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic5.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim" class="demon_anim_li_img">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -211,7 +207,8 @@
 <script type="text/javascript" src=" ../js/killie6.js" ></script>
 <![endif]-->
 <script type="text/javascript">
-		function haha(){
+		function newlist(){
+			$("#list_li").html("");
 				$.get(
 					"${pageContext.request.contextPath}/New_list_Servlet",
 					function(data){
@@ -223,9 +220,20 @@
 					},
 					"json"
 				);
-				$()
+				
 		}
-		haha();
+		function refertyp(){
+			$("#list_type").html("");
+			var str="<li><a href='#' class='cur'>全部</a></li>";
+			$.get("HouseRefertypeServlet?type=get",function(data){
+					for(var i=0;i<data.length;i++){
+							str+="<li><a href='#' class='cur'>"+data[i].referType+"</a></li>";
+						}
+						$("#list_type").html(str);
+			},"json");
+		}
+		refertyp();
+		newlist();
 </script>
 <script type="text/javascript">
 //<![CDATA[
