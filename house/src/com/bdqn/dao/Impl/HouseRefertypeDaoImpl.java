@@ -30,7 +30,7 @@ public class HouseRefertypeDaoImpl extends BaseDao implements HouseRefertypeDao{
 	@Override
 	public int modifyHouseRefertype(HouseRefertype HouseRefertype) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_refertype referType=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_refertype set  referType=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseRefertype.getReferType(),HouseRefertype.getAddUser(),HouseRefertype.getAddTime(),HouseRefertype.getUpdateUser(),HouseRefertype.getUpdateTime(),HouseRefertype.getId()};
 		return update(sql, param);
 	}

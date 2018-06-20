@@ -30,7 +30,7 @@ public class HousePicturetypeDaoImpl extends BaseDao implements HousePicturetype
 	@Override
 	public int modifyHousePicturetype(HousePicturetype HousePicturetype) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_picturetype pictureType=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_picturetype set  pictureType=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HousePicturetype.getPictureType(),HousePicturetype.getAddUser(),HousePicturetype.getAddTime(),HousePicturetype.getUpdateUser(),HousePicturetype.getUpdateTime(),HousePicturetype.getId()};
 		return update(sql, param);
 	}

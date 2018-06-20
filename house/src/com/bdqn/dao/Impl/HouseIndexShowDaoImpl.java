@@ -32,7 +32,7 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 	@Override
 	public int modifyHouseIndexShow(HouseIndexShow HouseIndexShow) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_index_show indextype=?,indexid=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
+		String sql="UPDATE house_index_show set indextype=?,indexid=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
 		Object[] param={HouseIndexShow.getIndextype(),HouseIndexShow.getIndexid(),HouseIndexShow.getAdduser(),HouseIndexShow.getAddtime(),HouseIndexShow.getUpdateuser(),HouseIndexShow.getUpdatetime(),HouseIndexShow.getId()};
 		return update(sql, param);
 	}

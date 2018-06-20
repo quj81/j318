@@ -76,7 +76,8 @@ public class HouseAreaServlet extends HttpServlet {
 		response.getWriter().write(listJson);
 	}
 	public void zcget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		int id=Integer.parseInt(request.getParameter("townId"));
+		String str=request.getParameter("townId");
+		int id=Integer.parseInt(str.trim());
 		HouseAreaService hts=new HouseAreaServiceImpl();
 		List<HouseArea> list=hts.getHouseAreaList(id);
 		String listJson = JSON.toJSONString(list);

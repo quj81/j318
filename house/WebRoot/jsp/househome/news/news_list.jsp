@@ -95,23 +95,7 @@
 				<ul class="news wrapper" id="list_li" style="margin-left:400px;">
 			<!-- 新闻列表 -->
 			
-                <li style="border-bottom:1px solid white">
-					<a href="news_con.html">
-						<img src="images/house_con_html1.jpg" data-original="" />
-					</a>
-					<div class="newslist">
-						<a href="news_con.html">
-							标题标题标题标题标题标题标题
-						</a>
-
-						<span>编辑:老狗</span>
-						<span>发布时间:2013/11/01</span>
-
-						<p>
-							简略内容...............
-						</p>
-					</div>
-				</li>
+                
 				
 				
 				<!-- 新闻列表 -->		
@@ -228,18 +212,18 @@
 <![endif]-->
 <script type="text/javascript">
 		function haha(){
-		alert("aaa");
-				$.post(
-					"New_list_Servlet",
-					function(date){
-					var str="";
+				$.get(
+					"${pageContext.request.contextPath}/New_list_Servlet",
+					function(data){
+						var str="";
 						for(var i=0;i<data.length;i++){
-							str+="<a href='news_con.html'><img src='images/house_con_html1.jpg' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].dateTime+"</span><p>"+data[i].content+"</p></div>";
+							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
 						}
 					$("#list_li").html(str);
 					},
 					"json"
 				);
+				$()
 		}
 		haha();
 </script>

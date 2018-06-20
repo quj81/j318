@@ -73,7 +73,7 @@ public class HouseTownServlet extends HttpServlet {
 		}
 	}
 	public void zcget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		int id=Integer.parseInt(request.getParameter("provinceId"));
+		int id=Integer.parseInt(request.getParameter("provinceId").trim());
 		HouseTownService hts=new HouseTownServiceImpl();
 		List<HouseTown> list=hts.getHouseTownListId(id);
 		String listJson = JSON.toJSONString(list);

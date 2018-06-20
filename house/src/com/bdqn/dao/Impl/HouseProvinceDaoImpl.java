@@ -30,7 +30,7 @@ public class HouseProvinceDaoImpl extends BaseDao implements HouseProvinceDao{
 	@Override
 	public int modifyHouseProvince(HouseProvince HouseProvince) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_province provinceName=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
+		String sql="UPDATE house_province set  provinceName=?,addUser=?,addTime=?,updateUser=?,updateTime=?  where id=?";
 		Object[] param={HouseProvince.getProvinceName(),HouseProvince.getAddUser(),HouseProvince.getAddTime(),HouseProvince.getUpdateUser(),HouseProvince.getUpdateTime(),HouseProvince.getId()};
 		return update(sql, param);
 	}

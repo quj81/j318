@@ -17,7 +17,14 @@ public class HouseNews implements java.io.Serializable{
   private Date addTime;/*???????addTime*/  
   private String updateUser;/*???????updateUser*/  
   private Date updateTime;/*???????updateTime*/  
-    public int getId(){    
+  private String time;
+    public String getTime() {
+	return time;
+}
+public void setTime(String time) {
+	this.time = time;
+}
+	public int getId(){    
       return id;    
     }    
     public void setId(int id){    

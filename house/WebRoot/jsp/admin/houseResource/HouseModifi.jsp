@@ -191,11 +191,7 @@ request.setAttribute("path",path);
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-
-
-
             <div class="row">
-
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                 <h2>房源查看</h2>
@@ -222,12 +218,13 @@ request.setAttribute("path",path);
                         <div id="step-11">
                         <h2 class="StepTitle">基本资料</h2>
                         <form class="form-horizontal form-label-left" action="HouseMessageServlet" method="get">
-                        <input type="hidden" type="hidden" name="type" value="modifi">
-                          <div class="form-group">
+                         <input type="hidden" name="type" value="modifi">
+                         <input type="hidden" name="id" value=${listtttt.id }>
+                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>楼盘名称
                             </label><span id="checkNamelp"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" name="houseName" id="houseName" required="required" class="form-control col-md-7 col-xs-12" value="${listtttt.houseName }">
+                              <input type="text" name="houseName" id="houseName" class="form-control col-md-7 col-xs-12" value="${listtttt.houseName }">
 
                             </div>
                           </div>
@@ -260,14 +257,14 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>起&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
                             </label><span id="moneyErr"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="money" name="qijia" required="required" value="${listtttt.startPrice }" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="money" name="qijia" value="${listtttt.startPrice }" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>均&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
                             </label><span id="moneyErrTwo"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="moneytwo" name="junjia" value="${listtttt.averagePrice }" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="moneytwo" name="junjia" value="${listtttt.averagePrice }" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
@@ -275,20 +272,20 @@ request.setAttribute("path",path);
                             </label>
                             <div>
                               <select id="sheng" name="sheng">
-                                <option value="0" selected="selected">请选择</option>
+                                <option value="${listtttt.provinceId }" selected="selected">请选择</option>
                               </select>
                               <select id="shi" name="shi">
-                                <option value="0" selected="selected">请选择</option>
+                                <option value="${listtttt.townId} " selected="selected">请选择</option>
                               </select>
                               <select id="qu" name="qu">
-                                <option value="0" selected="selected">请选择</option>
+                                <option value="${listtttt.areaId}" selected="selected">请选择</option>
                               </select>
                             </div>
                             <div class="form-group" style="margin-top: 10px">
                               <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>详细地址
                               </label><span id="addressErr"></span>
                               <div class="col-md-6 col-sm-6">
-                                <input type="text" id="address" required="required" class="form-control col-md-7 col-xs-12" name="xiangxidizhi">
+                                <input type="text" id="address" class="form-control col-md-7 col-xs-12" name="xiangxidizhi">
                               </div>
                             </div>
 
@@ -297,7 +294,7 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>建筑面积
                             </label><span id="msg1"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input type="text" id="mia" name="mianji" required="required" value="${listtttt.coveredArea }" class="form-control col-md-7 col-xs-12">
+                              <input type="text" id="mia" name="mianji" value="${listtttt.coveredArea }" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
@@ -310,42 +307,42 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3">&nbsp;交房时间
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12"  value="${listtttt.checkTime1 }" name="jiaofang" required="required" type="text" onclick="laydatet()">
+                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12"  value="${listtttt.checkTime1 }" name="jiaofang" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;物业公司
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="wuye" class="date-picker form-control col-md-7 col-xs-12" name="wuye" required="required" type="text" onclick="laydatet()">
+                              <input id="wuye" class="date-picker form-control col-md-7 col-xs-12" name="wuye" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;物业费
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="wuyefei" class="date-picker form-control col-md-7 col-xs-12" name="wuyefei" required="required" type="text" onclick="laydatet()">
+                              <input id="wuyefei" class="date-picker form-control col-md-7 col-xs-12" name="wuyefei" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;开发商
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="kaifashang" class="date-picker form-control col-md-7 col-xs-12" name="kaifashang" required="required" type="text" onclick="laydatet()">
+                              <input id="kaifashang" class="date-picker form-control col-md-7 col-xs-12" name="kaifashang" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;售楼地址
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="shoulou" class="date-picker form-control col-md-7 col-xs-12" name="shoulou" required="required" type="text" onclick="laydatet()">
+                              <input id="shoulou" class="date-picker form-control col-md-7 col-xs-12" name="shoulou" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;楼盘地址
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="loupandizhi" class="date-picker form-control col-md-7 col-xs-12" name="loupandizhi" required="required" type="text" onclick="laydatet()">
+                              <input id="loupandizhi" class="date-picker form-control col-md-7 col-xs-12" name="loupandizhi" type="text" onclick="laydatet()">
                             </div>
                           </div>
                           <div class="form-group">
@@ -358,7 +355,7 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;容&nbsp;积&nbsp;率
                             </label>%<span id="rongmsg"></span>
                             <div class="col-md-6 col-sm-6">
-                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.plotRatio }" required="required" type="text" name="rongjilv">
+                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.plotRatio }" type="text" name="rongjilv">
                             </div>
                           </div>
                           <div id="step-22">
@@ -367,22 +364,13 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3">房源描述
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="birthday4" class="date-picker form-control col-md-7 col-xs-12 soBig" required="required" type="text">
+                              <input id="birthday4" class="date-picker form-control col-md-7 col-xs-12 soBig" type="text">
                             </div>
                           </div>
                         </div>
-                          
-                          <input type="submit" value="提交">
-                        </form>
+                      <input type="submit" value="提交">
+                     </form>
                    </div>
-                        
-						<div id="step-33">
-                          <h2 class="StepTitle">图片上传</h2>
-                          <div id="fileUploadContent" class="fileUploadContent"></div>
-                          <br/>
-                          <button onclick="testUpload()" style="color:white;font-size: 18px;float: right;background-color: #0099FF">开始上传</button><br/><br/><br/>
-                          </div>
-                        </div>
                     </div>
                     <!-- End SmartWizard Content -->
                   </div>
@@ -455,6 +443,11 @@ request.setAttribute("path",path);
 			});
 		/* -End 楼盘名称判断 -End*/
 		
+		function ceshi(){
+		alert("aaa");
+			alert($("#sheng").val());
+		}
+		
 		//产权性质遍历 
 		$.post(
 				"HousePropertyServlet",
@@ -513,61 +506,69 @@ request.setAttribute("path",path);
 		//End房屋类型End
 			
 		//省
-		$.post(
-			"HouseProvinceServlet",
-			{"type":"get"},
-			function(data){
-				var pin="<option value='0' selected='selected'>请选择</option>";
-				for(var i=0;i<data.length;i++){
-				if(data[i].id==${listtttt.provinceId }){
-					pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
-				}else{
-					pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
-				}
-				}
-				$("#sheng").html(pin);
-			},
-			"json"
-		);
-		//End省End
-		//市
-		var provinceId=$("#sheng").val();
-		alert(provinceId);
-		$.post(
-				"HouseTownServlet",
-				{"type":"zcget","provinceId":provinceId},
+		sheng();
+		function sheng(){
+				$.post(
+				"HouseProvinceServlet",
+				{"type":"get"},
 				function(data){
-					var pin="";
+					var pin="<option value='0' selected='selected'>请选择</option>";
 					for(var i=0;i<data.length;i++){
-						if(data[i].id==${listtttt.townId }){
-							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].townName+"</option>"
-						}else{
-							pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
-						}
-					}
-					$("#shi").html(pin);
-				},
-				"json"
-			)
-		//End市End
-		//区
-		var townId=$("#shi").val();
-		$.post(
-			"HouseProvinceServlet",
-			{"type":"zcget","townId":townId},
-			function(data){
-				var pin="";
-				for(var i=0;i<data.length;i++){
-					if(data[i].id==${listtttt.areaId }){
+					if(data[i].id==${listtttt.provinceId }){
 						pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
 					}else{
 						pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
 					}
-				}
-				$("#sheng").html(pin);
-			},
-			"json"
-		);
+					}
+					$("#sheng").html(pin);
+				},
+				"json"
+			);
+			shi();
+		}
+		//End省End
+		//市
+		function shi(){
+			var provinceId=$("#sheng").val();
+			$.post(
+					"HouseTownServlet",
+					{"type":"zcget","provinceId":provinceId},
+					function(data){
+						var pin="";
+						for(var i=0;i<data.length;i++){
+							if(data[i].id==${listtttt.townId }){
+								pin+="<option value="+data[i].id+" selected='selected'>"+data[i].townName+"</option>"
+							}else{
+								pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+							}
+						}
+						$("#shi").html(pin);
+					},
+					"json"
+				)
+				qu();
+		}
+		//End市End
+		//区
+		function qu(){
+			var townId=$("#shi").val();
+			$.post(
+				"HouseAreaServlet",
+				{"type":"zcget","townId":townId},
+				function(data){
+					var pin="";
+					for(var i=0;i<data.length;i++){
+						if(data[i].id==${listtttt.areaId }){
+							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
+						}else{
+							pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+						}
+					}
+					$("#sheng").html(pin);
+				},
+				"json"
+			);
+		}
 		//End区End
 		
 		
