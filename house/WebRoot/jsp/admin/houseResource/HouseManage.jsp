@@ -641,7 +641,7 @@ request.setAttribute("path",path);
 </html>
 <script type="text/javascript" src="${path }/jsp/admin/js/fileUpload.js"></script>
 <script type="text/javascript">
-
+/* 
 
     $("#fileUploadContent").initUpload({
         "uploadUrl":"#",//上传文件信息地址
@@ -689,6 +689,6 @@ request.setAttribute("path",path);
     function deleteFileByMySelf(fileId){
         alert("要删除文件了："+fileId);
     }
-
+ */
 
 </script>

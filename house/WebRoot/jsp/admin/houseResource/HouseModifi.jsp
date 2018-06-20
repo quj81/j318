@@ -314,35 +314,35 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3">&nbsp;物业公司
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="wuye" class="date-picker form-control col-md-7 col-xs-12" name="wuye" type="text" onclick="laydatet()">
+                              <input id="wuye" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.realCompany }" name="wuye" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;物业费
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="wuyefei" class="date-picker form-control col-md-7 col-xs-12" name="wuyefei" type="text" onclick="laydatet()">
+                              <input id="wuyefei" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.propertyFee }" name="wuyefei" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;开发商
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="kaifashang" class="date-picker form-control col-md-7 col-xs-12" name="kaifashang" type="text" onclick="laydatet()">
+                              <input id="kaifashang" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.developers }" name="kaifashang" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;售楼地址
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="shoulou" class="date-picker form-control col-md-7 col-xs-12" name="shoulou" type="text" onclick="laydatet()">
+                              <input id="shoulou" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.salesAddress }" name="shoulou" type="text" onclick="laydatet()">
                             </div>
                           </div>
                            <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3">&nbsp;楼盘地址
                             </label>
                             <div class="col-md-6 col-sm-6">
-                              <input id="loupandizhi" class="date-picker form-control col-md-7 col-xs-12" name="loupandizhi" type="text" onclick="laydatet()">
+                              <input id="loupandizhi" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.address }" name="loupandizhi" type="text" onclick="laydatet()">
                             </div>
                           </div>
                           <div class="form-group">
