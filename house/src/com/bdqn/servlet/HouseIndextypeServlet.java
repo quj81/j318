@@ -15,17 +15,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bdqn.entity.HouseIndexShow;
-import com.bdqn.entity.HouseIndextype;
 import com.bdqn.entity.HouseMessage;
 import com.bdqn.entity.HouseNews;
 import com.bdqn.entity.HousePicture;
 import com.bdqn.service.HouseIndexShowService;
-import com.bdqn.service.HouseIndextypeService;
+
 import com.bdqn.service.HouseMessageService;
 import com.bdqn.service.HouseNewsService;
 import com.bdqn.service.HousePictureService;
 import com.bdqn.service.Impl.HouseIndexShowServiceImpl;
-import com.bdqn.service.Impl.HouseIndextypeServiceImpl;
+
 import com.bdqn.service.Impl.HouseMessageServiceImpl;
 import com.bdqn.service.Impl.HouseNewsServiceImpl;
 import com.bdqn.service.Impl.HousePictureServiceImpl;
@@ -76,37 +75,18 @@ public class HouseIndextypeServlet extends HttpServlet {
 		}
 		
 
-	public void get2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//查詢资讯标题
-		HouseNewsService service =new HouseNewsServiceImpl();
-		List<HouseNews> list=service.getHouseNewsList();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("jsp/admin/house/house-refer.jsp").forward(request, response);
-	}
-
-	public void get1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//查询类型
-		HouseMessageService service=new HouseMessageServiceImpl();
-		List<HouseMessage> list=service.getHouseMessageList();
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("jsp/admin/house/house-hot.jsp").forward(request, response);
-		
-	}
-
-
-
 
 
 	public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		PrintWriter out=response.getWriter();
 		String[] a=request.getParameterValues("housetype");
 		int indextype=Integer.parseInt(request.getParameter("indextype"));
+		int showtype=Integer.parseInt(request.getParameter("showtype"));
 		HouseIndexShowService service =new HouseIndexShowServiceImpl();
 		HouseIndexShow h=new HouseIndexShow();
 		h.setIndextype(indextype);
+		h.setShowtype(showtype);
 		for (String string : a) { 
 			int indexid=Integer.parseInt(string);
 			h.setIndexid(indexid);
@@ -127,6 +107,23 @@ public class HouseIndextypeServlet extends HttpServlet {
 		request.setAttribute("listt", listt);
 		request.getRequestDispatcher("jsp/admin/house/house-tyle.jsp").forward(request, response);
 	
+	}
+	public void get1(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//查询类型
+		HouseMessageService service=new HouseMessageServiceImpl();
+		List<HouseMessage> list=service.getHouseMessageList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("jsp/admin/house/house-hot.jsp").forward(request, response);
+		
+	}
+	public void get2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//查詢资讯标题
+		HouseNewsService service =new HouseNewsServiceImpl();
+		List<HouseNews> list=service.getHouseNewsList();
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("jsp/admin/house/house-refer.jsp").forward(request, response);
 	}
 
 	/**

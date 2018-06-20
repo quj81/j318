@@ -205,17 +205,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>热门</h2>
+                    <h2>热门</h2> 
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
                     <div id="" style="width:100%; height:80px;">
+                    <form action="HouseIndextypeServlet?indextype=1&showtype=1" method="post">
+                    		主显示: <input type="hidden" name="type" value="add">
+               		  <c:forEach items="${list}" var="list">           	
+                     	 <input type="radio" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </c:forEach>
+                      	 <input type="submit" value="主显示" >
+                    </form>
+                    
                       <form action="HouseIndextypeServlet?indextype=2" method="post">
-                     	 <input type="hidden" name="type" value="add">
+                     	副显示： <input type="hidden" name="type" value="add">
                       <c:forEach items="${list}" var="list">       	
                      	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      </c:forEach>
-                      	<input type="submit" value="显示" >
+                      	<input type="submit" value="副显示" >
                       </form>
 
                     </div>
