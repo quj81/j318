@@ -23,16 +23,16 @@ public class HouseIndextypeDaoImpl extends BaseDao implements HouseIndextypeDao{
 	@Override
 	public int addHouseIndextype(HouseIndextype HouseIndextype) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_indextype(,id,typeName,adduser,addtime,updateuser,updatetime) VALUE(,?,?,?,?,?,?)";
-		Object[] param={HouseIndextype.getId(),HouseIndextype.getTypeName(),HouseIndextype.getAdduser(),HouseIndextype.getAddtime(),HouseIndextype.getUpdateuser(),HouseIndextype.getUpdatetime()};
+		String sql="INSERT INTO house_indextype(typeName) VALUE(?)";
+		Object[] param={HouseIndextype.getTypeName()};
 		return update(sql, param);
 	}
 
 	@Override
 	public int modifyHouseIndextype(HouseIndextype HouseIndextype) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_indextype ,id=?,typeName=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
-		Object[] param={HouseIndextype.getId(),HouseIndextype.getTypeName(),HouseIndextype.getAdduser(),HouseIndextype.getAddtime(),HouseIndextype.getUpdateuser(),HouseIndextype.getUpdatetime()};
+		String sql="UPDATE house_indextype typeName=?,adduser=?,addtime=?,updateuser=?,updatetime=?  where id=?";
+		Object[] param={HouseIndextype.getTypeName(),HouseIndextype.getAdduser(),HouseIndextype.getAddtime(),HouseIndextype.getUpdateuser(),HouseIndextype.getUpdatetime(),HouseIndextype.getId()};
 		return update(sql, param);
 	}
 
