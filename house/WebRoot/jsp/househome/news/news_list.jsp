@@ -227,11 +227,26 @@
 			var str="<li><a href='#' class='cur'>全部</a></li>";
 			$.get("HouseRefertypeServlet?type=get",function(data){
 					for(var i=0;i<data.length;i++){
-							str+="<li><a href='#' class='cur'>"+data[i].referType+"</a></li>";
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
 						}
 						$("#list_type").html(str);
 			},"json");
 		}
+		function chaxun(id){
+		$("#list_type").html("");
+		$.post(
+			"HouseRefertypeServlet?type=idget",
+			{"id":id},
+			function(data){
+				for(var i=0;i<data.length;i++){
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
+						}
+				$("#list_type").html(str);
+				return false;
+			},
+			"json"
+		)
+	}
 		refertyp();
 		newlist();
 </script>
@@ -264,5 +279,7 @@ $("#gotop").click(function(){$('body,html').animate({scrollTop:0},500);})
 	$(".demon_anim").mouseout(function(){
 		$(this).toggle();
 	});
+	
+
 </script></body>
 </html>
