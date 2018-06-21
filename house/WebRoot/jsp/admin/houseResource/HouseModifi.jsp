@@ -285,7 +285,7 @@ request.setAttribute("path",path);
                               <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>详细地址
                               </label><span id="addressErr"></span>
                               <div class="col-md-6 col-sm-6">
-                                <input type="text" id="address" class="form-control col-md-7 col-xs-12" name="xiangxidizhi">
+                                <input type="text" id="address" class="form-control col-md-7 col-xs-12" value="${listtttt.address }" name="xiangxidizhi">
                               </div>
                             </div>
 
@@ -442,12 +442,7 @@ request.setAttribute("path",path);
 				);
 			});
 		/* -End 楼盘名称判断 -End*/
-		
-		function ceshi(){
-		alert("aaa");
-			alert($("#sheng").val());
-		}
-		
+
 		//产权性质遍历 
 		$.post(
 				"HousePropertyServlet",
@@ -506,18 +501,19 @@ request.setAttribute("path",path);
 		//End房屋类型End
 			
 		//省
-		sheng();
 		function sheng(){
+		var sheng=$("#sheng").val();
 				$.post(
 				"HouseProvinceServlet",
 				{"type":"get"},
 				function(data){
 					var pin="<option value='0' selected='selected'>请选择</option>";
 					for(var i=0;i<data.length;i++){
-					if(data[i].id==${listtttt.provinceId }){
-						pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
+					if(data[i].id==sheng){
+					alert(data[i].provinceName);
+						pin+="<option value='"+data[i].id+"' selected='selected'>"+data[i].provinceName+"</option>"
 					}else{
-						pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+						pin+="<option value='"+data[i].id+"'>"+data[i].provinceName+"</option>"
 					}
 					}
 					$("#sheng").html(pin);
@@ -526,6 +522,7 @@ request.setAttribute("path",path);
 			);
 			shi();
 		}
+		sheng();
 		//End省End
 		//市
 		function shi(){
@@ -537,9 +534,9 @@ request.setAttribute("path",path);
 						var pin="";
 						for(var i=0;i<data.length;i++){
 							if(data[i].id==${listtttt.townId }){
-								pin+="<option value="+data[i].id+" selected='selected'>"+data[i].townName+"</option>"
+								pin+="<option value='"+data[i].id+"' selected='selected'>"+data[i].townName+"</option>"
 							}else{
-								pin+="<option value="+data[i].id+">"+data[i].townName+"</option>"
+								pin+="<option value='"+data[i].id+"'>"+data[i].townName+"</option>"
 							}
 						}
 						$("#shi").html(pin);
@@ -552,6 +549,7 @@ request.setAttribute("path",path);
 		//区
 		function qu(){
 			var townId=$("#shi").val();
+			alert("市:"+townId);
 			$.post(
 				"HouseAreaServlet",
 				{"type":"zcget","townId":townId},
@@ -559,9 +557,9 @@ request.setAttribute("path",path);
 					var pin="";
 					for(var i=0;i<data.length;i++){
 						if(data[i].id==${listtttt.areaId }){
-							pin+="<option value="+data[i].id+" selected='selected'>"+data[i].provinceName+"</option>"
+							pin+="<option value='"+data[i].id+"' selected='selected'>"+data[i].provinceName+"</option>"
 						}else{
-							pin+="<option value="+data[i].id+">"+data[i].provinceName+"</option>"
+							pin+="<option value='"+data[i].id+"'>"+data[i].provinceName+"</option>"
 						}
 					}
 					$("#sheng").html(pin);
@@ -760,7 +758,7 @@ request.setAttribute("path",path);
 <script type="text/javascript" src="${path }/jsp/admin/js/fileUpload.js"></script>
 <script type="text/javascript">
 
-
+/* 
     $("#fileUploadContent").initUpload({
         "uploadUrl":"#",//上传文件信息地址
         "progressUrl":"#",//获取进度信息地址，可选，注意需要返回的data格式如下（{bytesRead: 102516060, contentLength: 102516060, items: 1, percent: 100, startTime: 1489223136317, useTime: 2767}）
@@ -806,7 +804,7 @@ request.setAttribute("path",path);
     //多文件需要自己进行循环
     function deleteFileByMySelf(fileId){
         alert("要删除文件了："+fileId);
-    }
+    } */
 
 
 </script>
