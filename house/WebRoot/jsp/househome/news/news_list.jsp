@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
@@ -200,7 +201,7 @@
 		function chaxun(id){
 		$("#list_type").html("");
 		$.post(
-			"${pageContext.request.contextPath}/HouseRefertypeServlet",
+			"HouseRefertypeServlet",
 			{"type":"idget","id":id},
 			function(data){
 				for(var i=0;i<data.length;i++){
