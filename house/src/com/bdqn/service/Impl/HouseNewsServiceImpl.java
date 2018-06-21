@@ -55,4 +55,15 @@ public class HouseNewsServiceImpl extends BaseDao implements HouseNewsService{
 		HouseNewsDaoImpl service=new HouseNewsDaoImpl();
 		return service.getHouseNewsListByRefertype(refertype);
 	}
+	@Override
+	public List<HouseNews> getHouseNewsInIndex() {
+		HouseNewsDao service=new HouseNewsDaoImpl();
+		return service.getHouseNewsInIndex();
+	}
+
+	@Override
+	public HouseNews getHouseNewsInIndexA() {
+		HouseNewsDao service=new HouseNewsDaoImpl();
+		return service.getHouseNewsInIndexA();
+	}
 }

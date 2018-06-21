@@ -165,5 +165,73 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 		}
 		return list;
 	}
+	@Override
+	public List<HouseNews> getHouseNewsInIndex() {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseNews> list=new ArrayList<HouseNews>();
+		String sql="SELECT * FROM house_news WHERE id IN(SELECT indexid FROM house_index_show WHERE indextype=3 AND showtype=2);";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseNews a=new HouseNews();
+    			a.setId(res.getInt("Id"));    
+    			a.setTitle(res.getString("Title"));    
+    			a.setReferType(res.getInt("ReferType"));    
+    			a.setContent(res.getString("Content"));    
+    			a.setAuthor(res.getString("Author"));    
+    			a.setDateTime(res.getDate("DateTime"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		
+			close(conn,prep,res);
+		}
+		return list;
+	}
+
+	@Override
+	public HouseNews getHouseNewsInIndexA() {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HouseNews a=null;
+		String sql="SELECT * FROM house_news WHERE id IN(SELECT indexid FROM house_index_show WHERE indextype=3 AND showtype=2);";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			if(res.next()){
+				a=new HouseNews();
+    			a.setId(res.getInt("Id"));    
+    			a.setTitle(res.getString("Title"));    
+    			a.setReferType(res.getInt("ReferType"));    
+    			a.setContent(res.getString("Content"));    
+    			a.setAuthor(res.getString("Author"));    
+    			a.setDateTime(res.getDate("DateTime"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		
+			close(conn,prep,res);
+		}
+		return a;
+	}
 	
 }

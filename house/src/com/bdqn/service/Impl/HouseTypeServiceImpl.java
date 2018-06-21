@@ -49,4 +49,11 @@ public class HouseTypeServiceImpl extends BaseDao implements HouseTypeService{
 		HouseTypeDao service=new HouseTypeDaoImpl();
 		return service.getHouseTypeInfo(id);
 	}
+	
+	@Override
+	public List<HouseType> getHouseTypeInIndex() {
+		HouseTypeDao service=new HouseTypeDaoImpl();
+		return service.getHouseTypeInIndex();
+		
+	}
 }

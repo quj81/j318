@@ -16,4 +16,6 @@ public interface HouseNewsService {
 	int delHouseNews(HouseNews HouseNews);
 	List<HouseNews> getHouseNewsList();
 	HouseNews getHouseNewsInfo(int id);   
+	public List<HouseNews> getHouseNewsInIndex();
+	HouseNews getHouseNewsInIndexA();
 }

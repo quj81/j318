@@ -12,4 +12,5 @@ public interface HouseTypeDao{
 	int delHouseType(HouseType HouseType);
 	List<HouseType> getHouseTypeList();
 	HouseType getHouseTypeInfo(int id);   
+	public List<HouseType> getHouseTypeInIndex();
 }

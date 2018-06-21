@@ -300,5 +300,107 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		}
 		return list;
 	}
+
+	@Override
+	public List<HouseMessage> getHouseIndexShow() {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseMessage> list=new ArrayList<HouseMessage>();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sql="SELECT m.id,p.provinceName,t.townName,a.areaName,s.pictureURL,m.houseName,m.startPrice,m.averagePrice,m.houseType,m.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_picture AS s ON m.`id`=s.`houseid` WHERE m.id IN(SELECT indexid FROM house_index_show WHERE indextype=2 AND showtype=2) AND s.`adminpic`=1 AND s.`pictureType`=1";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseMessage a=new HouseMessage();
+				a.setId(res.getInt(1));
+				a.setProvince(res.getString(2));
+				a.setTown(res.getString(3));
+				a.setArea(res.getString(4));
+				a.setPictureURL(res.getString(5));
+				a.setHouseName(res.getString(6));
+				a.setStartPrice(res.getDouble(7));
+				a.setAveragePrice(res.getDouble(8));
+				a.setHouseType(res.getInt(9));
+				a.setFinishState(res.getInt(10));
+				a.setGreenRate(res.getDouble(11));
+				a.setPlotRatio(res.getDouble(12));
+				a.setCheckTime(res.getDate(13));
+				a.setOpenTime(res.getDate(14));
+				a.setRealCompany(res.getString(15));
+				a.setLicence(res.getString(16));
+				a.setDevelopers(res.getString(17));
+				a.setSalesAddress(res.getString(18));;
+				a.setFeature(res.getString(19));
+				a.setAddress(res.getString(20));
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return list;
+	}
+
+	@Override
+	public HouseMessage getHouseMessageIndexShowA() {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HouseMessage a=null;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String sql="SELECT m.id,p.provinceName,t.townName,a.areaName,s.pictureURL,m.houseName,m.startPrice,m.averagePrice,m.houseType,m.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_picture AS s ON m.`id`=s.`houseid` WHERE m.id IN(SELECT indexid FROM house_index_show WHERE indextype=2 AND showtype=1) AND s.`adminpic`=1 AND s.`pictureType`=1";
+
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			if(res.next()){
+				a=new HouseMessage();
+				a.setId(res.getInt(1));
+				a.setProvince(res.getString(2));
+				a.setTown(res.getString(3));
+				a.setArea(res.getString(4));
+				a.setPictureURL(res.getString(5));
+				a.setHouseName(res.getString(6));
+				a.setStartPrice(res.getDouble(7));
+				a.setAveragePrice(res.getDouble(8));
+				a.setHouseType(res.getInt(9));
+				a.setFinishState(res.getInt(10));
+				a.setGreenRate(res.getDouble(11));
+				a.setPlotRatio(res.getDouble(12));
+				a.setCheckTime(res.getDate(13));
+				a.setOpenTime(res.getDate(14));
+				a.setRealCompany(res.getString(15));
+				a.setLicence(res.getString(16));
+				a.setDevelopers(res.getString(17));
+				a.setSalesAddress(res.getString(18));;
+				a.setFeature(res.getString(19));
+				a.setAddress(res.getString(20));
+    			if(res.getDate("CheckTime")!=null){
+    				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
+    			}
+    			if(res.getDate("OpenTime")!=null){
+    				a.setOpenTime1(formatter.format(res.getDate("OpenTime")));
+    			}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return a;
+	}
 	
 }

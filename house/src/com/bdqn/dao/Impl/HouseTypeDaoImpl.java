@@ -103,4 +103,33 @@ public class HouseTypeDaoImpl extends BaseDao implements HouseTypeDao{
 		return a;
 	}
 	
+	@Override
+	public List<HouseType> getHouseTypeInIndex() {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseType> list=new ArrayList<HouseType>();
+		String sql="SELECT * FROM house_type WHERE id IN(SELECT indexid FROM house_index_show WHERE indextype=1)";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery(); 
+			while(res.next()){
+				HouseType a=new HouseType();
+    			a.setId(res.getInt("Id"));    
+    			a.setTypeName(res.getString("TypeName"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return list;
+	}
 }

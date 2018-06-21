@@ -70,4 +70,16 @@ public class HouseMessageServiceImpl extends BaseDao implements HouseMessageServ
 		HouseMessageDao service =new HouseMessageDaoImpl();
 		return service.getLikeHouseMessageList(name);
 	}
+
+	@Override
+	public List<HouseMessage> getHouseIndexShow() {
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getHouseIndexShow();
+	}
+
+	@Override
+	public HouseMessage getHouseMessageIndexShowA() {
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getHouseMessageIndexShowA();
+	}
 }
