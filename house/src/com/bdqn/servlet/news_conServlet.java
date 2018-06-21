@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bdqn.entity.HouseNews;
+import com.bdqn.service.Impl.HouseNewsServiceImpl;
 
 public class news_conServlet extends HttpServlet {
 
@@ -41,8 +42,11 @@ public class news_conServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		HouseNews hn=new HouseNews();
-		request.getSession().setAttribute("news", hn);
+		int newid=Integer.parseInt(request.getParameter("news_ID_"));
+		HouseNewsServiceImpl hnsi=new HouseNewsServiceImpl();
+		HouseNews hn=hnsi.getHouseNewsInfo(newid);
+		request.getSession().setAttribute("news1234", hn);
+		
 		response.sendRedirect("jsp/househome/news/news_con.jsp");
 //		response.setContentType("text/html");
 //		PrintWriter out = response.getWriter();

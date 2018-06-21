@@ -51,7 +51,6 @@ public class HouseNewsServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
 		String type = request.getParameter("type");
 		if("add".equals(type)){
 			add(request,response);
@@ -73,7 +72,7 @@ public class HouseNewsServlet extends HttpServlet {
 	}
 	public void getbyid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HouseNewsServiceImpl hns=new HouseNewsServiceImpl();
-		int typeid=Integer.parseInt(request.getParameter("id")) ;
+		int typeid=Integer.parseInt(request.getParameter("id"));
 		List<HouseNews> list=hns.getHouseNewsListByNewsType(typeid);
 		String json=JSON.toJSONString(list);
 		response.getWriter().write(json);

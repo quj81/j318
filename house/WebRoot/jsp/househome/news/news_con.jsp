@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -59,23 +58,19 @@
     </div>
   </div>
   <div class="category" >
-    <c:set value="${empty news }"  var="newstate"></c:set>
-    <c:if test="${!newstate}">
-    	<c:set var="new" value="${news }"></c:set>
-    </c:if>
     <div class="wrapper" style="width:600px;margin-left:320px;">
-      <h1 style="font-size:20px;;">${new.title }</h1>
+      <h1 style="font-size:20px;;">${news1234.title}</h1>
     
-      <span>发布时间: ${new.time } | 编辑:   ${new.author } </span></div>
+      <span>发布时间:${news1234.time}| 编辑:${news1234.author}</span></div>
   </div>
   <article style="float:left;">
   	<!-- 内容 -->
   	<!-- 图片 -->
-   <div class="wrapper" id="detailed"> <img src="${new.pictureURL}" style="width:620px; height: 350px; margin-left:230px" /><br />
+   <div class="wrapper" id="detailed"> <img src="${news1234.pictureURL}" style="width:620px; height: 350px; margin-left:230px" /><br />
    	<!-- 图片 -->
    	<!-- 文字 -->
 	<div style="width:700px;margin-left:230px;margin-top:60px;">
-		 ${new.content }
+		 ${news1234.content}
 	</div>
 	<!-- 文字 -->
 	<!-- 内容 -->

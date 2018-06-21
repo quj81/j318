@@ -179,7 +179,7 @@
 					function(data){
 						var str="";
 						for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
 						}
 					$("#list_li").html(str);
 					},
@@ -190,7 +190,7 @@
 		
 		function refertyp(){
 			$("#list_type").html("");
-			var str="<li><a href='#' class='cur'>全部</a></li>";
+			var str="<li><a href='news_list.jsp' class='cur'>全部</a></li>";
 			$.get("${pageContext.request.contextPath}/HouseRefertypeServlet",{"type":"get"},function(data){
 					for(var i=0;i<data.length;i++){
 							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
@@ -200,16 +200,16 @@
 		}
 		
 		function chaxun(id){
-		$("#list_type").html("");
+		$("#list_li").html("");
 		$.get(
 			"${pageContext.request.contextPath}/HouseNewsServlet",
 			{"type":"idget","id":id},
 			function(data){
+				var str="";
 				for(var i=0;i<data.length;i++){
-							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
-						}
-				$("#list_type").html(str);
-				return false;
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+				}
+				$("#list_li").html(str);
 			},
 			"json"
 		)
