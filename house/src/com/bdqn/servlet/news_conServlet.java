@@ -43,7 +43,7 @@ public class news_conServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		HouseNews hn=new HouseNews();
 		request.getSession().setAttribute("news", hn);
-		response.sendRedirect("");
+		response.sendRedirect("jsp/househome/news/news_con.jsp");
 //		response.setContentType("text/html");
 //		PrintWriter out = response.getWriter();
 //		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");

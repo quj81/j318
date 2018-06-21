@@ -174,7 +174,8 @@
 		function newlist(){
 			$("#list_li").html("");
 				$.get(
-					"${pageContext.request.contextPath}/New_list_Servlet",
+					"${pageContext.request.contextPath}/HouseNewsServlet",
+					{"type":"get"},
 					function(data){
 						var str="";
 						for(var i=0;i<data.length;i++){
@@ -200,8 +201,8 @@
 		
 		function chaxun(id){
 		$("#list_type").html("");
-		$.post(
-			"HouseRefertypeServlet",
+		$.get(
+			"${pageContext.request.contextPath}/HouseNewsServlet",
 			{"type":"idget","id":id},
 			function(data){
 				for(var i=0;i<data.length;i++){

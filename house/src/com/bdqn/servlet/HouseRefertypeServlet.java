@@ -62,20 +62,11 @@ public class HouseRefertypeServlet extends HttpServlet {
 			modifi(request,response);
 		}if("get".equals(type)){
 			get(request,response);
-		}if("idget".equals(type)){
-			get(request,response);
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HouseRefertypeServiceImpl hrtsi=new HouseRefertypeServiceImpl();
 		List<HouseRefertype> list=hrtsi.getHouseRefertypeList();
-		String json=JSON.toJSONString(list);
-		response.getWriter().write(json);
-	}
-	public void idget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		HouseRefertypeServiceImpl hrtsi=new HouseRefertypeServiceImpl();
-		int typeid=Integer.parseInt(request.getParameter("id")) ;
-		List<HouseRefertype> list=hrtsi.getHouseRefertypeListByID(typeid);
 		String json=JSON.toJSONString(list);
 		response.getWriter().write(json);
 	}

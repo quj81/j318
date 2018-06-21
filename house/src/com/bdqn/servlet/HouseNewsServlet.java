@@ -7,11 +7,16 @@ package com.bdqn.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSON;
+import com.bdqn.entity.HouseNews;
+import com.bdqn.service.Impl.HouseNewsServiceImpl;
 
 public class HouseNewsServlet extends HttpServlet {
 
@@ -56,10 +61,22 @@ public class HouseNewsServlet extends HttpServlet {
 			modifi(request,response);
 		}if("get".equals(type)){
 			get(request,response);
+		}if("idget".equals(type)){
+			getbyid(request,response);
 		}
 	}
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
+		HouseNewsServiceImpl hns=new HouseNewsServiceImpl();
+		List<HouseNews> list=hns.getHouseNewsList();
+		String json=JSON.toJSONString(list);
+		response.getWriter().write(json);
+	}
+	public void getbyid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		HouseNewsServiceImpl hns=new HouseNewsServiceImpl();
+		int typeid=Integer.parseInt(request.getParameter("id")) ;
+		List<HouseNews> list=hns.getHouseNewsListByNewsType(typeid);
+		String json=JSON.toJSONString(list);
+		response.getWriter().write(json);
 	}
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
