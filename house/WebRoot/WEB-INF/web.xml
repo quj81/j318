@@ -91,8 +91,8 @@
     <servlet-class>com.bdqn.servlet.HouseUserServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>New_list_Servlet</servlet-name>
-    <servlet-class>com.bdqn.servlet.New_list_Servlet</servlet-class>
+    <servlet-name>news_conServlet</servlet-name>
+    <servlet-class>com.bdqn.servlet.news_conServlet</servlet-class>
   </servlet>
 
   
@@ -175,8 +175,9 @@
     <servlet-name>HouseUserServlet</servlet-name>
     <url-pattern>/HouseUserServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>New_list_Servlet</servlet-name>
-    <url-pattern>/New_list_Servlet</url-pattern>
+ 
+    <servlet-mapping>
+    <servlet-name>news_conServlet</servlet-name>
+    <url-pattern>/news_conServlet</url-pattern>
   </servlet-mapping>
 </web-app>

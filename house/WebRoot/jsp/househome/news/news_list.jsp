@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
@@ -79,13 +80,9 @@
 	</div>
 	<div class="category">
 		<div class="wrapper">
-			<ul>
+			<ul id="list_type">
 			<!-- 分类标题 -->
-				<li><a href="#" class='cur'>全部</a></li>
-				<li><a href="#" class='cur'>分类1</a></li>
-				<li><a href="#" class='cur'>分类2</a></li>
-				<li><a href="#" class='cur'>分类3</a></li>
-				<li><a href="#" class='cur'>分类4</a></li>
+				
 				
         
 
@@ -103,7 +100,7 @@
 		 <div class="dede_pages">
 			<ul class="pagelist">
 			<!-- 分页 -->
-             <li><span class="pageinfo">共 <strong>1</strong>页<strong>1</strong>条记录</span></li>
+             
 
 			</ul>
 		</div><!-- /pages --> 
@@ -111,13 +108,13 @@
             
 	
 </section>
-<div style="width:280px;position:fixed;left:1000px;top:200px;z-index:99;opacity:0.8;">
+<div style="width:280px;position:fixed;left:1050px;top:200px;z-index:99;opacity:0.8;">
 	<ul id="right_list_123" style="color:black;">
 	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">推荐资讯</div>
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic1.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -126,7 +123,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic2.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -135,7 +132,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic3.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -144,7 +141,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic4.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -153,7 +150,7 @@
 		<!-- 热点资讯str-->
 		<li style="background-image:url('../images/right_list_pic5.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
 		<li class="demon_anim" class="demon_anim_li_img">
-			<a href="#"><img src="images/2.png" class="demon_anim_li_img"></a><br>
+			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
 			<a href="#" style="color:gray;">
 				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
 			</a>
@@ -161,6 +158,66 @@
 		<!-- 热点资讯end-->
 	</ul>
 </div>
+<script type="text/javascript">
+		$(".demon_ani").mouseover(function(){
+				$($(this).next()).show();
+			});
+	$(".demon_ani").mouseout(function(){
+				$($(this).next()).hide();
+			});
+	$(".demon_anim").mouseover(function(){
+		$(this).toggle();
+	});
+	$(".demon_anim").mouseout(function(){
+		$(this).toggle();
+	});
+		function newlist(){
+			$("#list_li").html("");
+				$.get(
+					"${pageContext.request.contextPath}/HouseNewsServlet",
+					{"type":"get"},
+					function(data){
+						var str="";
+						for(var i=0;i<data.length;i++){
+							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+						}
+					$("#list_li").html(str);
+					},
+					"json"
+				);
+				
+		}
+		
+		function refertyp(){
+			$("#list_type").html("");
+			var str="<li><a href='#' class='cur'>全部</a></li>";
+			$.get("${pageContext.request.contextPath}/HouseRefertypeServlet",{"type":"get"},function(data){
+					for(var i=0;i<data.length;i++){
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
+						}
+						$("#list_type").html(str);
+			},"json");
+		}
+		
+		function chaxun(id){
+		$("#list_type").html("");
+		$.get(
+			"${pageContext.request.contextPath}/HouseNewsServlet",
+			{"type":"idget","id":id},
+			function(data){
+				for(var i=0;i<data.length;i++){
+							str+="<li><a  onclick='chaxun("+data[i].id+")' class='cur'>"+data[i].referType+"</a></li>";
+						}
+				$("#list_type").html(str);
+				return false;
+			},
+			"json"
+		)
+	}
+	
+		refertyp();
+		newlist();
+</script>
 </body>
 <footer>
 	<div id="footerlink">
@@ -210,23 +267,7 @@
 <!--[if IE 6]>
 <script type="text/javascript" src=" ../js/killie6.js" ></script>
 <![endif]-->
-<script type="text/javascript">
-		function haha(){
-				$.get(
-					"${pageContext.request.contextPath}/New_list_Servlet",
-					function(data){
-						var str="";
-						for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='news_con.html'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='news_con.html'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
-						}
-					$("#list_li").html(str);
-					},
-					"json"
-				);
-				$()
-		}
-		haha();
-</script>
+
 <script type="text/javascript">
 //<![CDATA[
 	//Nav Start
@@ -240,21 +281,12 @@
 		//Nav End
 $("#gotop").click(function(){$('body,html').animate({scrollTop:0},500);})
 	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3fe5b2b119b5fc4931e9c73e7071b0c6' type='text/javascript'%3E%3C/script%3E"));
+	
 	var bds_config = {"bdTop":203};
 	$("#bdshell_js").attr("src","http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours());
 //]]>
-	$(".demon_ani").mouseover(function(){
-				$($(this).next()).show();
-			});
-	$(".demon_ani").mouseout(function(){
-				$($(this).next()).hide();
-			});
-	$(".demon_anim").mouseover(function(){
-		$(this).toggle();
-	});
-	$(".demon_anim").mouseout(function(){
-		$(this).toggle();
-	});
+	
+	
+
 </script></body>
 </html>

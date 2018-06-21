@@ -49,4 +49,9 @@ public class HouseRefertypeServiceImpl extends BaseDao implements HouseRefertype
 		HouseRefertypeDao service=new HouseRefertypeDaoImpl();
 		return service.getHouseRefertypeInfo(id);
 	}
+	public List<HouseRefertype> getHouseRefertypeListByID(int id) {
+		// TODO Auto-generated method stub
+		HouseRefertypeDaoImpl service=new HouseRefertypeDaoImpl();
+		return service.getHouseRefertypeListById(id);
+	}
 }

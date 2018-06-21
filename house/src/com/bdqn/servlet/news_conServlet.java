@@ -1,24 +1,21 @@
 package com.bdqn.servlet;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
 import com.bdqn.entity.HouseNews;
-import com.bdqn.service.HouseNewsService;
-import com.bdqn.service.Impl.HouseNewsServiceImpl;
 
-public class New_list_Servlet extends HttpServlet {
+public class news_conServlet extends HttpServlet {
 
 	/**
 		 * Constructor of the object.
 		 */
-	public New_list_Servlet() {
+	public news_conServlet() {
 		super();
 	}
 
@@ -44,17 +41,22 @@ public class New_list_Servlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		HouseNewsServiceImpl hns=new HouseNewsServiceImpl();
-		int newstype=Integer.parseInt(request.getParameter("reftype"));
-		if(newstype==1){
-			List<HouseNews> list=hns.getHouseNewsListByNewsType(1);
-			String json=JSON.toJSONString(list);
-			response.getWriter().write(json);
-		}else{
-			List<HouseNews> list=hns.getHouseNewsList();
-			String json=JSON.toJSONString(list);
-			response.getWriter().write(json);
-		}
+		HouseNews hn=new HouseNews();
+		request.getSession().setAttribute("news", hn);
+		response.sendRedirect("jsp/househome/news/news_con.jsp");
+//		response.setContentType("text/html");
+//		PrintWriter out = response.getWriter();
+//		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+//		out.println("<HTML>");
+//		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+//		out.println("  <BODY>");
+//		out.print("    This is ");
+//		out.print(this.getClass());
+//		out.println(", using the GET method");
+//		out.println("  </BODY>");
+//		out.println("</HTML>");
+//		out.flush();
+//		out.close();
 	}
 
 	/**
@@ -69,6 +71,19 @@ public class New_list_Servlet extends HttpServlet {
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
+//		response.setContentType("text/html");
+//		PrintWriter out = response.getWriter();
+//		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+//		out.println("<HTML>");
+//		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+//		out.println("  <BODY>");
+//		out.print("    This is ");
+//		out.print(this.getClass());
+//		out.println(", using the POST method");
+//		out.println("  </BODY>");
+//		out.println("</HTML>");
+//		out.flush();
+//		out.close();
 	}
 
 	/**

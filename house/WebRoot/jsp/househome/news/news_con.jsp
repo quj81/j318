@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -58,24 +59,23 @@
     </div>
   </div>
   <div class="category" >
+    <c:set value="${empty news }"  var="newstate"></c:set>
+    <c:if test="${!newstate}">
+    	<c:set var="new" value="${news }"></c:set>
+    </c:if>
     <div class="wrapper" style="width:600px;margin-left:320px;">
-      <h1 style="font-size:20px;;">购房独家优惠进行到底</h1>
-      <span>发布时间:2013/11/01 | 编辑:老狗</span></div>
+      <h1 style="font-size:20px;;">${new.title }</h1>
+    
+      <span>发布时间: ${new.time } | 编辑:   ${new.author } </span></div>
   </div>
   <article style="float:left;">
   	<!-- 内容 -->
   	<!-- 图片 -->
-   <div class="wrapper" id="detailed"> <img src="images/house_con_html1.jpg" style="width:620px; height: 350px; margin-left:230px" /><br />
+   <div class="wrapper" id="detailed"> <img src="${new.pictureURL}" style="width:620px; height: 350px; margin-left:230px" /><br />
    	<!-- 图片 -->
    	<!-- 文字 -->
 	<div style="width:700px;margin-left:230px;margin-top:60px;">
-	浓情端午，“父亲节”“端午节”接踵而至，时值六月中旬，西安夏天的威力渐显，然而今天老天格外眷顾我们西安看房团中心，凉爽的小风，一扫前几日的酷热，为我们今天的看房团打造了“天时”基础。6月17日，西安看房团中心免费看房团如期而至，将购房独家优惠进行到底！婚房、改善、投资各取所需，一个都不能少！
-	<br>
-	西安看房团作为西安专业的房地产网络平台，做购房者的搬运工，由西安免费看房团主办“双节”看房团正式起航。早上8:00，参与看房的网友陆续赶到地点集合，8:30空调大巴车准时出发，踏上看房路。
-	<br>
-	上午9:00左右，在西安看房团站工作人员的带领下，看房的客户陆续抵达看房团接待中心。由于基本是新盘入市，通过置业顾问的专业讲解，购房者对项目的品质、规划以及工程进度非常认可，引来不少的网友的关注。整个看房过程中，网友的积极性都非常高，都希望在此次看房团上选购到适合自己的优质房源。
-	<br>
-	　6月是市场回暖的关键月，房价成交量都将自六月开始回升。本次看房团带领大家看的均为高品质准现房楼盘，户型涉及两居、三居、四居，为您提供充足的房源，满足不同购房者的需求。
+		 ${new.content }
 	</div>
 	<!-- 文字 -->
 	<!-- 内容 -->

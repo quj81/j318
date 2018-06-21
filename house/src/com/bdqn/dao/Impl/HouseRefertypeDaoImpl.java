@@ -102,5 +102,33 @@ public class HouseRefertypeDaoImpl extends BaseDao implements HouseRefertypeDao{
 		}
 		return a;
 	}
-	
+	public List<HouseRefertype> getHouseRefertypeListById(int id) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseRefertype> list=new ArrayList<HouseRefertype>();
+		String sql="SELECT * FROM `house_refertype` WHERE id="+id+";";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseRefertype a=new HouseRefertype();
+    			a.setId(res.getInt("Id"));    
+    			a.setReferType(res.getString("ReferType"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return list;
+	}
 }
