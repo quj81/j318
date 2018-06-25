@@ -36,6 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    	恭喜您注册成功!<span style="color:red" id="second">5</span>如不跳转请点击<a href="Index">这里</a>
-  </body>
+    	<a href=""></a>
+    </body>
 </html>

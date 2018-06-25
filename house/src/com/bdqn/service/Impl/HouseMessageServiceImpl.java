@@ -82,4 +82,37 @@ public class HouseMessageServiceImpl extends BaseDao implements HouseMessageServ
 		HouseMessageDao service =new HouseMessageDaoImpl();
 		return service.getHouseMessageIndexShowA();
 	}
+	
+	@Override
+	public List<HouseMessage> getIndex() {
+		// TODO Auto-generated method stub
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getIndex();
+	}
+
+	@Override
+	public List<HouseMessage> getNewIndex() {
+		// TODO Auto-generated method stub
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getNewIndex();
+	}
+
+	@Override
+	public List<HouseMessage> getNewIndexSql(String sql) {
+		// TODO Auto-generated method stub
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getNewIndexSql(sql);
+	}
+	
+	@Override
+	public HouseMessage getHouseMessageforcon(int id) {
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getHouseMessageforcon(id);
+	}
+
+	@Override
+	public List<HouseMessage> getHouseforsearch(String str) {
+		HouseMessageDao service =new HouseMessageDaoImpl();
+		return service.getHouseforsearch(str);
+	}
 }

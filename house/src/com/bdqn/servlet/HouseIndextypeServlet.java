@@ -81,15 +81,19 @@ public class HouseIndextypeServlet extends HttpServlet {
 		// TODO Auto-generated method stub 
 		PrintWriter out=response.getWriter();
 		String[] a=request.getParameterValues("housetype");
+		String[] yu=request.getParameterValues("id");
+		int[] b=new int[6];
+		for(int i=0;i<yu.length;i++){
+			b[i]=Integer.parseInt(yu[i]);
+		}
 		int indextype=Integer.parseInt(request.getParameter("indextype"));
 		int showtype=Integer.parseInt(request.getParameter("showtype"));
 		HouseIndexShowService service =new HouseIndexShowServiceImpl();
 		HouseIndexShow h=new HouseIndexShow();
 		h.setIndextype(indextype);
 		h.setShowtype(showtype);
-		for (String string : a) { 
-			int indexid=Integer.parseInt(string);
-			h.setIndexid(indexid);
+		for (int i:b) { 
+			h.setIndexid(i);
 			service.addHouseIndexShow(h);
 			out.print("<script>alert('œ‘ æ≥…π¶£°');window.location='HouseIndextypeServlet?type=get';</script>");		
 		}		

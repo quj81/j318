@@ -24,8 +24,8 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 	@Override
 	public int addHouseNews(HouseNews HouseNews) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_news(title,referType,content,author,dateTime,pictureURL,addUser,addTime,updateUser,updateTime) VALUE(?,?,?,?,?,?,?,?,?,?)";
-		Object[] param={HouseNews.getTitle(),HouseNews.getReferType(),HouseNews.getContent(),HouseNews.getAuthor(),HouseNews.getDateTime(),HouseNews.getPictureURL(),HouseNews.getAddUser(),HouseNews.getAddTime(),HouseNews.getUpdateUser(),HouseNews.getUpdateTime()};
+		String sql="INSERT INTO house_news(title,referType,content,author,dateTime,pictureURL,addUser,addTime,updateUser,updateTime) VALUE(?,?,?,?,NOW(),?,?,?,?,?)";
+		Object[] param={HouseNews.getTitle(),HouseNews.getReferType(),HouseNews.getContent(),HouseNews.getAuthor(),HouseNews.getPictureURL(),HouseNews.getAddUser(),HouseNews.getAddTime(),HouseNews.getUpdateUser(),HouseNews.getUpdateTime()};
 		return update(sql, param);
 	}
 
@@ -70,7 +70,9 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime"));
-    			a.setTime(formatter.format(res.getDate("DateTime")));
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -107,7 +109,9 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime"));    
-    			a.setTime(formatter.format(res.getDate("DateTime")));
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,7 +157,9 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime"));
-    			a.setTime(formatter.format(res.getDate("DateTime")));
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -232,6 +238,44 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 			close(conn,prep,res);
 		}
 		return a;
+	}
+	public List<HouseNews> getHouseNewsListByTime() {
+		// TODO Auto-generated method stub
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseNews> list=new ArrayList<HouseNews>();
+		String sql="SELECT * FROM `house_news` ORDER BY `dateTime` LIMIT 0,5;";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseNews a=new HouseNews();
+    			a.setId(res.getInt("Id"));    
+    			a.setTitle(res.getString("Title"));    
+    			a.setReferType(res.getInt("ReferType"));    
+    			a.setContent(res.getString("Content"));    
+    			a.setAuthor(res.getString("Author"));    
+    			a.setDateTime(res.getDate("DateTime"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+		
+			close(conn,prep,res);
+		}
+		return list;
 	}
 	
 }

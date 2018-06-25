@@ -97,7 +97,7 @@ request.setAttribute("path",path);
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path }/jsp/admin/images/img.jpg" alt="">John Doe
+                    <img src="${path }/jsp/admin/images/img.jpg" alt="">${adminUser.userName}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -192,19 +192,19 @@ request.setAttribute("path",path);
             <div class="souSuo1">
              <form action="HouseMessageServlet">
              <input class="form-control input-sm" type="hidden" name="type" value="getcha">
-             	<select id="sheng" name="sheng">
-                <option value="-1" selected="selected">请选择省</option>
+             	<select id="sheng" name="sheng" class="form-control" style="width:110px;display:inline-block">
+                <option value="-1" selected="selected" >请选择省</option>
               </select>
-              <select id="shi" name="shi">
+              <select id="shi" name="shi" class="form-control" style="width:110px;display:inline-block">
                 <option value="-1" selected="selected">请选择市</option>
               </select>
-              <select id="qu" name="qu">
+              <select id="qu" name="qu" class="form-control" style="width:110px;display:inline-block">
                 <option value="-1" selected="selected">请选择区</option>
               </select>
-              <select id="leibie" name="leibie">
+              <select id="leibie" name="leibie" class="form-control" style="width:120px;display:inline-block">
                 <option value="-1" selected="selected">请选择类型</option>
               </select>
-              <select id="qujian" name="qujian">
+              <select id="qujian" name="qujian" class="form-control" style="width:140px;display:inline-block">
                 <option value="-1" selected="selected">请选择价格</option>
                 <option value="0">0-10000</option>
                 <option value="10000">10000-20000</option>
@@ -218,7 +218,7 @@ request.setAttribute("path",path);
              </form>
             </div>
             <div class="souSuo2">
-              <input type="text" id="sousuo" value=""/><button id="ssqueren">搜索</button>
+              <input type="text" id="sousuo" value="" class="form-control"/><button id="ssqueren">搜索</button>
             </div>
           </div>
           <div class="info">
@@ -229,8 +229,6 @@ request.setAttribute("path",path);
                 <td class="last_info">房源管理</td>
               </tr>
               <c:forEach items="${requestScope.list }" var="list">
-              
-	              
 	              <tr>
 	                <td class='fr_show'>
 	                  <ul>
@@ -244,7 +242,6 @@ request.setAttribute("path",path);
 	                        	交房时间：${list.checkTime }</br>
 	                        	绿化率：${list.greenRate }</br>
 	                        	容积率：${list.plotRatio }</br>
-	                        	
 	                      </p>
 	                    </li>
 	                  </ul>
@@ -263,20 +260,55 @@ request.setAttribute("path",path);
 	                  </p>
 	                </td>
 	                <td class='last_show'>
-	                 <p> <a href='HouseMessageServlet?type=tonameget&name=${list.houseName}' onclikc=''>修改</a></p>
-	                 <p> <a href='HouseMessageServlet?type=delete&id=${list.id}' onclikc=''>删除</a></p>
-	                  
+	                 <p> <a href='HouseMessageServlet?type=tonameget&name=${list.houseName}' onclick=''>修改</a></p>
+	                 <p> <a onclick="shanchu(${list.id})">删除</a></p>
 	                </td>
-	              </tr>
-	              
-	              
+	              </tr>    
               </c:forEach>
-
+	<script>
+	function shanchu(data){
+			$.post(
+			"HouseMessageServlet",
+			{"type":"delete","id":data},
+			function(data){
+				if(data<0){
+				alert("删除失败");
+				getall();
+				}else{
+				alert("删除成功");
+				getall();
+				}
+			},
+			"text"
+			)
+		}
+		
+		function getall(){
+		var str=$("#sousuo").val();
+			$.post(
+			"HouseMessageServlet",
+			{"type":"search","name":str},
+			function(data){
+				var alr="<tr><td class='fr_info'>房源基本信息</td><td class='last_info'>房源状态</td><td class='last_info'>房源管理</td></tr>"
+				for(var i=0;i<data.length;i++){
+				var a="";
+				if(data[i].state==1){
+					a="发布";
+				}else if(data[i].state==2){
+					a="审核";
+				}else if(data[i].state==3){
+					a="删除";
+				}
+				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
+				}
+				$("#fangzi").html(alr);
+			},
+			"json"
+			);
+		}
+	</script>
             </table>
           </div>
-         <div>
-			上一页  下一页
-		</div>
         </div>
 
         <!-- /page content -->
@@ -306,6 +338,7 @@ request.setAttribute("path",path);
 	
 	<!-- 自己写的script代码 -->
 	<script type="text/javascript">
+
 		$(function(){
 		//房屋类型 
 		$.post(
@@ -394,7 +427,7 @@ request.setAttribute("path",path);
 				}else if(data[i].state==3){
 					a="删除";
 				}
-				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a href='HouseMessageServlet?type=delete&id="+data[i].id+"' onclikc=''>删除</a></p></td></tr>"
+				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
 				}
 				$("#fangzi").html(alr);
 			},
@@ -418,16 +451,13 @@ request.setAttribute("path",path);
 				}else if(data[i].state==3){
 					a="删除";
 				}
-				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a href='HouseMessageServlet?type=delete&id="+data[i].id+"' onclikc=''>删除</a></p></td></tr>"
+				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
 				}
 				$("#fangzi").html(alr);
 			},
 			"json"
 			);
 		})
-		
-		
-		
 		
 		});
 	</script>

@@ -93,9 +93,57 @@ public class HouseMessageServlet extends HttpServlet {
 			tonameget(request,response);
 		}if("search".equals(type)){
 			search(request,response);
+		}if("yumiao".equals(type)){
+			yumiao(request,response);
+		}if("indexcz".equals(type)){
+			indexcz(request,response);
+		}if("liebiaoget".equals(type)){
+			liebiaoget(request,response);
 		}
 	}
 	
+	public void liebiaoget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int tid=Integer.parseInt(request.getParameter("tid"));
+		request.setAttribute("tid", tid);
+		request.getRequestDispatcher("jsp/househome/case/20.jsp?oper=msg&tid="+tid).forward(request, response);
+		
+	}
+	
+	public void indexcz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String sql="SELECT m.id,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id WHERE 1=1";
+		StringBuffer sb=new StringBuffer(sql);
+		String sheng=request.getParameter("sheng");
+		if(!sheng.equals("-1")){
+			sb.append(" and m.provinceId="+sheng);
+		}
+		String shi=request.getParameter("shi");
+		if(!shi.equals("-1")){
+			sb.append(" and m.townId="+shi);
+		}
+		String qu=request.getParameter("qu");
+		if(!qu.equals("-1")){
+			sb.append(" and m.areaid="+qu);
+		}
+		String leibie=request.getParameter("leibie");
+		if(!leibie.equals("-1")){
+			sb.append(" and m.houseType="+leibie);
+		}
+		String qujian=request.getParameter("qujian");
+		if(!qujian.equals("-1")){
+			int qujianint=Integer.parseInt(qujian);
+			if(Integer.parseInt(qujian)==100000){
+			sb.append(" and averagePrice>=100000");
+			}else{
+			sb.append(" and averagePrice between "+qujianint+" and "+(qujianint+10000));
+			}
+			
+		}
+		HouseMessageService hms=new HouseMessageServiceImpl();
+		String assql=sb.toString();
+		List<HouseMessage> list=hms.getNewIndexSql(assql);
+		String json=JSON.toJSONString(list);
+		response.getWriter().write(json);
+	}
 	
 	public void tonameget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String name=request.getParameter("name");
@@ -160,8 +208,10 @@ public class HouseMessageServlet extends HttpServlet {
 			int qujianint=Integer.parseInt(qujian);
 			if(Integer.parseInt(qujian)==100000){
 			sb.append(" and averagePrice>=100000");
-			}
+			}else{
 			sb.append(" and averagePrice between "+qujianint+" and "+(qujianint+10000));
+			}
+			
 		}
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		String assql=sb.toString();
@@ -173,6 +223,21 @@ public class HouseMessageServlet extends HttpServlet {
 
 		
 	}
+	
+	public void yumiao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//查询index.jsp页面
+		HouseMessageService service=new HouseMessageServiceImpl();
+		List<HouseMessage> list=service.getIndex();
+		request.setAttribute("list", list);
+
+		//查询最新楼盘
+		List<HouseMessage> news=service.getNewIndex();
+		request.setAttribute("news", news);
+		request.getRequestDispatcher("jsp/househome/case/index.jsp").forward(request, response);
+		
+	}
+	
 	public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException{
 		
 		String houseName=request.getParameter("houseName");//房屋名字
@@ -237,14 +302,15 @@ public class HouseMessageServlet extends HttpServlet {
 		a.setId(id);
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		int flag=hms.delHouseMessage(a);
-		if(flag>0){
+		response.getWriter().write(flag);
+		/*if(flag>0){
 			PrintWriter out=response.getWriter();
 			out.print("<script>alert('删除成功');window.location='HouseMessageServlet?type=allget'</script>");
 			 
 		}else{
 			PrintWriter out=response.getWriter();
 			out.print("<script>alert('删除失败');window.location='HouseMessageServlet?type=allget' </script>");
-		}
+		}*/
 	}
 	
 	public void modifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException{
@@ -273,6 +339,12 @@ public class HouseMessageServlet extends HttpServlet {
 		a.setAreaId(qu);    
 		a.setHouseName(houseName);    
 		a.setStartPrice(qijia);    
+		if(request.getParameter("zuobiaoX")!=null){
+			a.setX(Double.parseDouble(request.getParameter("zuobiaoX")));
+		}
+		if(request.getParameter("zuobiaoY")!=null){
+			a.setY(Double.parseDouble(request.getParameter("zuobiaoY")));
+		}
 		a.setAveragePrice(junjia);    
 		a.setHouseType(leibie);    
 		a.setCoveredArea(mianji);    
@@ -290,8 +362,8 @@ public class HouseMessageServlet extends HttpServlet {
 		a.setLicence(request.getParameter("kaifashang"));    //预售许可
 		a.setDevelopers(request.getParameter("wuyefei"));    //开发商
 		a.setSalesAddress(request.getParameter("shoulou"));    //售楼地址
-		a.setFeature(request.getParameter("wuyefei"));     //项目特色
-		a.setAddress(xiangxidizhi);    
+		a.setFeature(request.getParameter("tese"));     //项目特色
+		a.setAddress(xiangxidizhi);
 		a.setState(1);
 		a.setAddUser(request.getParameter("loupandizhi"));    //楼盘地址
 		a.setProperty(chanquanxz);

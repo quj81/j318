@@ -24,14 +24,15 @@
 		margin-left: 30px;
 		text-decoration: none;
 		color:black;
-
+		display:inline-block;
+		overflow: hidden;
 	}
 	#right_list_123 li{
 		background-color: #ffffff;
 	
 	}
 	.demon_anim{
-		display: none;
+		display:none;
 		height:185px;
 		
 	}
@@ -42,6 +43,26 @@
 
 	}
 	#list_li>li{
+	}
+	.abcdefg12345{
+		width:220px;
+		height:16px;
+		overflow:hidden;
+	}
+	#right_list_123 li:nth-of-type(1){
+		background-image:url('../images/right_list_pic1.png');
+	}
+	#right_list_123 li:nth-of-type(3){
+		 background-image:url('../images/right_list_pic2.png');
+	}
+	#right_list_123 li:nth-of-type(5){
+		background-image:url('../images/right_list_pic3.png');
+	}
+	#right_list_123 li:nth-of-type(7){
+	 	background-image:url('../images/right_list_pic4.png');
+	}
+	#right_list_123 li:nth-of-type(9){
+		background-image:url('../images/right_list_pic5.png');
 	}
 
 </style>
@@ -54,16 +75,17 @@
 	<div id="navbg"></div>
 	<div class="wrapper">
 		<h1 class="logo">
-			<a href="index.html"  title="">
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp"  title="">
 				<img src="../images/logo.png" width="213" height="36" alt="" />
 			</a>
 		</h1>
 		<nav>
 			<ul>
-				<li class="home"><a href="../index.html" >首页<span>网站首页！</span></a></li>
-				<li class="about"><a href="../case/index.htm"  title="楼盘">楼盘<span>上千选择</span></a></li>
-				<li class="service"><a href="../news/news_list.htm"  title="资讯">资讯<span>行业动态</span></a></li>
-				<li class="cases"><a href="../contact/index.htm" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="home"><a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页<span>网站首页！</span></a></li>
+				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
+				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -108,69 +130,26 @@
             
 	
 </section>
-<div style="width:280px;position:fixed;left:1050px;top:200px;z-index:99;opacity:0.8;">
-	<ul id="right_list_123" style="color:black;">
-	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">推荐资讯</div>
-		<!-- 热点资讯str-->
-		<li style="background-image:url('../images/right_list_pic1.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
-		<li class="demon_anim">
-			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
-			<a href="#" style="color:gray;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 热点资讯end-->
-		<!-- 热点资讯str-->
-		<li style="background-image:url('../images/right_list_pic2.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
-		<li class="demon_anim">
-			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
-			<a href="#" style="color:gray;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 热点资讯end-->
-		<!-- 热点资讯str-->
-		<li style="background-image:url('../images/right_list_pic3.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
-		<li class="demon_anim">
-			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
-			<a href="#" style="color:gray;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 热点资讯end-->
-		<!-- 热点资讯str-->
-		<li style="background-image:url('../images/right_list_pic4.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
-		<li class="demon_anim">
-			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
-			<a href="#" style="color:gray;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 热点资讯end-->
-		<!-- 热点资讯str-->
-		<li style="background-image:url('../images/right_list_pic5.png');" class="demon_ani"><a href="#">购房独家优惠进行到底</a></li>
-		<li class="demon_anim" class="demon_anim_li_img">
-			<a href="#"><img src="../images/2.png" class="demon_anim_li_img"></a><br>
-			<a href="#" style="color:gray;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 热点资讯end-->
-	</ul>
-</div>
+<div style="width:280px;position:fixed;left:1050px;top:200px;z-index:99;opacity:0.8;"><ul id="right_list_123" style="color:black;"></ul></div>
 <script type="text/javascript">
-		$(".demon_ani").mouseover(function(){
-				$($(this).next()).show();
-			});
-	$(".demon_ani").mouseout(function(){
-				$($(this).next()).hide();
-			});
-	$(".demon_anim").mouseover(function(){
-		$(this).toggle();
-	});
-	$(".demon_anim").mouseout(function(){
-		$(this).toggle();
-	});
+	function paixuchaxun(){
+		$("#right_list_123").html("");
+		$.get(
+			"${pageContext.request.contextPath}/HouseNewsServlet",
+			{"type":"timeget",},
+			function(data){
+				var str="<div style='font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;'>推荐资讯</div>";
+				for(var i=0;i<data.length;i++){
+					str+="<li  class='demon_ani' onmouseover='block1()' onmouseout='none1()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a></li><li class='demon_anim' onmouseover='block2()' onmouseout='none2()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' class='demon_anim_li_img'></a><br><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"' style='color:gray ;width:200px;height:30px;'>"+data[i].content+"</a></li>"
+				}
+				$("#right_list_123").html(str);
+			},
+			"json"
+		)
+	}
+	paixuchaxun();
+</script>
+<script type="text/javascript">
 		function newlist(){
 			$("#list_li").html("");
 				$.get(
@@ -179,7 +158,7 @@
 					function(data){
 						var str="";
 						for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
 						}
 					$("#list_li").html(str);
 					},
@@ -207,7 +186,7 @@
 			function(data){
 				var str="";
 				for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p>"+data[i].content+"</p></div></li>";
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
 				}
 				$("#list_li").html(str);
 			},
@@ -217,15 +196,35 @@
 	
 		refertyp();
 		newlist();
+		function block1(){
+		$(".demon_ani").mouseover(function(){
+				$($(this).next()).show();
+			});
+		}
+		function none1(){
+	$(".demon_ani").mouseout(function(){
+				$($(this).next()).hide();
+			});
+		}
+		function block2(){
+	$(".demon_anim").mouseover(function(){
+		$(this).toggle();
+	});
+	}
+	 function none2(){
+	$(".demon_anim").mouseout(function(){
+		$(this).toggle();
+	});
+	}
 </script>
 </body>
 <footer>
 	<div id="footerlink">
 		<nav class="wrapper">
-			<a href="../index.html" >首页</a>
-			<a href="../case/index.htm">楼盘</a>
-			<a href="../contact/index.htm">联系</a>
-			<a href="../news/index.htm">资讯</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp">楼盘</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp">联系</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp">资讯</a>
 			<a id="gotop" href="javascript:void(0)">top</a>
 		</nav>
 	</div>

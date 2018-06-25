@@ -21,16 +21,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="navbg"></div>
 	<div class="wrapper">
 		<h1 class="logo">
-			<a href="index.html"  title="">
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp"  title="">
 				<img src="../images/logo.png" width="213" height="36" alt="" />
 			</a>
 		</h1>
 		<nav>
 			<ul>
-				<li class="home"><a href="../index.jsp" >首页<span>网站首页！</span></a></li>
-				<li class="about"><a href="../case/index.htm"  title="楼盘">楼盘<span>上千选择</span></a></li>
-				<li class="service"><a href="../news/news_list.htm"  title="资讯">资讯<span>行业动态</span></a></li>
-				<li class="cases"><a href="../contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="home"><a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页<span>网站首页！</span></a></li>
+				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
+				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -49,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<h1>联系方式</h1>
 		</div>
 	</div>
-	<article>	
+	<article>
 		<div class="wrapper" id="detailed">
 			<span style="font-size:20px;"><span style="color: rgb(102, 102, 102); font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Arial, Verdana, sans-serif; text-align: justify; font-weight: bold;">网络科技有限公司</span></span><br style="color: rgb(102, 102, 102); font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Arial, Verdana, sans-serif; line-height: 21px; text-align: justify;" />
 <br style="color: rgb(102, 102, 102); font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Arial, Verdana, sans-serif; line-height: 21px; text-align: justify;" />
@@ -68,18 +69,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <footer>
 	<div id="footerlink">
 		<nav class="wrapper">
-			<a href="../index.jsp" >首页</a>
-			<a href="../case/index.htm">楼盘</a>
-			<a href="../contact/index.jsp">联系</a>
-			<a href="../news/index.htm">资讯</a>
-			<a id="gotop" href="javascript:void(0)">top</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp">楼盘</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp">联系</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp">资讯</a>
 		</nav>
 	</div>
 	<div id="footerinfo">
 		<div class="wrapper">
 			<h2>联系我们<strong>Contact</strong></h2>
 			<p>
-				<a target="_blank" href="javascript:if(confirm('http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'))window.location='http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'"><img border="0" src="images/qq.png"  alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br/>
+				<a target="_blank" href="javascript:if(confirm('http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'))window.location='http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'"><img border="0" src="../images/qq.png"  alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br/>
 				电话：400 8888 8888<br/>
 				传真：400 8888 8888<br/>
 				电子邮件：admin@unn114.com<br/>

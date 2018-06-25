@@ -15,5 +15,7 @@ public interface HousePictureService {
 	int modifyHousePicture(HousePicture HousePicture);
 	int delHousePicture(HousePicture HousePicture);
 	List<HousePicture> getHousePictureList();
-	HousePicture getHousePictureInfo(int id);   
+	HousePicture getHousePictureInfo(int id);  
+	HousePicture getHousePicturead(int id);
+	List<HousePicture> getHousePictureListforcon(int id,int tid);
 }

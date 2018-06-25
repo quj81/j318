@@ -106,5 +106,65 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 		}
 		return a;
 	}
-	
+	@Override
+	public HousePicture getHousePicturead(int id) {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		HousePicture a=new HousePicture();
+		String sql="SELECT * FROM house_picture WHERE  adminpic=1 AND houseid="+id;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+    			a.setId(res.getInt("Id"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setHouseId(res.getInt("HouseId"));    
+    			a.setPictureType(res.getInt("PictureType"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return a;
+	}
+
+	@Override
+	public List<HousePicture> getHousePictureListforcon(int id,int tid) {
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HousePicture> list=new ArrayList<HousePicture>();
+		String sql="SELECT * FROM house_picture WHERE houseid="+id+"AND pictureType="+tid;
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HousePicture a=new HousePicture();
+    			a.setId(res.getInt("Id"));    
+    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setHouseId(res.getInt("HouseId"));    
+    			a.setPictureType(res.getInt("PictureType"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			
+			close(conn,prep,res);
+		}
+		return list;
+	}
 }

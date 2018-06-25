@@ -16,6 +16,12 @@
 	#right_list_123 li a{
 		color:gray;
 	}
+	.qwerty12346{
+		display:inline-block;
+		width:250px;
+		height:30px;
+		overflow: hidden;
+	}
 	.demon_anim{
 		height:50px;
 		border-bottom: 1px dotted gray;
@@ -34,16 +40,17 @@
 	<div id="navbg"></div>
 	<div class="wrapper">
 		<h1 class="logo">
-			<a href="index.html"  title="">
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp"  >
 				<img src="../images/logo.png" width="213" height="36" alt="" />
 			</a>
 		</h1>
 		<nav>
 			<ul>
-				<li class="home"><a href="../index.html" >首页<span>网站首页！</span></a></li>
-				<li class="about"><a href="../case/index.htm"  title="楼盘">楼盘<span>上千选择</span></a></li>
-				<li class="service"><a href="../news/news_list.htm"  title="资讯">资讯<span>行业动态</span></a></li>
-				<li class="cases"><a href="../contact/index.htm" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="home"><a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页<span>网站首页！</span></a></li>
+				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
+				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -77,62 +84,21 @@
  </div>
     
     <div id="case_footer" style="background-color:white;">
-      <div class="wrapper showother" style="margin-left:85%;"> <a href="news_list.htm">返回新闻列表</a> </div>
+      <div class="wrapper showother" style="margin-left:85%;"> <a href="news_list.jsp">返回新闻列表</a> </div>
     </div>
   </article>
-  <div style="width:280px;position:fixed;left:950px;top:300px;background-color: white;z-index:99;opacity:0.8;">
-	<ul id="right_list_123" style="color:black;list-style-position:inside;padding-left:4px;">
-	<div style="font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;">最新资讯</div>
-		<!-- 最新资讯str-->
-		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>
-		<li class="demon_anim">
-			<a href="#" style="color:black;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 最新资讯end-->
-		<!-- 最新资讯str-->
-		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>
-		<li class="demon_anim">
-			<a href="#" style="color:black;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 最新资讯end-->
-		<!-- 最新资讯str-->
-		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>
-		<li class="demon_anim">
-			<a href="#" style="color:black;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 最新资讯end-->
-		<!-- 最新资讯str-->
-		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>
-		<li class="demon_anim">
-			<a href="#" style="color:black;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 最新资讯end-->
-		<!-- 最新资讯str-->
-		<li class="demon_ani"><a href="#">2018-06-17 22:00:58</a></li>
-		<li class="demon_anim" class="demon_anim_li_img">
-			<a href="#" style="color:black;">
-				浓情端午，父亲节端午节接踵而至，时值六月中旬，西安夏天的...
-			</a>
-		</li>
-		<!-- 最新资讯end-->
-	</ul>
-</div>
+ 	<div style="width:280px;position:fixed;left:950px;top:300px;background-color: white;z-index:99;opacity:0.8;">
+	<ul id="right_list_123" style="color:black;list-style-position:inside;padding-left:4px;"></ul>
+	
+	</div>
 </section>
 <footer>
 	<div id="footerlink">
 		<nav class="wrapper">
-			<a href="../index.html" >首页</a>
-			<a href="../case/index.htm">楼盘</a>
-			<a href="../contact/index.htm">联系</a>
-			<a href="../news/index.htm">资讯</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp">楼盘</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp">联系</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp">资讯</a>
 			<a id="gotop" href="javascript:void(0)">top</a>
 		</nav>
 	</div>
@@ -199,6 +165,24 @@
 	var bds_config = {"bdTop":203};
 	$("#bdshell_js").attr("src","http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours());
 //]]>
+</script>
+<script type="text/javascript">
+	function paixuchaxun(){
+		$("#right_list_123").html("");
+		$.get(
+			"${pageContext.request.contextPath}/HouseNewsServlet",
+			{"type":"timeget",},
+			function(data){
+				var str="<div style='font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;'>最新资讯</div>";
+				for(var i=0;i<data.length;i++){
+					str+="<li class='demon_ani'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].time+"</a></li><li class='demon_anim'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"' style='color:black;' class='qwerty12346'>"+data[i].content+"</a></li>"
+				}
+				$("#right_list_123").html(str);
+			},
+			"json"
+		)
+	}
+	paixuchaxun();
 </script>
 </body>
 </html>

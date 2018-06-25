@@ -19,4 +19,9 @@ public interface HouseMessageDao{
 	List<HouseMessage> getLikeHouseMessageList(String name);
 	List<HouseMessage> getHouseIndexShow();
 	HouseMessage getHouseMessageIndexShowA();
+	List<HouseMessage> getIndex();
+	List<HouseMessage> getNewIndex();
+	List<HouseMessage> getNewIndexSql(String sql);
+	HouseMessage getHouseMessageforcon(int id);
+	List<HouseMessage> getHouseforsearch(String str);
 }

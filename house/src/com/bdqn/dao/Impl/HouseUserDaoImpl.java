@@ -103,4 +103,33 @@ public class HouseUserDaoImpl extends BaseDao implements HouseUserDao{
 		return a;
 	}
 	
+	public List<HouseUser> getHouseUserListByUserName(String username) {
+		// TODO Auto-generated method stub
+		Connection conn=getJDBCConnection();
+		PreparedStatement prep=null;
+		ResultSet res=null;
+		List<HouseUser> list=new ArrayList<HouseUser>();
+		String sql="SELECT * FROM `house_user` WHERE userName='"+username+"';";
+		try {
+			prep=conn.prepareStatement(sql);
+			res=prep.executeQuery();
+			while(res.next()){
+				HouseUser a=new HouseUser();
+    			a.setId(res.getInt("Id"));    
+    			a.setUserName(res.getString("UserName"));    
+    			a.setPassWord(res.getString("PassWord"));    
+    			a.setAddUser(res.getString("AddUser"));    
+    			a.setAddTime(res.getDate("AddTime"));    
+    			a.setUpdateUser(res.getString("UpdateUser"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));    
+				list.add(a);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			close(conn,prep,res);
+		}
+		return list;
+	}
 }

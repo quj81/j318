@@ -61,6 +61,17 @@
 .souSuo{
 	font-size: 15px;
 }
+#tjan{
+	margin-top:12px;
+	margin-right:25%;
+	float: right;
+}
+.zbk{
+	width: 350px;
+	margin-left:25%;
+	margin-top:12px;
+	float: left;
+}
 .nprogress-custom-parent #nprogress .spinner,
 .nprogress-custom-parent #nprogress .bar {
   position: absolute;

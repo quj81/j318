@@ -41,15 +41,28 @@ request.setAttribute("path",path);
     <link href="${path }/jsp/admin/css/select.css" rel="stylesheet" />
     <link href="${path }/jsp/admin/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 	<link href="${path }/jsp/admin/css/fileUpload.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+	body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+	#allmap {width: 100%; height:500px; overflow: hidden;}
+	#result {width:100%;font-size:12px;}
+	dl,dt,dd,ul,li{
+		margin:0;
+		padding:0;
+		list-style:none;
+	}
+	#tititi{
+		float:right;
+		margin-right: 25%;
+	}
+	</style>
   </head>
-
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+              <a href="index.html" class="site_title"><span>Gentellela Alela!</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -69,7 +82,7 @@ request.setAttribute("path",path);
             <br />
 
             <!-- sidebar menu -->
-            <jsp:include page="menu.jsp"></jsp:include>
+            <jsp:include page="../houseResource/menu.jsp"></jsp:include>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -224,101 +237,102 @@ request.setAttribute("path",path);
                         <form class="form-horizontal form-label-left" action="HouseMessageServlet" method="get">
                         <input type="hidden" type="hidden" name="type" value="add">
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>楼盘名称
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">*</span>楼盘名称
                             </label><span id="checkNamelp"></span>
-                            <div class="col-md-6 col-sm-6">
-                              <input type="text" name="houseName" id="houseName" required="required" class="form-control col-md-7 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <input type="text" name="houseName" id="houseName" class="form-control col-md-7 col-xs-12" required>
 
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>产权性质
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><span class="required">*</span>产权性质
                             </label>
-                            <div class="vertical" id="chanquanxingzhi">
-                              <select id="chanquanxz" name="chanquanxz">
+                            <div class="col-md-6 col-sm-6 col-xs-12"  id="chanquanxingzhi">
+                              <select id="chanquanxz" name="chanquanxz" class="form-control" style="width:120px;display:inline-block">
                                 <option value="1" selected="selected">请选择</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3"><span class="required">*</span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
-                            <div class="col-md-6 col-sm-6">
-                              <select id="leibie" name="leibie">
-                                <option value="1" selected="selected">请选择</option>
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <select id="leibie" name="leibie" class="form-control" style="width:120px;display:inline-block">
+                                <option value="1" selected="selected" >请选择</option>
                               </select>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>起&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><span class="required">*</span>起&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
                             </label><span id="moneyErr"></span>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
                               <input type="text" id="money" name="qijia" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>均&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><span class="required">*</span>均&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价
                             </label><span id="moneyErrTwo"></span>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
                               <input type="text" id="moneytwo" name="junjia" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" ><span class="required">*</span>地理位置
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>地理位置
                             </label>
-                            <div>
-                              <select id="sheng" name="sheng">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <select id="sheng" name="sheng" class="form-control" style="width:120px;display:inline-block">
                                 <option value="0" selected="selected">请选择</option>
                               </select>
-                              <select id="shi" name="shi">
+                              <select id="shi" name="shi" class="form-control" style="width:120px;display:inline-block">
                                 <option value="0" selected="selected">请选择</option>
                               </select>
-                              <select id="qu" name="qu">
+                              <select id="qu" name="qu" class="form-control" style="width:120px;display:inline-block">
                                 <option value="0" selected="selected">请选择</option>
                               </select>
                             </div>
-                            <div class="form-group" style="margin-top: 10px">
-                              <label class="control-label col-md-3 col-sm-3" for="first-name"><span class="required">*</span>详细地址
+                            
+
+                          </div>
+                          <div class="form-group" style="margin-top: 10px">
+                              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">*</span>详细地址
                               </label><span id="addressErr"></span>
-                              <div class="col-md-6 col-sm-6">
+                              <div class="col-md-6 col-sm-6 col-xs-12" >
                                 <input type="text" id="address" required="required" class="form-control col-md-7 col-xs-12" name="xiangxidizhi">
                               </div>
                             </div>
-
-                          </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3" for="last-name"><span class="required">*</span>建筑面积
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name"><span class="required">*</span>建筑面积
                             </label><span id="msg1"></span>
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
                               <input type="text" id="mia" name="mianji" required="required" class="form-control col-md-7 col-xs-12">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3">&nbsp;开盘时间</label>
-                            <div class="col-md-6 col-sm-6">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12" >&nbsp;开盘时间</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
                               <input id="middle-name2" class="form-control col-md-7 col-xs-12" type="text" name="kaipan" onclick="laydate()">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3">&nbsp;交房时间
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" >&nbsp;交房时间
                             </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" name="jiaofang" required="required" type="text" onclick="laydatet()">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <input id="birthday2" class="date-picker form-control col-md-7 col-xs-12" name="jiaofang" type="text" onclick="laydatet()">
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="middle-name" class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;绿&nbsp;化&nbsp;率</label>%<span id="msg2"></span>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="luhua" class="form-control col-md-7 col-xs-12" type="text" name="lvhualv">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>&nbsp;绿&nbsp;化&nbsp;率</label>%<span id="msg2"></span>
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <input id="luhua" class="form-control col-md-7 col-xs-12" type="text" name="lvhualv" required>
                             </div>
                           </div>
                           <div class="form-group">
-                            <label class="control-label col-md-3 col-sm-3"><span class="required">*</span>&nbsp;容&nbsp;积&nbsp;率
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>&nbsp;容&nbsp;积&nbsp;率
                             </label>%<span id="rongmsg"></span>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="rongjilv">
+                            <div class="col-md-6 col-sm-6 col-xs-12" >
+                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" type="text" name="rongjilv" required >
                             </div>
                           </div>
-                          <input type="submit" value="提交">
+                          <input class="btn btn-success"  type="submit" id="tititi" value="提交">
                         </form>
                    </div>
                         <!-- <div id="step-22">
@@ -378,6 +392,15 @@ request.setAttribute("path",path);
 
 	<!-- 自己编写的jQuery -->
 	<script type="text/javascript">
+		var loupan=false;
+		var chanquan=false;
+		var qijia=false;
+		var junjia=false;
+		var xiangxi=false;
+		var mianji=false;
+		var lvhua=false;
+		var rongji=false;
+	
 		/* 楼盘名称判断 */
 		$(function(){
 			$("#houseName").blur(function(){
@@ -386,6 +409,7 @@ request.setAttribute("path",path);
 				
 				if(houseName.length == 0){
 		            document.getElementById('checkNamelp').innerHTML="不可以为空".fontcolor("red");
+		            loupan=false;
 		            return false;
 	       		 }
 				
@@ -400,6 +424,7 @@ request.setAttribute("path",path);
 							noinfo="该楼盘已存在";
 							$("#checkNamelp").css("color","red");
 						}else{
+							loupan=true;
 							noinfo="√";
 							$("#checkNamelp").css("color","green");
 						}
@@ -493,19 +518,25 @@ request.setAttribute("path",path);
 		//END区END
 		});
 		
+		
+		
+		
 		$("#money").blur(function(){
 			var money = document.getElementById('money');
 	        var moneyErr = document.getElementById('moneyErr');
 	        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
 	        if(money.value.length == 0){
 	           moneyErr.innerHTML="起价不能为空".fontcolor("red");
+	          	qijia=false;
 	            return false;
 	        }
 	        if(!pattern.test(money.value)){
 	            moneyErr.innerHTML="起价格式不正确".fontcolor("red");
+	            qijia=false;
 	            return false;
 	        } else{
 	            moneyErr.innerHTML="√".fontcolor("green");
+	            qijia=true;
 	            return true;
 	        }
 		})
@@ -517,13 +548,16 @@ request.setAttribute("path",path);
         var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(moneytwo.value.length == 0){
             moneyErrTwo.innerHTML="均价不能为空".fontcolor("red");
+            junjia=false;
             return false;
         }
         if(!pattern.test(moneytwo.value)){
             moneyErrTwo.innerHTML="均价格式不正确".fontcolor("red");
+            junjia=false;
             return false;
         } else{
             moneyErrTwo.innerHTML="√".fontcolor("green");
+            junjia=true;
             return true;
         }
 	})
@@ -536,9 +570,11 @@ request.setAttribute("path",path);
         var addressErr = document.getElementById('addressErr');
         if (address.value.length == 0) {
             addressErr.innerHTML = "地址不能为空".fontcolor("red");
+            xiangxi=false;
             return false;
         }else{
             addressErr.innerHTML = "√".fontcolor("green");
+            xiangxi=true;
         }
 	})
 
@@ -549,13 +585,16 @@ request.setAttribute("path",path);
         var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(mia.value.length == 0){
             msg1.innerHTML="面积不能为空".fontcolor("red");
+            mianji=false;
             return false;
         }
         if(!pattern.test(mia.value)){
             msg1.innerHTML="面积格式不正确".fontcolor("red");
+            mianji=false;
             return false;
         } else{
             msg1.innerHTML="√".fontcolor("green");
+            mianji=true;
             return true;
         }
 	})
@@ -566,13 +605,16 @@ request.setAttribute("path",path);
         var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(luhua.value.length == 0){
             msg2.innerHTML="绿化率不能为空".fontcolor("red");
+            lvhua=false;
             return false;
         }
-        if(!pattern.test(mia.value)){
+        if(!pattern.test(luhua.value)){
             msg2.innerHTML="绿化率格式不正确".fontcolor("red");
+            lvhua=false;
             return false;
         } else{
             msg2.innerHTML="√".fontcolor("green");
+            lvhua=true;
             return true;
         }
 	})
@@ -582,20 +624,31 @@ request.setAttribute("path",path);
 	$("#rong").blur(function(){
 		var rong = document.getElementById('rong');
         var rongmsg = document.getElementById('rongmsg');
-        var pattern = /^[0-9]+([.]{1}[0-9]+){0,1}$/;
+        var pattern =/^[0-9]+([.]{1}[0-9]+){0,1}$/;
         if(rong.value.length == 0){
             rongmsg.innerHTML="容积率不能为空".fontcolor("red");
+            rongji=false;
             return false;
         }
-        if(!pattern.test(mia.value)){
+        if(!pattern.test(rong.value)){
             rongmsg.innerHTML="容积率格式不正确".fontcolor("red");
+            rongji=false;
             return false;
         } else{
             rongmsg.innerHTML="√".fontcolor("green");
+            rongji=true;
             return true;
-        }
+        } 
 	})
-
+	
+	 $("#tititi").click(function(){
+        	if(loupan==true&&qijia==true&&junjia==true&&xiangxi==true&&mianji==true&&lvhua==true&&rongji==true){
+				return true;
+        	}else{
+        		alert("您有选项填写错误,不能提交");
+        		return false;
+        	}
+    })
 		
 	</script>
 
@@ -623,7 +676,7 @@ request.setAttribute("path",path);
       });
     </script>
     <!-- jQuery Smart Wizard -->
-    <script>
+    <!-- <script>
       $(document).ready(function() {
         $('#wizard').smartWizard();
 
@@ -635,7 +688,7 @@ request.setAttribute("path",path);
         $('.buttonPrevious').addClass('btn btn-primary');
         $('.buttonFinish').addClass('btn btn-default');
       });
-    </script>
+    </script> -->
     <!-- /jQuery Smart Wizard -->
   </body>
 </html>

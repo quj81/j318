@@ -55,26 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <br />
 
             <!-- sidebar menu -->
-          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>General</h3>
-                <ul class="nav side-menu">
-                  
-                  
-                  <li><a><i class="fa fa-desktop"></i>首页楼盘 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
- 					 <li><a href="HouseIndextypeServlet?type=get">首页楼盘类型</a></li>
-                     <li><a href="HouseIndextypeServlet?type=get1">首页楼盘热门</a></li>
-                     <li><a href="HouseIndextypeServlet?type=get2">首页资讯</a></li>
-                     
-                    </ul>
-                  </li>
-                  
-                </ul>
-              </div>
-             
-
-            </div>
+            <jsp:include page="../houseResource/menu.jsp"></jsp:include>
             <!-- /sidebar menu -->
 
            
@@ -110,8 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
@@ -203,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="row">  
               <!-- bar chart -->   
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" style="width:1300px;height:600px">
                   <div class="x_title">
                     <h2>热门</h2> 
                     <div class="clearfix"></div>
@@ -212,18 +192,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div id="" style="width:100%; height:80px;">
                     <form action="HouseIndextypeServlet?indextype=1&showtype=1" method="post">
                     		主显示: <input type="hidden" name="type" value="add">
-               		  <c:forEach items="${list}" var="list">           	
+               		  <c:forEach items="${list}" var="list">  
+               		  <input type="hidden" value="${list.id}" name="id">         	
                      	 <input type="radio" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </c:forEach>
-                      	 <input type="submit" value="主显示" >
+                      
+                      	 <input type="submit" value="主显示" style="border-radius: 50%;background-color: white;color:#D59354;font-weight:bold;" id="dongdongdong">
                     </form>
                     
-                      <form action="HouseIndextypeServlet?indextype=2" method="post">
+                      <form action="HouseIndextypeServlet?indextype=2&showtype=2" method="post" id="dongcidaci">
                      	副显示： <input type="hidden" name="type" value="add">
-                      <c:forEach items="${list}" var="list">       	
-                     	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <c:forEach items="${list}" var="list">  
+                      <input type="hidden" value="${list.id}" name="id">     	
+                     	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype" class="duoxuan">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      </c:forEach>
-                      	<input type="submit" value="副显示" >
+                      	<input type="submit" value="副显示" style="border-radius: 50%;background-color: white;color:#D59354;font-weight:bold;" id="dongdongdong1">
                       </form>
 
                     </div>
@@ -249,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- /footer content -->
       </div>
     </div>
-
+ 
     <!-- jQuery -->
     <script src="${path}/jsp/admin/js/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -264,7 +247,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <!-- Custom Theme Scripts -->
     <script src="${path}/jsp/admin/js/custom.min.js"></script>
-
+	  <script type="text/javascript">
+ $(function(){
+		 $(".duoxuan").click(function duoxuan(){
+  		  var str=4-$("input[name='housetype']:checked").length;
+  		  if(str<0){
+  		    alert("楼盘不能选超过4个"); 
+  			return false; 
+  		  }
+		 }); 
+		 
+  	$("#dongdongdong").click(function(){
+  		var str=$("input[name='housetype']:checked").length;
+  		if(str==0){
+  			alert("你倒是选一个啊？难道没有你喜欢的？")
+  			return false;
+  		}
+  	  	})
+  	  	
+  	  	$("#dongdongdong1").click(function(){
+  		var str=$("input[name='housetype']:checked").length;
+  		if(str==0){
+  			alert("你倒是选一个啊？难道没有你喜欢的？")
+  			return false;
+  		}
+  	  	})
+  	  	
+  	})
+    </script>
     <!-- morris.js -->
     <script>
       $(document).ready(function() {

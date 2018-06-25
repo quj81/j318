@@ -349,7 +349,9 @@ p.links a:hover {
     bottom: -20px;left: 43%; }
 .bor_red{display: inline-block;margin-left: 140px;float: left;width: 700px;}
 .bor_red li{width: 700px;height: 200px;}
-.tab_lieb{background-color: azure;}
+#tabl_pad{margin-top:10px;}
+.tab_lieb{width:700px;float: left;}
+.tab_lieb:hover{background-color:#fafafa;}
 .tab_lieb td:nth-of-type(1){width: 200px;height:200px;margin-top: 100px; }
 .tab_lieb td:nth-of-type(2){width: 300px;}
 .tab_lieb td:nth-of-type(2) p:nth-of-type(1){font-size: 22px;}
@@ -359,7 +361,7 @@ p.links a:hover {
 #li_lieb{width: 700px;height:50px;}
 #li_lieb p{width: 200px;height:50px;line-height: 50px;text-align: center;border: 1px solid #ccc;}
 .bor_red2{width: 200px;height: 400px;float: right;padding-right: 200px;padding-top:20px;}
-.bor_red2 li{height: 50px;border: 1px solid #ccc;width: 250px;}
+.bor_red2 li{height: 50px;width: 250px;padding:0px 4px;border: 1px solid #dcdcdc;}
 .bor_red2 li:nth-of-type(1){line-height: 50px;font-size: 20px;text-indent: 10px;}
 .bor_red2 li:nth-of-type(2) p:nth-of-type(1){float: left;margin-top: 10px;;text-indent: 30px;}
 .bor_red2 li:nth-of-type(2) p:nth-of-type(2){float: right;margin-top: 10px;color: red;}
@@ -378,3 +380,6 @@ p.links a:hover {
 .botm li{float: left;width: 300px;height:280px;margin:20px 0 0 25px; }
 .botm img{width: 250px;height: 250px;margin-left: 23px;}
 .botm p{text-align: center;padding-top: 20px;}
+
+.bor_red3{margin-left:70%;float:left;}
+border{overflow: hidden;}

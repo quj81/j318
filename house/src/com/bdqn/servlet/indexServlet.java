@@ -71,10 +71,22 @@ public class indexServlet extends HttpServlet {
 			getHouse(request,response);			
 		}else if("news".equals(oper)){
 			getNews(request,response);
+		}else if("search".equals(oper)){
+			search(request,response);
 		}else{
 			getNewsa(request,response);
 		}
 			
+	}
+	
+	private void search(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException{
+		String searchterms=request.getParameter("searchterms");
+		HouseMessageService hns=new HouseMessageServiceImpl();
+		List<HouseMessage> list=hns.getHouseforsearch(searchterms);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("jsp/househome/case/index.jsp").forward(request, response);
+		
 	}
 	private void getNewsa(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException{

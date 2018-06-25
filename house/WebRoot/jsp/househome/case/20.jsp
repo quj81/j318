@@ -10,11 +10,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />   
 <meta name="viewport" content="width=1024" />
-<title>金石小镇</title>
+<title></title>
 <meta name="keywords" content="优品道" />
 <meta name="description" content="优品道控股」是中国具有代表性的不动产投资、发展和经营企业，致力于中国优品生活的缔造，是城市区域价值的提升者。「优品道控股」品牌蕴含 “思于优，行由品，立为道”的企业精神，" />     
-<link rel="stylesheet" href="../css/style.css" type="text/css" media="all" />
-<!--[if lt IE 9]><script type="text/javascript" src="../js/html5.js" ></script><![endif]-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/househome/css/style.css" type="text/css" media="all" />
+<!--[if lt IE 9]><script type="text/javascript" src="${pageContext.request.contextPath}/jsp/househome/js/html5.js" ></script><![endif]-->
 <style>
 	*{magin:0;padding:0;list-style:none;}
 </style>
@@ -24,16 +24,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="navbg"></div>
 	<div class="wrapper">
 		<h1 class="logo">
-			<a href="index.html"  title="">
-				<img src="images/logo.png" width="213" height="36" alt="" />
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp"  title="">
+				<img src="${pageContext.request.contextPath}/jsp/househome/images/logo.png" width="213" height="36" alt="" />
 			</a>
 		</h1>
 		<nav>
 			<ul>
-				<li class="home"><a href="../index.html" >首页<span>网站首页！</span></a></li>
-				<li class="about"><a href="../case/index.htm"  title="楼盘">楼盘<span>上千选择</span></a></li>
-				<li class="service"><a href="../news/news_list.htm"  title="资讯">资讯<span>行业动态</span></a></li>
-				<li class="cases"><a href="../contact/index.htm" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="home"><a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页<span>网站首页！</span></a></li>
+				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
+				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -42,53 +43,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <section id="show_cases">
 	<div class="cat_title">
 		<div class="wrapper">
-			<h2><strong>金石小镇</strong></h2>
+			<h2><strong id="tit"></strong></h2>
 			<p>我们的作品，他们的故事<br/>Our work, their stories </p>
 		</div>
 	</div>
 	<article>
 		<div class="wrapper">
 			<ul class="top_xi">
-				<li><img src="" alt=""/></li>
+				<li id="imga"><img src="" alt=""/></li>
 				<li>
-					<h1>[西安-雁塔]商业类楼盘</h1>
+					<h1 id="housename">[西安-雁塔]商业类楼盘</h1>
 
-					<p>开盘价格：</p>
+					<p id="startprice">开盘价格：</p>
 
-					<p>平均价格：</p>
+					<p id="avgprcie">平均价格：</p>
 
-					<p>楼盘地址：</p>
+					<p id="address">楼盘地址：</p>
 
 					<p><button>免费预约看房</button></p>
 				</li>
 			</ul>
 			<ul id="kanfang_div">
-				<li><a href="#">楼盘详情</a></li>
-				<li><a href="#">独家优惠</a></li>
-				<li><a href="#">楼盘相册</a></li>
-				<li><a href="#">楼盘位置</a></li>
+				<li><a href="#lou">楼盘详情</a></li>
+				<li><a href="#youH">独家优惠</a></li>
+				<li><a href="#pic">楼盘相册</a></li>
+				<li><a href="#map">楼盘位置</a></li>
 			</ul>
 			<div id="detailed">
 				<!--<img alt="" src="../../upload cs/allimg/131102/1-131102210017.png" tppabs="http://mc18.eatdou.com/uploads/allimg/131102/1-131102210017.png" /><img alt="" src="../../uploads/allimg/131102/1-131102210017-50.png" tppabs="http://mc18.eatdou.com/uploads/allimg/131102/1-131102210017-50.png" /><img alt="" src="../../uploads/allimg/131102/1-131102210018.png" tppabs="http://mc18.eatdou.com/uploads/allimg/131102/1-131102210018.png" />					-->
+				<a href="#" name="lou"></a>
 				<ul id="kanfang_ul">
 					<li class="pd_le">
 						<table class="kanfang_tr">
 							<tr>
-								<td>楼盘类型：</td>
+								<td id="type">楼盘类型：</td>
 							</tr>
 							<tr>
-								<td>建筑面积：</td>
+								<td id="mianji">建筑面积：</td>
 							</tr>
 							<tr>
-								<td>容积率：</td>
+								<td id="plotRatio">容积率：</td>
 							</tr>
 							<tr>
-								<td>开盘时间：</td>
+								<td id="openTime">开盘时间：</td>
 							</tr>
 							<tr>
-								<td>物业费：</td>
+								<td id="propertyFee">物业费：</td>
 							</tr>
-								<td>开发商：</td>
+								<td id="developers">开发商：</td>
 							</tr>
 							<tr>
 								<td id="need50">项目特色：</td>
@@ -98,23 +100,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="pd_le">
 						<table class="kanfang_tr">
 							<tr>
-								<td>装修状况：</td>
+								<td id="finishstate">装修状况：</td>
 
 							</tr>
 							<tr>
-								<td>绿化率：</td>
+								<td id="greenRate">绿化率：</td>
 							</tr>
 							<tr>
-								<td>交房时间：</td>
+								<td id="checkTime">交房时间：</td>
 							</tr>
 							<tr>
-								<td>物业公司：</td>
+								<td id="realCompany">物业公司：</td>
 							</tr>
 							<tr>
-								<td>预售许可证：</td>
+								<td id="licence">预售许可证：</td>
 							</tr>
 							<tr>
-								<td>售楼地址：</td>
+								<td id="salesAddress">售楼地址：</td>
 							</tr>
 						</table>
 					</li>
@@ -124,6 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<tr>
 							<td><img src="" alt=""/></td>
 							<td id="right_m">
+								<a href="#" name="youH"></a>
 								<p>
 									[专享]团购券
 								</p>
@@ -137,16 +140,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</table>
 				</div>
+				<a href="#" name="pic"></a>
 				<div>
 					<ul class="img_loupan">
-						<li class="img_loupan_li"><img src="" alt=""/>
-						<p>卧室</p></li>
-						<li><img src="" alt=""/>
-						<p></p></li>
-						<li><img src="" alt=""/>
-						<p></p></li>
+						<li class="img_loupan_li"><img src="" alt=""/></li>					
 					</ul>
 				</div>
+				
+				<a href="#" name="map"></a>
 				<p>楼盘地图</p>
 				<div class="map">
 					<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -205,8 +206,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
 							map.addControl(ctrl_sca);
 						}
-
-
 						initMap();//创建和初始化地图
 					</script>
 					</html>
@@ -216,7 +215,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</article>
 	<div id="case_footer">
 		<div class="wrapper showother">
-						<a class="backlist" href="index.htm" tppabs="http://mc18.eatdou.com/case/qiye/">返回案例列表</a>
+						<a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp" style="margin-left:600px;">返回楼盘列表</a>
 						
 		</div>
 	</div>
@@ -224,10 +223,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <footer>
 	<div id="footerlink">
 		<nav class="wrapper">
-			<a href="../index.html" >首页</a>
-			<a href="../case/index.htm">楼盘</a>
-			<a href="../contact/index.htm">联系</a>
-			<a href="../news/index.htm">资讯</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/index.jsp" >首页</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp">楼盘</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp">联系</a>
+			<a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp">资讯</a>
 			<a id="gotop" href="javascript:void(0)">top</a>
 		</nav>
 	</div>
@@ -235,7 +234,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="wrapper">
 			<h2>联系我们<strong>Contact</strong></h2>
 			<p>
-				<a target="_blank" href="javascript:if(confirm('http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'))window.location='http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'"><img border="0" src="images/qq.png"  alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br/>
+				<a target="_blank" href="javascript:if(confirm('http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'))window.location='http://wpa.qq.com/msgrd?v=3&uin=429592913&site=qq&menu=yes'"><img border="0" src="${pageContext.request.contextPath}/jsp/househome/images/qq.png"  alt="点击这里给我发消息" title="点击这里给我发消息"/></a><br/>
 				电话：400 8888 8888<br/>
 				传真：400 8888 8888<br/>
 				电子邮件：admin@unn114.com<br/>
@@ -265,10 +264,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 </footer>
-<script type="text/javascript" src="../js/jquery.1.8.2.min.js" ></script>
-<script type="text/javascript" src="../js/jquery.plugin.min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/househome/js/jquery.1.8.2.min.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/househome/js/jquery.plugin.min.js" ></script>
 <!--[if IE 6]>
-<script type="text/javascript" src="../js/killie6.js" ></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jsp/househome/js/killie6.js" ></script>
 <![endif]-->
 <script type="text/javascript">
 //<![CDATA[
@@ -278,8 +277,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	},function(){
 		$(this).parent().stop(false,true).animate({"background-position-x":"10px",opacity:"1"},{duration:"normal", easing: "easeOutElastic"});
 	});
-		<!--- 案例 ---->
-	<!--案例详细-->
 		//Cases Start
 		if($.browser.msie&&$.browser.version==6.0&&!$.support.style){
 			$("#overview").height($("#detailed").height());
@@ -312,5 +309,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	var bds_config = {"bdTop":203};
 	$("#bdshell_js").attr("src","http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours());
 //]]>
-</script></body>
+</script>
+<script type="text/javascript">
+$(function(){
+var tid=${hid};
+$.post(
+"${pageContext.request.contextPath}/MessageConServlet",
+{"oper":"msg","id":tid},
+function(data){
+$("title").html(data.houseName);
+$("#tit").html(data.houseName);
+$("#housename").html("["+data.town+"-"+data.area+"]"+data.houseName+"商业类楼盘");
+$("#startprice").html("开盘价格："+data.startPrice+"元/㎡");
+$("#avgprcie").html("平均价格："+data.averagePrice+"元/㎡");
+$("#address").html("楼盘地址："+data.address);
+$("#type").html("楼盘类型："+data.houseType);
+$("#mianji").html("建筑面积："+data.coveredArea);
+$("#plotRatio").html("容积率："+data.plotRatio);
+$("#openTime").html("开盘时间："+data.openTime);
+$("#propertyFee").html("物业费："+data.propertyFee);
+$("#developers").html("开发商："+data.developers);
+$("#need50").html("项目特色："+data.feature);
+$("#finishstate").html("装修状况："+data.finishstatename);
+$("#greenRate").html("绿化率："+data.greenRate);
+$("#checkTime").html("交房时间："+data.checkTime);
+$("#realCompany").html("物业公司："+data.realCompany);
+$("#licence").html("预售许可证："+data.licence);
+$("#salesAddress").html("售楼地址："+data.salesAddress);
+},
+"json"
+);
+$.post(
+"${pageContext.request.contextPath}/MessageConServlet",
+{"oper":"pica","id":tid},
+function(data){
+$("#imga").html("<img src='"+data.pictureURL+"' alt=''/>");
+},
+"json"
+);
+$.post(
+"${pageContext.request.contextPath}/MessageConServlet",
+{"oper":"pica","id":${hid},"tid":tid},
+function(data){
+$(".img_loupan").html("");
+$(data).each(function(){
+$(".img_loupan").html($(".img_loupan").html()+"<li class='img_loupan_li'><img src='"+this.pictureURL+"' alt=''/></li>");
+})
+},
+"json"
+);
+})
+</script>
+</body>
 </html>

@@ -49,4 +49,16 @@ public class HousePictureServiceImpl extends BaseDao implements HousePictureServ
 		HousePictureDao service=new HousePictureDaoImpl();
 		return service.getHousePictureInfo(id);
 	}
+	
+	@Override
+	public HousePicture getHousePicturead(int id) {
+		HousePictureDao service=new HousePictureDaoImpl();
+		return service.getHousePicturead(id);
+	}
+
+	@Override
+	public List<HousePicture> getHousePictureListforcon(int id, int tid) {
+		HousePictureDao service=new HousePictureDaoImpl();
+		return service.getHousePictureListforcon(id, tid);
+	}
 }
