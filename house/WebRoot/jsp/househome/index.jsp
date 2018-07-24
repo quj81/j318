@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
 				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
 				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
-				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/admin/houseResource/HouseManage.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
         	</div>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </p>
             <p class="links">
                 热词：
-                <a id="button" href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">看房团</a> <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">写字楼</a> <a href="#${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">商业类楼盘</a><a></a><a></a>
+                <a id="button" href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">看房团</a> <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">写字楼</a> <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao">商业类楼盘</a><a></a><a></a>
                 <!--These are links. You can change it to a page you want to by replacing the '#' with your url.-->
             </p>
         </div>
@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h2>分类<strong>CLASSIFY</strong></h2>
     <p>我们的产品，满足您所有的需求<br/>
         Our Houses, Meet all your needs </p>
-    <a href="#"  class="more">MORE+</a> </div>
+    <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  class="more">MORE+</a> </div>
   <ul>
   	<li><img src="${pageContext.request.contextPath}/jsp/househome/images/class1.jpg"   width="240" height="152" alt="年度热盘"/>
       <p> <strong>年度热盘</strong>西安看房团为您搜索性能比好的年度热盘供您选择....<br/>
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             优质楼盘供你选择<br/>
             High quality real estate for your choice
         </p>
-        <a href="${pageContext.request.contextPath}/jsp/househome/case/index.jsp"  class="more">MORE+</a>
+        <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  class="more">MORE+</a>
     </div>
     <div class="loudata">
     <div class="louad" id="louad"> <img src="${pageContext.request.contextPath}/jsp/househome/images/news.png"  alt="html5" width="320" height="450" /><p>[西安-雁塔]品牌底商<span>[楼盘]</span></p><p>起价：<span>20000元/㎡</span>  均价：<span>20000元/㎡</span></p></div>
@@ -185,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h2>新闻<strong>News</strong></h2>
     <p>关注我们、关注前沿<br/>
       Recently is to do ...</p>
-    <a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  class="more">MORE+</a> </div>
+    <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  class="more">MORE+</a> </div>
   <div class="newsdata">
     <div class="newsad"> <img src="images/news.png"  alt="html5" width="320" height="450" /></div>
     <ul id="newsf">
@@ -355,7 +355,7 @@ $.post(
 {"oper":"housea"},
 function(data){	
 	$(data).each(function(){
-	$(".louad").html($(".louad").html()+"<a href='${pageContext.request.contextPath}/MessageConServlet?oper=conin&hid="+this.id+"'><img src='jsp/househome/images/"+this.pictureURL+"' alt='html5' width='320' height='450'/></a><p>["+this.town+"-"+this.area+"]<span>"+this.houseName+"[楼盘]</span></p><p>起价：<span>"+data.startPrice+"元/㎡</span>均价：<span>"+data.averagePrice+"元/㎡</span></p>");
+	$(".louad").html($(".louad").html()+"<a href='${pageContext.request.contextPath}/MessageConServlet?oper=conin&hid="+this.id+"'><img src='${pageContext.request.contextPath}/upload/"+this.pictureURL+"' alt='html5' width='320' height='400'/></a><p>["+this.town+"-"+this.area+"]<span>"+this.houseName+"[楼盘]</span></p><p>起价：<span>"+data.startPrice+"元/㎡</span>均价：<span>"+data.averagePrice+"元/㎡</span></p>");
 	}); 
 },"json"
 ); 
@@ -364,7 +364,7 @@ $.post(
 {"oper":"house"},
 function(data){
 	$(data).each(function(){
-	$("#louf").html($("#louf").html()+"<li><a href='${pageContext.request.contextPath}/MessageConServlet?oper=conin&hid="+this.id+"'><img src='"+this.pictureURL+"' width='290' height='180'></a><div class='loulist'><span>["+this.town+"-"+this.area+"]</span><p>起价：<span>"+this.startPrice+"</span>"+this.houseName+"[楼盘]</p></div></li>");
+	$("#louf").html($("#louf").html()+"<li><a href='${pageContext.request.contextPath}/MessageConServlet?oper=conin&hid="+this.id+"'><img src='${pageContext.request.contextPath}/upload/"+this.pictureURL+"' width='290' height='150'></a><div class='loulist'><span>["+this.town+"-"+this.area+"]</span><p>起价：<span>"+this.startPrice+"</span>"+this.houseName+"[楼盘]</p></div></li>");
 	});
 },"json"
 );
@@ -373,7 +373,7 @@ $.post(
 {"oper":"newsa"},
 function(data){
 	$(data).each(function(){
-	 $(".newsad").html( $(".newsad").html()+"<a href='${pageContext.request.contextPath}/news/news_con.jsp'><img src='images/"+this.pictureURL+"' alt='html5' width='320' height='450'/></a>");
+	 $(".newsad").html( $(".newsad").html()+"<a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+this.id+"'><img src='${pageContext.request.contextPath}/upload/"+this.pictureURL+"' alt='html5' width='320' height='450'/></a>");
 	});
 },"json"
 );
@@ -382,7 +382,7 @@ $.post(
 {"oper":"news"},
 function(data){
 	$(data).each(function(){
-      $("#newsf").html( $("#newsf").html()+"<li><a href='${pageContext.request.contextPath}/news/news_con.jsp'><img src='"+this.pictureURL+"' width='90' height='90'></a><div class='newslist'><a href='news/news_con.jsp'>"+this.title+"</a><span>时间："+this.dateTime+"</span><p>"+this.content+"...</p></div></li>");
+      $("#newsf").html( $("#newsf").html()+"<li><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+this.id+"'><img src='${pageContext.request.contextPath}/upload/"+this.pictureURL+"' width='90' height='90'></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+this.id+"'>"+this.title+"</a><span>时间："+this.time+"</span><p>"+this.content.substring(0,60)+"...</p></div></li>");
 	});
 },"json"
 ); 

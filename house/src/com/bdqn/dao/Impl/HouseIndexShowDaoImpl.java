@@ -107,6 +107,12 @@ public class HouseIndexShowDaoImpl extends BaseDao implements HouseIndexShowDao{
 		return a;
 	}
 
+	@Override
+	public int deletehouseIndexShow(int indextype, int showtype) {
+		String sql="DELETE FROM house_index_show WHERE indextype="+indextype+" AND showtype="+showtype;
+		return update(sql);
+	}
+
 
 	
 }

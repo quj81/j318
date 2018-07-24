@@ -78,6 +78,7 @@ public class MessageConServlet extends HttpServlet {
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		HouseMessage hm=hms.getHouseMessageforcon(id);
 		String str=JSON.toJSONString(hm);
+		System.out.println(str);
 		response.getWriter().write(str);
 	}
 	public void getadpic(HttpServletRequest request, HttpServletResponse response)

@@ -52,13 +52,13 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String sql="SELECT * FROM `house_message`";
+		String sql="SELECT * FROM `house_message` AS hm LEFT JOIN `house_picture` AS hp ON hm.id=hp.houseid;";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
 			while(res.next()){
 				HouseMessage a=new HouseMessage();
-				a.setId(res.getInt("Id"));    
+				a.setId(res.getInt("hm.Id"));    
     			a.setProvinceId(res.getInt("ProvinceId"));    
     			a.setTownId(res.getInt("TownId"));    
     			a.setAreaId(res.getInt("AreaId"));    
@@ -80,13 +80,14 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setFeature(res.getString("Feature"));    
     			a.setAddress(res.getString("Address"));    
     			a.setState(res.getInt("State"));    
-    			a.setAddUser(res.getString("AddUser"));    
-    			a.setAddTime(res.getDate("AddTime"));    
-    			a.setUpdateUser(res.getString("UpdateUser"));    
-    			a.setUpdateTime(res.getDate("UpdateTime")); 
+    			a.setAddUser(res.getString("hm.AddUser"));    
+    			a.setAddTime(res.getDate("hm.AddTime"));    
+    			a.setUpdateUser(res.getString("hm.UpdateUser"));    
+    			a.setUpdateTime(res.getDate("hm.UpdateTime")); 
     			a.setProperty(res.getInt("property"));
     			a.setX(res.getDouble("x"));
     			a.setY(res.getDouble("y"));
+    			a.setPictureURL(res.getString("pictureURL"));
     			if(res.getDate("CheckTime")!=null){
     				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
     			}
@@ -112,13 +113,13 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String sql="SELECT * FROM `house_message` WHERE houseName LIKE '%"+name+"%'";
+		String sql="SELECT * FROM `house_message` AS hm LEFT JOIN `house_picture` AS hp ON hm.id=hp.houseid WHERE houseName LIKE '%"+name+"%'";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
 			while(res.next()){
 				HouseMessage a=new HouseMessage();
-				a.setId(res.getInt("Id"));    
+				a.setId(res.getInt("hm.Id"));    
     			a.setProvinceId(res.getInt("ProvinceId"));    
     			a.setTownId(res.getInt("TownId"));    
     			a.setAreaId(res.getInt("AreaId"));    
@@ -147,6 +148,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setProperty(res.getInt("property"));
     			a.setX(res.getDouble("x"));
     			a.setY(res.getDouble("y"));
+    			a.setPictureURL(res.getString("pictureURL"));
     			if(res.getDate("CheckTime")!=null){
     				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
     			}
@@ -289,6 +291,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime")); 
     			a.setProperty(res.getInt("property"));
+    			a.setPictureURL(res.getString("pictureURL"));
     			a.setX(res.getDouble("x"));
     			a.setY(res.getDouble("y"));
     			if(res.getDate("CheckTime")!=null){
@@ -418,7 +421,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
 		
-		String sql="SELECT m.id,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id";
+		String sql="SELECT m.id,pictureURL,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
@@ -430,7 +433,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setSalesAddress(res.getString("SalesAddress"));       
     			a.setTownName(res.getString("TownName"));
     			a.setAreaName(res.getString("AreaName"));
-    			
+    			a.setPictureURL(res.getString("pictureURL"));
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -449,8 +452,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		List<HouseMessage> list=new ArrayList<HouseMessage>();
-		
-		String sql="SELECT m.id,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id ORDER BY m.addtime";
+		String sql="SELECT m.id,pictureURL,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid ORDER BY m.addtime";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
@@ -462,6 +464,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setSalesAddress(res.getString("SalesAddress"));       
     			a.setTownName(res.getString("TownName"));
     			a.setAreaName(res.getString("AreaName"));
+    			a.setPictureURL(res.getString("pictureURL"));
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -492,6 +495,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
     			a.setSalesAddress(res.getString("SalesAddress"));       
     			a.setTownName(res.getString("TownName"));
     			a.setAreaName(res.getString("AreaName"));
+    			a.setPictureURL(res.getString("pictureURL"));
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -511,7 +515,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		ResultSet res=null;
 		HouseMessage a=null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property WHERE m.id="+id;
+		String sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType,pictureURL FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid WHERE m.id="+id;
 
 		try {
 			prep=conn.prepareStatement(sql);
@@ -540,6 +544,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 				a.setPropertyType(res.getString(20));
     			a.setTownName(res.getString("TownName"));
     			a.setAreaName(res.getString("AreaName"));
+    			a.setPictureURL(res.getString("pictureURL"));
     			if(res.getDate("CheckTime")!=null){
     				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
     			}
@@ -567,9 +572,9 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		String sql=null;
 		if(str==null){
-			sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property";
+			sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType,pictureURL FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid";
 		}else{
-			sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property WHERE t.townName LIKE '%"+str+"%' OR m.houseName LIKE '%"+str+"%' OR m.address LIKE '%"+str+"%'";
+			sql="SELECT m.id,p.provinceName,t.townName,a.areaName,m.houseName,m.startPrice,m.averagePrice,m.houseType,f.finishState,m.greenRate,m.plotRatio,m.checkTime,m.openTime,m.realCompany,m.licence,m.developers,m.salesAddress,m.feature,m.address,c.propertyType,pictureURL FROM house_message AS m LEFT JOIN house_province AS p ON m.provinceId=p.id LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN house_finishstate AS f ON f.id=m.finishState LEFT JOIN house_property AS c ON c.id=m.property LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid WHERE t.townName LIKE '%"+str+"%' OR m.houseName LIKE '%"+str+"%' OR m.address LIKE '%"+str+"%'";
 		}
 		try {
 			prep=conn.prepareStatement(sql);
@@ -598,6 +603,7 @@ public class HouseMessageDaoImpl extends BaseDao implements HouseMessageDao{
 				a.setPropertyType(res.getString(20));
     			a.setTownName(res.getString("TownName"));
     			a.setAreaName(res.getString("AreaName"));
+    			a.setPictureURL(res.getString("pictureURL"));
     			if(res.getDate("CheckTime")!=null){
     				a.setCheckTime1(formatter.format(res.getDate("CheckTime")));
     			}

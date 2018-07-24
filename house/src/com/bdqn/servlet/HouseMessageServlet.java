@@ -19,8 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.bdqn.entity.HouseMessage;
+import com.bdqn.entity.HousePicture;
 import com.bdqn.service.HouseMessageService;
+import com.bdqn.service.HousePictureService;
 import com.bdqn.service.Impl.HouseMessageServiceImpl;
+import com.bdqn.service.Impl.HousePictureServiceImpl;
 
 public class HouseMessageServlet extends HttpServlet {
 
@@ -99,9 +102,16 @@ public class HouseMessageServlet extends HttpServlet {
 			indexcz(request,response);
 		}if("liebiaoget".equals(type)){
 			liebiaoget(request,response);
+		}if("zhuxiao".equals(type)){
+			zhuxiao(request,response);
 		}
 	}
 	
+	public void zhuxiao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getSession().setAttribute("adminUser",null);
+		request.getRequestDispatcher("/jsp/househome/index.jsp").forward(request, response);
+		
+	}
 	public void liebiaoget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		int tid=Integer.parseInt(request.getParameter("tid"));
 		request.setAttribute("tid", tid);
@@ -110,7 +120,7 @@ public class HouseMessageServlet extends HttpServlet {
 	}
 	
 	public void indexcz(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String sql="SELECT m.id,houseName,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id WHERE 1=1";
+		String sql="SELECT m.id,houseName,pictureURL,averagePrice,salesAddress,townName,areaName FROM house_message AS m LEFT JOIN house_town AS t ON m.townId=t.id LEFT JOIN house_area AS a ON m.areaId=a.id LEFT JOIN `house_picture` AS hp ON m.id=hp.houseid WHERE 1=1";
 		StringBuffer sb=new StringBuffer(sql);
 		String sheng=request.getParameter("sheng");
 		if(!sheng.equals("-1")){
@@ -136,18 +146,21 @@ public class HouseMessageServlet extends HttpServlet {
 			}else{
 			sb.append(" and averagePrice between "+qujianint+" and "+(qujianint+10000));
 			}
-			
 		}
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		String assql=sb.toString();
 		List<HouseMessage> list=hms.getNewIndexSql(assql);
+		System.out.println("aaa");
+		for (HouseMessage houseMessage : list) {
+			System.out.println(houseMessage.getPictureURL());
+		}
 		String json=JSON.toJSONString(list);
 		response.getWriter().write(json);
 	}
 	
 	public void tonameget(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String name=request.getParameter("name");
-		String sql="SELECT * FROM `house_message` WHERE houseName='"+name+"';";
+		String sql="SELECT * FROM `house_message` as hm LEFT JOIN `house_picture` AS hp ON hm.id=hp.houseid WHERE houseName='"+name+"';";
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		List<HouseMessage> list=hms.getHouseMessageList(sql);
 		HouseMessage aa=list.get(0);
@@ -185,7 +198,7 @@ public class HouseMessageServlet extends HttpServlet {
 
 	}
 	public void getcha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		String sql="SELECT * FROM `house_message` WHERE 1=1";
+		String sql="SELECT * FROM `house_message` AS hm LEFT JOIN `house_picture` AS hp ON hm.id=hp.houseid WHERE 1=1 ";
 		StringBuffer sb=new StringBuffer(sql);
 		String sheng=request.getParameter("sheng");
 		if(!sheng.equals("-1")){
@@ -217,6 +230,7 @@ public class HouseMessageServlet extends HttpServlet {
 		String assql=sb.toString();
 		List<HouseMessage> list=hms.getHouseMessageList(assql);
 		String json=JSON.toJSONString(list);
+		System.out.println(json);
 		response.getWriter().write(json);
 		/*request.setAttribute("list", list);
 		request.getRequestDispatcher("jsp/admin/houseResource/HouseShow.jsp").forward(request, response);*/
@@ -372,6 +386,21 @@ public class HouseMessageServlet extends HttpServlet {
 		//a.setUpdateTime(); 
 		HouseMessageService hms=new HouseMessageServiceImpl();
 		int b=hms.modifyHouseMessage(a);
+		HousePicture hp=new HousePicture();
+		
+		HousePictureService hps=new HousePictureServiceImpl();
+		HousePicture housePicture=hps.getHousePictureInfo(Integer.parseInt(request.getParameter("id")));
+		if(housePicture!=null){
+			hps.delHousePicture(housePicture);
+		}
+		
+		String URL=(String)request.getSession().getAttribute("filename");
+		hp.setHouseId(Integer.parseInt(request.getParameter("id")));
+		hp.setpictureURL(URL);
+		hp.setPictureType(1);
+		hp.setAdminpic(1);
+		hps.addHousePicture(hp);
+		
 		if(b>0){
 			PrintWriter out=response.getWriter();
 			out.print("<script>alert('ÐÞ¸Ä³É¹¦'); window.location='HouseMessageServlet?type=allget'</script>");

@@ -22,16 +22,16 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 	@Override
 	public int addHousePicture(HousePicture HousePicture) {
 		// TODO Auto-generated method stub
-		String sql="INSERT INTO house_picture(pictureURL,houseName,pictureType,addUser,addTime,updateUser,updateTime) VALUE(?,?,?,?,?,?,?)";
-		Object[] param={HousePicture.getPictureURL(),HousePicture.getHouseId(),HousePicture.getPictureType(),HousePicture.getAddUser(),HousePicture.getAddTime(),HousePicture.getUpdateUser(),HousePicture.getUpdateTime()};
+		String sql="INSERT INTO house_picture(adminpic,pictureURL,houseid,pictureType,addUser,addTime,updateUser,updateTime) VALUE(?,?,?,?,?,?,?,?)";
+		Object[] param={HousePicture.getAdminpic(),HousePicture.getpictureURL(),HousePicture.getHouseId(),HousePicture.getPictureType(),HousePicture.getAddUser(),HousePicture.getAddTime(),HousePicture.getUpdateUser(),HousePicture.getUpdateTime()};
 		return update(sql, param);
 	}
 
 	@Override
 	public int modifyHousePicture(HousePicture HousePicture) {
 		// TODO Auto-generated method stub
-		String sql="UPDATE house_picture set  pictureURL=?,houseName=?,pictureType=?,addUser=?,addTime=?,updateUser=?,updateTime=? where id=?";
-		Object[] param={HousePicture.getPictureURL(),HousePicture.getHouseId(),HousePicture.getPictureType(),HousePicture.getAddUser(),HousePicture.getAddTime(),HousePicture.getUpdateUser(),HousePicture.getUpdateTime(),HousePicture.getId()};
+		String sql="UPDATE house_picture set  pictureURL=?,houseid=?,pictureType=?,addUser=?,addTime=?,updateUser=?,updateTime=? where id=?";
+		Object[] param={HousePicture.getpictureURL(),HousePicture.getHouseId(),HousePicture.getPictureType(),HousePicture.getAddUser(),HousePicture.getAddTime(),HousePicture.getUpdateUser(),HousePicture.getUpdateTime(),HousePicture.getId()};
 		return update(sql, param);
 	}
 
@@ -57,7 +57,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			while(res.next()){
 				HousePicture a=new HousePicture();
     			a.setId(res.getInt("Id"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setpictureURL(res.getString("pictureURL"));    
     			a.setHouseId(res.getInt("HouseId"));    
     			a.setPictureType(res.getInt("PictureType"));    
     			a.setAddUser(res.getString("AddUser"));    
@@ -83,13 +83,13 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		HousePicture a=new HousePicture();
-		String sql="SELECT * FROM `house_picture` where id="+id;
+		String sql="SELECT * FROM `house_picture` where HouseId="+id;
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
 			while(res.next()){
     			a.setId(res.getInt("Id"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setpictureURL(res.getString("pictureURL"));    
     			a.setHouseId(res.getInt("HouseId"));    
     			a.setPictureType(res.getInt("PictureType"));    
     			a.setAddUser(res.getString("AddUser"));    
@@ -118,7 +118,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			res=prep.executeQuery();
 			while(res.next()){
     			a.setId(res.getInt("Id"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setpictureURL(res.getString("pictureURL"));    
     			a.setHouseId(res.getInt("HouseId"));    
     			a.setPictureType(res.getInt("PictureType"));    
     			a.setAddUser(res.getString("AddUser"));    
@@ -149,7 +149,7 @@ public class HousePictureDaoImpl extends BaseDao implements HousePictureDao{
 			while(res.next()){
 				HousePicture a=new HousePicture();
     			a.setId(res.getInt("Id"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setpictureURL(res.getString("pictureURL"));    
     			a.setHouseId(res.getInt("HouseId"));    
     			a.setPictureType(res.getInt("PictureType"));    
     			a.setAddUser(res.getString("AddUser"));    

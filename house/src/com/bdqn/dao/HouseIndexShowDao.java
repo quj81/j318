@@ -12,5 +12,6 @@ public interface HouseIndexShowDao{
 	int modifyHouseIndexShow(HouseIndexShow HouseIndexShow);
 	int delHouseIndexShow(HouseIndexShow HouseIndexShow);
 	List<HouseIndexShow> getHouseIndexShowList();
-	HouseIndexShow getHouseIndexShowInfo(int id);   
+	HouseIndexShow getHouseIndexShowInfo(int id);  
+	int deletehouseIndexShow(int indextype,int showtype);
 }

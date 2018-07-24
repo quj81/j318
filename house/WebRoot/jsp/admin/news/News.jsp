@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+           <!--  <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -122,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <a data-toggle="tooltip" data-placement="top" title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div> -->
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -136,23 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path}/jsp/admin/images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
+                <jsp:include page="../houseResource/titleMenu.jsp"></jsp:include>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
@@ -313,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				function(data){
 				var str="";
 					for(var i=0;i<data.length;i++){
-					str+="<tr><input type='hidden' name='tid' value='"+data[i].id+"'><td>"+data[i].title+"</td><td><button onclick='shanchu("+data[i].id+")'>删除</button><a href='${pageContext.request.contextPath}/HouseNewsServlet?type=modifyin&id="+data[i].id+"'>修改</a></td></tr>";
+					str+="<tr><input type='hidden' name='tid' value='"+data[i].id+"'><td>"+data[i].title+"</td><td><button onclick='shanchu("+data[i].id+")' class='btn btn-success'>删除</button><a class='btn btn-primary' href='${pageContext.request.contextPath}/HouseNewsServlet?type=modifyin&id="+data[i].id+"'>修改</a></td></tr>";
 					}
 				$("#dongcidaci").html(str);
 				},
@@ -326,7 +310,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				"${pageContext.request.contextPath}/HouseNewsServlet",
 				{"type":"delete","id":id},
 				function(re){
-					if(re==1){
+					if(re=="1"){
 					alert("删除成功");
 					getttt();
 					}else{

@@ -71,6 +71,10 @@ public class HouseIndextypeServlet extends HttpServlet {
 			get1(request,response);
 		}if("get2".equals(type)){
 			get2(request,response);
+		}if("add1".equals(type)){//添加到数据库house_index_show表里 
+			add1(request,response);	
+		}if("add2".equals(type)){//添加到数据库house_index_show表里 
+			add2(request,response);	
 		}
 		}
 		
@@ -81,21 +85,55 @@ public class HouseIndextypeServlet extends HttpServlet {
 		// TODO Auto-generated method stub 
 		PrintWriter out=response.getWriter();
 		String[] a=request.getParameterValues("housetype");
-		String[] yu=request.getParameterValues("id");
-		int[] b=new int[6];
-		for(int i=0;i<yu.length;i++){
-			b[i]=Integer.parseInt(yu[i]);
-		}
 		int indextype=Integer.parseInt(request.getParameter("indextype"));
 		int showtype=Integer.parseInt(request.getParameter("showtype"));
 		HouseIndexShowService service =new HouseIndexShowServiceImpl();
 		HouseIndexShow h=new HouseIndexShow();
 		h.setIndextype(indextype);
 		h.setShowtype(showtype);
-		for (int i:b) { 
-			h.setIndexid(i);
+		for (String i:a) {
+			int c=Integer.parseInt(i);
+			h.setIndexid(c);
 			service.addHouseIndexShow(h);
 			out.print("<script>alert('显示成功！');window.location='HouseIndextypeServlet?type=get';</script>");		
+		}		
+	}
+	public void add1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub 
+		PrintWriter out=response.getWriter();
+		String[] a=request.getParameterValues("housetype");
+		int indextype=Integer.parseInt(request.getParameter("indextype"));
+		int showtype=Integer.parseInt(request.getParameter("showtype"));
+		
+		HouseIndexShowService service =new HouseIndexShowServiceImpl();
+		service.deletehouseIndexShow(indextype, showtype);
+		HouseIndexShow h=new HouseIndexShow();
+		h.setIndextype(indextype);
+		h.setShowtype(showtype);
+		for (String i:a) { 
+			int c=Integer.parseInt(i);
+			h.setIndexid(c);	
+			service.addHouseIndexShow(h);
+			out.print("<script>alert('显示成功！');window.location='HouseIndextypeServlet?type=get1';</script>");		
+		}		
+	}
+	public void add2(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub 
+		PrintWriter out=response.getWriter();
+		String[] a=request.getParameterValues("housetype");
+		int indextype=Integer.parseInt(request.getParameter("indextype"));
+		int showtype=Integer.parseInt(request.getParameter("showtype"));
+		HouseIndexShowService service =new HouseIndexShowServiceImpl();
+		service.deletehouseIndexShow(indextype, showtype);
+		HouseIndexShow h=new HouseIndexShow();
+		h.setIndextype(indextype);
+		h.setShowtype(showtype);
+		for (String i:a) { 
+			int c=Integer.parseInt(i);
+			h.setIndexid(c);
+			
+			service.addHouseIndexShow(h);
+			out.print("<script>alert('显示成功！');window.location='HouseIndextypeServlet?type=get2';</script>");		
 		}		
 	}
 

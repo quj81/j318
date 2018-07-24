@@ -20,7 +20,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                   <li><a><i class="fa fa-desktop"></i> 首页管理 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="${pageContext.request.contextPath}/HouseIndextypeServlet?type=get">楼盘类型显示</a></li>
+                      <!--  <li><a href="${pageContext.request.contextPath}/HouseIndextypeServlet?type=get">楼盘类型显示</a></li>-->
                       <li><a href="${pageContext.request.contextPath}/HouseIndextypeServlet?type=get1">楼盘热门显示</a></li>
                       <li><a href="${pageContext.request.contextPath}/HouseIndextypeServlet?type=get2">资讯显示</a></li>
                     </ul>
@@ -29,13 +29,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul class="nav child_menu">
                        	<li><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=allget">房源查看</a></li>
                         <li><a href="${pageContext.request.contextPath}/jsp/admin/houseResource/HouseManage.jsp">房源发布</a></li>
-                        <li><a href="tables_dynamic.html">楼盘类型管理</a></li>
+<!--                         <li><a href="tables_dynamic.html">楼盘类型管理</a></li>
                         <li><a href="tables_dynamic1.html">装修状态管理</a></li>
                         <li><a href="tables_dynamic2.html">楼盘状态管理</a></li>
                         <li><a href="tables_dynamic3.html">产权类型管理</a></li>
                         <li><a href="tables_dynamic4.html">省级列表管理</a></li>
                         <li><a href="tables_dynamic5.html">市级列表管理</a></li>
-                        <li><a href="tables_dynamic6.html">区域列表管理</a></li>
+                        <li><a href="tables_dynamic6.html">区域列表管理</a></li> -->
                       </li>
                     </ul>
                     <li><a><i class="fa fa-desktop"></i> 资讯管理 <span class="fa fa-chevron-down"></span></a>
@@ -48,3 +48,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
             </div>
 <!-- /sidebar menu -->
+
+	            <div class="sidebar-footer hidden-small">
+              <a href="${pageContext.request.contextPath}" data-toggle="tooltip" data-placement="top" title="返回主页">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a href="${pageContext.request.contextPath}/HouseMessageServlet?type=zhuxiao" data-toggle="tooltip" data-placement="top" title="注销登陆">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>

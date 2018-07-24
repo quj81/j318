@@ -45,66 +45,6 @@ public class HouseMessage implements java.io.Serializable{
   private double y;
   private String finishstatename;
   private String propertyType;
-public String getFinishstatename() {
-	return finishstatename;
-}
-public void setFinishstatename(String finishstatename) {
-	this.finishstatename = finishstatename;
-}
-public String getPropertyType() {
-	return propertyType;
-}
-public void setPropertyType(String propertyType) {
-	this.propertyType = propertyType;
-}
-public double getX() {
-	return x;
-}
-public void setX(double x) {
-	this.x = x;
-}
-public double getY() {
-	return y;
-}
-public void setY(double y) {
-	this.y = y;
-}
-public String getProvince() {
-	return province;
-}
-public void setProvince(String province) {
-	this.province = province;
-}
-public String getTownName() {
-	return townName;
-}
-public void setTownName(String townName) {
-	this.townName = townName;
-}
-public String getAreaName() {
-	return areaName;
-}
-public void setAreaName(String areaName) {
-	this.areaName = areaName;
-}
-public String getTown() {
-	return town;
-}
-public void setTown(String town) {
-	this.town = town;
-}
-public String getArea() {
-	return area;
-}
-public void setArea(String area) {
-	this.area = area;
-}
-public String getPictureURL() {
-	return pictureURL;
-}
-public void setPictureURL(String pictureURL) {
-	this.pictureURL = pictureURL;
-}
 public int getId() {
 	return id;
 }
@@ -279,5 +219,65 @@ public int getProperty() {
 public void setProperty(int property) {
 	this.property = property;
 }
-  
+public String getProvince() {
+	return province;
+}
+public void setProvince(String province) {
+	this.province = province;
+}
+public String getTown() {
+	return town;
+}
+public void setTown(String town) {
+	this.town = town;
+}
+public String getArea() {
+	return area;
+}
+public void setArea(String area) {
+	this.area = area;
+}
+public String getPictureURL() {
+	return pictureURL;
+}
+public void setPictureURL(String pictureURL) {
+	this.pictureURL = pictureURL;
+}
+public String getTownName() {
+	return townName;
+}
+public void setTownName(String townName) {
+	this.townName = townName;
+}
+public String getAreaName() {
+	return areaName;
+}
+public void setAreaName(String areaName) {
+	this.areaName = areaName;
+}
+public double getX() {
+	return x;
+}
+public void setX(double x) {
+	this.x = x;
+}
+public double getY() {
+	return y;
+}
+public void setY(double y) {
+	this.y = y;
+}
+public String getFinishstatename() {
+	return finishstatename;
+}
+public void setFinishstatename(String finishstatename) {
+	this.finishstatename = finishstatename;
+}
+public String getPropertyType() {
+	return propertyType;
+}
+public void setPropertyType(String propertyType) {
+	this.propertyType = propertyType;
+}
+
 }

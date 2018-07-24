@@ -65,7 +65,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
@@ -104,7 +104,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
@@ -152,7 +152,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
@@ -173,6 +173,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 	}
 	@Override
 	public List<HouseNews> getHouseNewsInIndex() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Connection conn=getJDBCConnection();
 		PreparedStatement prep=null;
 		ResultSet res=null;
@@ -189,11 +190,14 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
-    			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			a.setUpdateTime(res.getDate("UpdateTime"));  
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -208,11 +212,12 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
 
 	@Override
 	public HouseNews getHouseNewsInIndexA() {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Connection conn=getJDBCConnection();
 		PreparedStatement prep=null;
 		ResultSet res=null;
 		HouseNews a=null;
-		String sql="SELECT * FROM house_news WHERE id IN(SELECT indexid FROM house_index_show WHERE indextype=3 AND showtype=2);";
+		String sql="SELECT * FROM house_news WHERE id IN(SELECT indexid FROM house_index_show WHERE indextype=3 AND showtype=2)";
 		try {
 			prep=conn.prepareStatement(sql);
 			res=prep.executeQuery();
@@ -224,11 +229,14 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    
     			a.setUpdateTime(res.getDate("UpdateTime"));    
+    			if(res.getDate("DateTime")!=null){
+    				a.setTime(formatter.format(res.getDate("DateTime")));
+    			}
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -258,7 +266,7 @@ public class HouseNewsDaoImpl extends BaseDao implements HouseNewsDao{
     			a.setContent(res.getString("Content"));    
     			a.setAuthor(res.getString("Author"));    
     			a.setDateTime(res.getDate("DateTime"));    
-    			a.setPictureURL(res.getString("PictureURL"));    
+    			a.setPictureURL(res.getString("pictureURL"));    
     			a.setAddUser(res.getString("AddUser"));    
     			a.setAddTime(res.getDate("AddTime"));    
     			a.setUpdateUser(res.getString("UpdateUser"));    

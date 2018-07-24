@@ -85,7 +85,7 @@
 				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
 				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
 				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
-				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/admin/houseResource/HouseManage.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -140,7 +140,7 @@
 			function(data){
 				var str="<div style='font-weight:bold;font-size:20px;background-color:#F7F7F7;height:46px;text-align:center;line-height:46px;'>推荐资讯</div>";
 				for(var i=0;i<data.length;i++){
-					str+="<li  class='demon_ani' onmouseover='block1()' onmouseout='none1()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a></li><li class='demon_anim' onmouseover='block2()' onmouseout='none2()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' class='demon_anim_li_img'></a><br><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"' style='color:gray ;width:200px;height:30px;'>"+data[i].content+"</a></li>"
+					str+="<li  class='demon_ani' onmouseover='block1()' onmouseout='none1()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a></li><li class='demon_anim' onmouseover='block2()' onmouseout='none2()'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' class='demon_anim_li_img'></a><br><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"' style='color:gray ;width:200px;height:30px;'>"+data[i].content+"</a></li>"
 				}
 				$("#right_list_123").html(str);
 			},
@@ -158,7 +158,7 @@
 					function(data){
 						var str="";
 						for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
 						}
 					$("#list_li").html(str);
 					},
@@ -186,7 +186,7 @@
 			function(data){
 				var str="";
 				for(var i=0;i<data.length;i++){
-							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
+							str+="<li style='border-bottom:1px solid white'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' data-original='' /></a><div class='newslist'><a href='${pageContext.request.contextPath}/news_conServlet?news_ID_="+data[i].id+"'>"+data[i].title+"</a><span>编辑:"+data[i].author+"</span><span>发布时间:"+data[i].time+"</span><p class='abcdefg12345'>"+data[i].content+"</p></div></li>";
 				}
 				$("#list_li").html(str);
 			},

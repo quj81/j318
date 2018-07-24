@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/jsp/admin/css/custom.min.css=UTF-8
 encoding//WebRoot/jsp/admin/houseResource/HouseManage.jsp=UTF-8
+encoding//src/com/bdqn/servlet/FileUploadServlet.java=UTF-8

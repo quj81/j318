@@ -31,9 +31,12 @@ request.setAttribute("path",path);
     <!-- Bootstrap -->
     <link href="${path }/jsp/admin/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${path }/jsp/admin/css/font-awesome.min.css" rel="stylesheet">
+    
     <!-- NProgress -->
     <link href="${path }/jsp/admin/css/nprogress.css" rel="stylesheet">
+    
+    <link href="${path }/jsp/admin/css/fileUpload.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/iconfont.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="${path }/jsp/admin/css/custom.min.css" rel="stylesheet">
@@ -41,7 +44,7 @@ request.setAttribute("path",path);
     <link href="${path }/jsp/admin/css/select.css" rel="stylesheet" />
     <link href="${path }/jsp/admin/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
 	<link href="${path }/jsp/admin/css/fileUpload.css" rel="stylesheet" type="text/css">
-	
+
 		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=4YCE1omHccmroLSrjGUKZT0YLn9zB4LT"></script>
 	<!--加载鼠标绘制工具-->
 	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
@@ -115,20 +118,7 @@ request.setAttribute("path",path);
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
+            
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -142,23 +132,7 @@ request.setAttribute("path",path);
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path }/jsp/admin/images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
+                <jsp:include page="../houseResource/titleMenu.jsp"></jsp:include>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
@@ -392,18 +366,25 @@ request.setAttribute("path",path);
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>坐标值X
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.x }" type="text" name="rongjilv">
+                              <input id="zuobiaoX" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.x }" type="text" name="rongjilv">
                             </div>
                          </div>
                          <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" ><span class="required">*</span>坐标值Y
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12" >
-                              <input id="rong" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.y }" type="text" name="rongjilv">
+                              <input id="zuobiaoY" class="date-picker form-control col-md-7 col-xs-12" value="${listtttt.y }" type="text" name="rongjilv">
                             </div>
                           </div>
                       <input id="tititi" class="btn btn-success" type="submit" value="提交">
                      </form>
+                     
+                     <div style="width: 900px;height: 350px;border:1px solid red;margin:auto">
+                     	<jsp:include page="../Up/index.jsp"></jsp:include>
+                     	<script src="../Up/js/jquery-2.1.3.min.js"></script>
+						<script type="text/javascript" src="../Up/js/fileUpload.js"></script>
+                     </div>
+                     
                      <h4 class="StepTitle">请在地图上点击获取坐标信息</h4>
 	<div class="map">
 			<div class="input-group">
@@ -429,11 +410,10 @@ request.setAttribute("path",path);
 	$("#zuobiaoY").val(e.point.lat)
 	});
 	
-	var point = new BMap.Point(116.404, 39.915);
+	var point = new BMap.Point(116.404, 39.915);//地图坐标X轴Y轴
 	map.centerAndZoom(point, 14);
 	map.enableScrollWheelZoom();
 	map.enableInertialDragging();
-
 	map.enableContinuousZoom();
 
 	var size = new BMap.Size(10, 20);
@@ -536,7 +516,7 @@ request.setAttribute("path",path);
 			renderOptions: {map: map, panel: "r-result"}
 			});
 			local.search(aa);
-		})
+		});
 
 		/* 楼盘名称判断 */
 		$(function(){

@@ -32,7 +32,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="${path}/jsp/admin/css/switchery.min.css" rel="stylesheet">
     <!-- starrr -->
     <link href="${path}/jsp/admin/css/starrr.css" rel="stylesheet">
-
+    <link href="${path }/jsp/admin/css/fileUpload.css" rel="stylesheet">
+    <link href="${path }/jsp/admin/css/iconfont.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="${path}/jsp/admin/css/custom.min.css" rel="stylesheet">
   </head>
@@ -112,20 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
+            
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -139,24 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path}/jsp/admin/images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-
+				<jsp:include page="../houseResource/titleMenu.jsp"></jsp:include>
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -262,12 +233,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <input type="text" id="last-name" name="last-name2" required="required" class="form-control col-md-7 col-xs-12">
                         </div>
                       </div>
-					   <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">发布时间 <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last-name3" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
                       </div>
 					   
 	
@@ -290,17 +255,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
               </div>
                       </div>
-                     
-                      
+
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" class="btn btn-primary">取消</button>
-                          <button type="submit" class="btn btn-success">提交</button>
+                          <input type="submit" class="btn btn-success" value="提交">
                         </div>
                       </div>
-
                     </form>
+                    
+                    <div>
+                     	<jsp:include page="../Up/index.jsp"></jsp:include>
+                     	<script src="../Up/js/jquery-2.1.3.min.js"></script>
+						<script type="text/javascript" src="../Up/js/fileUpload.js"></script>
+                     </div>
+                 
                   </div>
                 </div>
               </div>

@@ -14,16 +14,24 @@ public class HousePicture implements java.io.Serializable{
   private Date addTime;/*???????addTime*/  
   private String updateUser;/*???????updateUser*/  
   private Date updateTime;/*???????updateTime*/  
-    public int getId(){    
+  private int adminpic;
+  
+    public int getAdminpic() {
+	return adminpic;
+}
+public void setAdminpic(int adminpic) {
+	this.adminpic = adminpic;
+}
+	public int getId(){    
       return id;    
     }    
     public void setId(int id){    
       this.id = id;    
     }    
-    public String getPictureURL(){    
+    public String getpictureURL(){    
       return pictureURL;    
     }    
-    public void setPictureURL(String pictureURL){    
+    public void setpictureURL(String pictureURL){    
       this.pictureURL = pictureURL;    
     }    
     public int getHouseId(){    

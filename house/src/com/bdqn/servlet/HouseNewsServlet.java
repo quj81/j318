@@ -17,8 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 import com.bdqn.dao.Impl.HouseNewsDaoImpl;
 import com.bdqn.entity.HouseNews;
+import com.bdqn.entity.HousePicture;
 import com.bdqn.service.HouseNewsService;
+import com.bdqn.service.HousePictureService;
 import com.bdqn.service.Impl.HouseNewsServiceImpl;
+import com.bdqn.service.Impl.HousePictureServiceImpl;
 
 public class HouseNewsServlet extends HttpServlet {
 
@@ -76,6 +79,7 @@ public class HouseNewsServlet extends HttpServlet {
 	public void getajax(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		HouseNewsService hns=new  HouseNewsServiceImpl();
 		List<HouseNews> list=hns.getHouseNewsList();
+		System.out.println(list.get(0).getPictureURL());
 		String str=JSON.toJSONString(list);
 		response.getWriter().write(str);
 		
@@ -97,7 +101,6 @@ public class HouseNewsServlet extends HttpServlet {
 		HouseNewsDaoImpl hns=new HouseNewsDaoImpl();
 		List<HouseNews> list=hns.getHouseNewsListByTime();
 		String json=JSON.toJSONString(list);
-
 		response.getWriter().write(json);
 	} 
 	public void getbyid(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -128,7 +131,9 @@ public class HouseNewsServlet extends HttpServlet {
 		hn.setAuthor(author);
 		//hn.setDateTime(time);
 		hn.setContent(context);
+		hn.setPictureURL((String)request.getSession().getAttribute("filename"));
 		int result=hns.addHouseNews(hn);
+
 		PrintWriter out=response.getWriter();
 		out.print("Ìí¼Ó³É¹¦£¡");
 		request.getRequestDispatcher("jsp/admin/news/AddNews.jsp").forward(request, response);
@@ -140,7 +145,8 @@ public class HouseNewsServlet extends HttpServlet {
 		int id=Integer.parseInt(request.getParameter("id"));
 		HouseNews hn=hns.getHouseNewsInfo(id);
 		int result=hns.delHouseNews(hn);
-		response.getWriter().write(result);
+		String a=String.valueOf(result);
+		response.getWriter().write(a);
 	}
 	
 	public void modifi(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

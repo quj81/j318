@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
 				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
 				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
-				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/admin/houseResource/HouseManage.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<form action="">
 		<div class="category">
-		<div class="wrapper">
+		<div class="wrapper " id="lie_shadow">
 			<ul>
 				<li>
 					<select id="sheng" name="sheng" class="form-control" style="width:120px;display:inline-block;magin-right:20px">
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li id="tabl_pad">
 					<table class="tab_lieb">
 					<tr>
-					<td><a href=""><img src="" alt=""/></a></td>
+					<td><img alt="" src="${pageContext.request.contextPath}/upload/${list.pictureURL }" width='200px' height='120px'><a href=""><img src="" alt=""/></a></td>
 					<td><p><a href="${pageContext.request.contextPath}/MessageConServlet?oper=conin&hid=${list.id}">[${list.townName}-${list.areaName}]${list.houseName}</a></p><p> ${list.salesAddress}</p></td>
 					<td><span>${list.averagePrice}元/平</span><span> 元/㎡</span></td>
 					</tr>
@@ -106,20 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		
 				</ul>
+	 
 	 <ol class="bor_red2">
-		<li>热门楼盘</li>
-		<li>
-			<p>西安-雁塔]品牌底商</p>
-			<br/>
-			<p>20000元/平元/㎡</p>
-		</li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ol>
-	 <ol class="bor_red2 bor_red3">
 		<li>最新楼盘</li>
 		<c:forEach items="${news}" var="news">
 		<li>
@@ -233,7 +221,7 @@ var qujian=$("#qujian").val();
 			function(data){
 				var pin="";
 				for(var i=0;i<data.length;i++){
-					pin+="<li><table class='tab_lieb'><tr><td><a href=''><img src='' alt=''/></a></td><td><p><a href='${pageContext.request.contextPath}/HouseMessageServlet?type=liebiaoget&tid="+data[i].id+"'>["+data[i].townName+"-"+data[i].areaName+"]"+data[i].houseName+"</a></p><p>"+data[i].salesAddress+"</p></td><td><span>"+data[i].averagePrice+"元/平</span><span> 元/㎡</span></td></tr></table></li>";
+					pin+="<li><table class='tab_lieb'><tr><td><a href=''><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' width='200px' height='120px' alt=''/></a></td><td><p><a href='${pageContext.request.contextPath}/HouseMessageServlet?type=liebiaoget&tid="+data[i].id+"'>["+data[i].townName+"-"+data[i].areaName+"]"+data[i].houseName+"</a></p><p>"+data[i].salesAddress+"</p></td><td><span>"+data[i].averagePrice+"元/平</span><span> 元/㎡</span></td></tr></table></li>";
 				}
 				$("#dongcidaci").html(pin);
 			},

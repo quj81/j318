@@ -49,4 +49,10 @@ public class HouseIndexShowServiceImpl extends BaseDao implements HouseIndexShow
 		HouseIndexShowDao service=new HouseIndexShowDaoImpl();
 		return service.getHouseIndexShowInfo(id);
 	}
+
+	@Override
+	public int deletehouseIndexShow(int indextype, int showtype) {
+		HouseIndexShowDao service=new HouseIndexShowDaoImpl();
+		return service.deletehouseIndexShow(indextype, showtype);
+	}
 }

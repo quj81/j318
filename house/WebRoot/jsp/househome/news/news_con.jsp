@@ -50,7 +50,7 @@
 				<li class="about"><a href="${pageContext.request.contextPath}/HouseMessageServlet?type=yumiao"  title="楼盘">楼盘<span>上千选择</span></a></li>
 				<li class="service"><a href="${pageContext.request.contextPath}/jsp/househome/news/news_list.jsp"  title="资讯">资讯<span>行业动态</span></a></li>
 				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/househome/contact/index.jsp" title="联系我们">联系我们<span>随时联系</span></a></li>
-				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/gentelella-master/production/Login.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
+				<li class="cases"><a href="${pageContext.request.contextPath}/jsp/admin/houseResource/HouseManage.jsp" title="登陆">后台管理<span>管理后台</span></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -73,7 +73,7 @@
   <article style="float:left;">
   	<!-- 内容 -->
   	<!-- 图片 -->
-   <div class="wrapper" id="detailed"> <img src="${news1234.pictureURL}" style="width:620px; height: 350px; margin-left:230px" /><br />
+   <div class="wrapper" id="detailed"> <img src="${pageContext.request.contextPath}/upload/${news1234.pictureURL}" style="width:620px; height: 350px; margin-left:230px" /><br />
    	<!-- 图片 -->
    	<!-- 文字 -->
 	<div style="width:700px;margin-left:230px;margin-top:60px;">

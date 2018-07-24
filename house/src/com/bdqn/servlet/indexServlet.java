@@ -85,6 +85,8 @@ public class indexServlet extends HttpServlet {
 		HouseMessageService hns=new HouseMessageServiceImpl();
 		List<HouseMessage> list=hns.getHouseforsearch(searchterms);
 		request.setAttribute("list", list);
+		List<HouseMessage> news=hns.getNewIndex();
+		request.setAttribute("news", news);
 		request.getRequestDispatcher("jsp/househome/case/index.jsp").forward(request, response);
 		
 	}

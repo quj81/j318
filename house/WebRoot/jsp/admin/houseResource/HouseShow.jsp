@@ -27,7 +27,7 @@ request.setAttribute("path",path);
     <!-- Bootstrap -->
     <link href="${path }/jsp/admin/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${path }/jsp/admin/css/font-awesome.min.css" rel="stylesheet">
+    
     <!-- NProgress -->
     <link href="${path }/jsp/admin/css/nprogress.css" rel="stylesheet">
     <!-- Dropzone.js -->
@@ -68,20 +68,7 @@ request.setAttribute("path",path);
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
+            
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -95,24 +82,7 @@ request.setAttribute("path",path);
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path }/jsp/admin/images/img.jpg" alt="">${adminUser.userName}
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-
+ 				<jsp:include page="../houseResource/titleMenu.jsp"></jsp:include>
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
@@ -182,7 +152,7 @@ request.setAttribute("path",path);
           </div>
         </div>
         <!-- /top navigation -->
-		
+
         <!-- page content -->
         <div class="right_col" role="main">
         <div class="x_panel">
@@ -192,19 +162,19 @@ request.setAttribute("path",path);
             <div class="souSuo1">
              <form action="HouseMessageServlet">
              <input class="form-control input-sm" type="hidden" name="type" value="getcha">
-             	<select id="sheng" name="sheng" class="form-control" style="width:110px;display:inline-block">
+             	<select id="sheng" name="sheng" class="form-control" style="width:105px;display:inline-block">
                 <option value="-1" selected="selected" >请选择省</option>
               </select>
-              <select id="shi" name="shi" class="form-control" style="width:110px;display:inline-block">
+              <select id="shi" name="shi" class="form-control" style="width:105px;display:inline-block">
                 <option value="-1" selected="selected">请选择市</option>
               </select>
-              <select id="qu" name="qu" class="form-control" style="width:110px;display:inline-block">
+              <select id="qu" name="qu" class="form-control" style="width:105px;display:inline-block">
                 <option value="-1" selected="selected">请选择区</option>
               </select>
               <select id="leibie" name="leibie" class="form-control" style="width:120px;display:inline-block">
                 <option value="-1" selected="selected">请选择类型</option>
               </select>
-              <select id="qujian" name="qujian" class="form-control" style="width:140px;display:inline-block">
+              <select id="qujian" name="qujian" class="form-control" style="width:135px;display:inline-block">
                 <option value="-1" selected="selected">请选择价格</option>
                 <option value="0">0-10000</option>
                 <option value="10000">10000-20000</option>
@@ -214,11 +184,11 @@ request.setAttribute("path",path);
                 <option value="90000">90000-100000</option>
                 <option value="100000">100000以上</option>
               </select>
-              <input type="button" value="确认" id="queren">
+              <input type="button" value="确认" id="queren" class="btn btn-primary" style="margin-top:5px;">
              </form>
             </div>
             <div class="souSuo2">
-              <input type="text" id="sousuo" value="" class="form-control"/><button id="ssqueren">搜索</button>
+              <input type="text" id="sousuo" value="" style="width:150px;height:35px;"/><button id="ssqueren" class="btn btn-primary" style="margin: -2px 0px 0px 3px;">搜索</button>
             </div>
           </div>
           <div class="info">
@@ -232,9 +202,9 @@ request.setAttribute("path",path);
 	              <tr>
 	                <td class='fr_show'>
 	                  <ul>
-	                    <li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li>
+	                    <li><img src='${pageContext.request.contextPath}/upload/${list.pictureURL }' alt='图片飞丢了' width='200px' height='120px'/></br></li>
 	                    <li>
-	                      <p><a href='form_buttons.html'> 楼盘名称:${list.houseName }</a></p>
+	                      <p><a href='HouseMessageServlet?type=tonameget&name=${list.houseName}'> 楼盘名称:${list.houseName }</a></p>
 	                      <p>
 	                        	面积:${list.coveredArea }</br>
 	                        	均价:${list.averagePrice }</br>
@@ -260,8 +230,8 @@ request.setAttribute("path",path);
 	                  </p>
 	                </td>
 	                <td class='last_show'>
-	                 <p> <a href='HouseMessageServlet?type=tonameget&name=${list.houseName}' onclick=''>修改</a></p>
-	                 <p> <a onclick="shanchu(${list.id})">删除</a></p>
+	                 <p> <a href='HouseMessageServlet?type=tonameget&name=${list.houseName}' onclick='' class="btn btn-primary">修改</a></p>
+	                 <p> <a onclick="shanchu(${list.id})" class="btn btn-success">删除</a></p>
 	                </td>
 	              </tr>    
               </c:forEach>
@@ -285,6 +255,7 @@ request.setAttribute("path",path);
 		
 		function getall(){
 		var str=$("#sousuo").val();
+			$.ajaxSettings.async = false;
 			$.post(
 			"HouseMessageServlet",
 			{"type":"search","name":str},
@@ -299,7 +270,7 @@ request.setAttribute("path",path);
 				}else if(data[i].state==3){
 					a="删除";
 				}
-				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
+				alr+="<tr><td class='fr_show'><ul><li><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' alt='图片飞丢了' width='200px' height='120px'/></br></li><li><p><a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc='' class='btn btn-primary'>修改</a></p><p> <a onclick='shanchu("+data[i].id+")' class='btn btn-success'>删除</a></p></td></tr>"
 				}
 				$("#fangzi").html(alr);
 			},
@@ -413,6 +384,7 @@ request.setAttribute("path",path);
 			var qu=$("#qu").val();
 			var leibie=$("#leibie").val();
 			var qujian=$("#qujian").val();
+			$.ajaxSettings.async = false;
 			$.post(
 			"HouseMessageServlet",
 			{"type":"getcha","sheng":sheng,"shi":shi,"qu":qu,"leibie":leibie,"qujian":qujian},
@@ -427,7 +399,7 @@ request.setAttribute("path",path);
 				}else if(data[i].state==3){
 					a="删除";
 				}
-				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
+				alr+="<tr><td class='fr_show'><ul><li><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' alt='图片飞丢了' width='200px' height='120px'/></br></li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc='' class='btn btn-primary'>修改</a></p><p> <a onclick='shanchu("+data[i].id+")' class='btn btn-success'>删除</a></p></td></tr>"
 				}
 				$("#fangzi").html(alr);
 			},
@@ -437,6 +409,7 @@ request.setAttribute("path",path);
 		
 		$("#ssqueren").click(function(){
 			var str=$("#sousuo").val();
+			$.ajaxSettings.async = false;
 			$.post(
 			"HouseMessageServlet",
 			{"type":"search","name":str},
@@ -447,11 +420,11 @@ request.setAttribute("path",path);
 				if(data[i].state==1){
 					a="发布";
 				}else if(data[i].state==2){
-					a="审核";
+					a="审核"
 				}else if(data[i].state==3){
 					a="删除";
 				}
-				alr+="<tr><td class='fr_show'><ul><li><img src='' alt='图片飞丢了' width='' height=''/></br>图片修改</li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc=''>修改</a></p><p> <a onclick='shanchu("+data[i].id+")'>删除</a></p></td></tr>"
+				alr+="<tr><td class='fr_show'><ul><li><img src='${pageContext.request.contextPath}/upload/"+data[i].pictureURL+"' alt='图片飞丢了' width='200px' height='120px'/></br></li><li><p><a href='form_buttons.html'> 楼盘名称:"+data[i].houseName+"</a></p><p>面积:"+data[i].coveredArea+"</br>均价:"+data[i].averagePrice+"</br>开盘时间:"+data[i].openTime1+"</br>交房时间:"+data[i].checkTime1+"</br>绿化率:"+data[i].greenRate+"</br>容积率:"+data[i].plotRatio+"</br></p></li></ul></td><td class='last_show'><p>"+a+"</p></td><td class='last_show'><p> <a href='HouseMessageServlet?type=tonameget&name="+data[i].houseName+"' onclikc='' class='btn btn-primary'>修改</a></p><p> <a onclick='shanchu("+data[i].id+")' class='btn btn-success'>删除</a></p></td></tr>"
 				}
 				$("#fangzi").html(alr);
 			},

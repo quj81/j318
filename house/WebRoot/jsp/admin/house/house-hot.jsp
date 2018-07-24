@@ -19,7 +19,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Bootstrap -->
     <link href="${path}/jsp/admin/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="${path}/jsp/admin/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="${path}/jsp/admin/css/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
@@ -71,23 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
 
               <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="${path}/jsp/admin/images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
+                <jsp:include page="../houseResource/titleMenu.jsp"></jsp:include>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
@@ -168,12 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -190,21 +168,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   </div>
                   <div class="x_content">
                     <div id="" style="width:100%; height:80px;">
-                    <form action="HouseIndextypeServlet?indextype=1&showtype=1" method="post">
-                    		主显示: <input type="hidden" name="type" value="add">
-               		  <c:forEach items="${list}" var="list">  
-               		  <input type="hidden" value="${list.id}" name="id">         	
-                     	 <input type="radio" value="${list.houseName}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <form action="HouseIndextypeServlet?indextype=2&showtype=1" method="post">
+                    		主显示: <input type="hidden" name="type" value="add1">
+               		  <c:forEach items="${list}" var="list">          	
+                     	 <input type="radio" value="${list.id}" name="housetype" id="housetype">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </c:forEach>
                       
                       	 <input type="submit" value="主显示" style="border-radius: 50%;background-color: white;color:#D59354;font-weight:bold;" id="dongdongdong">
                     </form>
                     
                       <form action="HouseIndextypeServlet?indextype=2&showtype=2" method="post" id="dongcidaci">
-                     	副显示： <input type="hidden" name="type" value="add">
-                      <c:forEach items="${list}" var="list">  
-                      <input type="hidden" value="${list.id}" name="id">     	
-                     	<input type="checkbox" value="${list.houseName}" name="housetype" id="housetype" class="duoxuan">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     	副显示： <input type="hidden" name="type" value="add1">
+                      <c:forEach items="${list}" var="list">    	
+                     	<input type="checkbox" value="${list.id}" name="housetype" id="housetype" class="duoxuan">${list.houseName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      </c:forEach>
                       	<input type="submit" value="副显示" style="border-radius: 50%;background-color: white;color:#D59354;font-weight:bold;" id="dongdongdong1">
                       </form>
